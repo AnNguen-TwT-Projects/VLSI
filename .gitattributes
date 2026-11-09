@@ -1,0 +1,15 @@
+* text=auto
+# File chay trong VM Linux phai giu LF
+*.sh  text eol=lf
+*.il  text eol=lf
+*.scs text eol=lf
+*.vec text eol=lf
+*.py  text eol=lf
+*.csv text eol=lf
+*.rsf text eol=lf
+*.cdl text eol=lf
+*.md  text eol=lf
+.githooks/* text eol=lf
+*.pdf binary
+*.tgz binary
+*.png binary

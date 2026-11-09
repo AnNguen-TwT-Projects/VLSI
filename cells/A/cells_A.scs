@@ -1,0 +1,13 @@
+// ALU_CELLS_A: include THIS file (once) to get every cell of A.
+// Spectre refuses a subckt defined twice, so cell files never include each other.
+// Device models: include gpdk090.scs (section=NN/FF/SS) before this file.
+simulator lang=spectre
+include "INV_X1/INV_X1.scs"
+include "NAND2_X1/NAND2_X1.scs"
+include "NOR2_X1/NOR2_X1.scs"
+include "AOI21_X1/AOI21_X1.scs"
+include "OAI21_X1/OAI21_X1.scs"
+include "BLK_P/BLK_P.scs"
+include "BLK_N/BLK_N.scs"
+include "GRY_P/GRY_P.scs"
+include "GRY_N/GRY_N.scs"

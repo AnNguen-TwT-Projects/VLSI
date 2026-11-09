@@ -1,0 +1,8 @@
+// GRY_N (ALU_CELLS_A, owner A). Gray cell, negative-in / positive-out.
+// GO = !(GIN & (PIN | GKN)) (OAI21: A1=PIN A2=GKN B=GIN)
+// Pins: GIN PIN GKN GO VDD VSS   (docs/CONVENTIONS.md section 4)
+// Subcells come from cells/A/cells_A.scs (include that file, not this one, in testbenches/blocks).
+simulator lang=spectre
+subckt GRY_N GIN PIN GKN GO VDD VSS
+    XG (PIN GKN GIN GO VDD VSS) OAI21_X1
+ends GRY_N

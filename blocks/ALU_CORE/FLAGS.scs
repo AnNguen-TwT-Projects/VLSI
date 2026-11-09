@@ -1,0 +1,30 @@
+// FLAGS: sinh tu dong boi blocks/gen_blocks.py - khong sua tay
+// Can include cac cell A + stub XOR2/XNOR2 va cac khoi con truoc khi dung.
+simulator lang=spectre
+subckt FLAGS Y_0 Y_1 Y_2 Y_3 Y_4 Y_5 Y_6 Y_7 Y_8 Y_9 Y_10 Y_11 Y_12 Y_13 Y_14 Y_15 C7 C8 \
+    DIVV DIVDZ SEL_AS SEL_DIV Z C V DZ VDD VSS
+I0 (Y_0 Y_1 za0 VDD VSS) NOR2_X1
+I1 (Y_2 Y_3 za1 VDD VSS) NOR2_X1
+I2 (Y_4 Y_5 za2 VDD VSS) NOR2_X1
+I3 (Y_6 Y_7 za3 VDD VSS) NOR2_X1
+I4 (Y_8 Y_9 za4 VDD VSS) NOR2_X1
+I5 (Y_10 Y_11 za5 VDD VSS) NOR2_X1
+I6 (Y_12 Y_13 za6 VDD VSS) NOR2_X1
+I7 (Y_14 Y_15 za7 VDD VSS) NOR2_X1
+I8 (za0 za1 zb0 VDD VSS) NAND2_X1
+I9 (za2 za3 zb1 VDD VSS) NAND2_X1
+I10 (za4 za5 zb2 VDD VSS) NAND2_X1
+I11 (za6 za7 zb3 VDD VSS) NAND2_X1
+I12 (zb0 zb1 zc0 VDD VSS) NOR2_X1
+I13 (zb2 zb3 zc1 VDD VSS) NOR2_X1
+I14 (zc0 zc1 zd VDD VSS) NAND2_X1
+I15 (zd Z VDD VSS) INV_X1
+I16 (C8 SEL_AS cn VDD VSS) NAND2_X1
+I17 (cn C VDD VSS) INV_X1
+I18 (C7 C8 ovf VDD VSS) XOR2_X1
+I19 (SEL_AS ovf v1 VDD VSS) NAND2_X1
+I20 (SEL_DIV DIVV v2 VDD VSS) NAND2_X1
+I21 (v1 v2 V VDD VSS) NAND2_X1
+I22 (SEL_DIV DIVDZ dzn VDD VSS) NAND2_X1
+I23 (dzn DZ VDD VSS) INV_X1
+ends FLAGS

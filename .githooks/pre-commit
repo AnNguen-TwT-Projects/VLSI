@@ -1,0 +1,15 @@
+#!/bin/sh
+# Kiem tra tuong thich truoc commit (docs/CONVENTIONS.md muc 9).
+# Bat mot lan sau khi clone: git config core.hooksPath .githooks
+root=$(git rev-parse --show-toplevel) || exit 1
+if python -c 'import sys; sys.exit(sys.version_info[0] < 3)' >/dev/null 2>&1; then
+  py=python
+elif py -3 -c '' >/dev/null 2>&1; then
+  py='py -3'
+else
+  echo "pre-commit: khong tim thay Python 3 (python hoac py -3)" >&2
+  exit 1
+fi
+cd "$root" || exit 1
+$py tools/check_compat.py
+exit $?

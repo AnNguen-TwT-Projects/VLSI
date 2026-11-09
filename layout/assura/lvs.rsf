@@ -1,0 +1,25 @@
+; Assura LVS run file for one cell of ALU_CELLS_A: layout vs CDL netlist
+; (layout/assura/cdl/<CELL>.cdl, made by layout/scs2cdl.py from cells/A/<CELL>/<CELL>.scs).
+; @CELL@, @RUN@, @CDL@ are filled in by layout/run_layout_A.sh.
+avParameters(
+  ?inputLayout ( "df2" "ALU_CELLS_A" )
+  ?cellName "@CELL@"
+  ?viewName "layout"
+  ?rulesFile "/home/buet/cadence/gpdk090_v4.6/assura/extract.rul"
+  ?runName "@CELL@"
+  ?workingDirectory "@RUN@"
+  ?overwrite t
+  ?avrpt t
+)
+load( "/home/buet/cadence/gpdk090_v4.6/assura/compare.rul" )
+avCompareRules(
+  schematic(
+    netlist( cdl "@CDL@" )
+  )
+  bindingFile( "/home/buet/cadence/gpdk090_v4.6/assura/bind.rul" )
+  bind( net("*[*]" "*<*>") )
+  mergeSplitGate( sameOrder )
+  autoPinSwap( t 3000 )
+  expandOnError( (pins t) (swap t) (reduce t) (swapThres t) )
+)
+avLVS()

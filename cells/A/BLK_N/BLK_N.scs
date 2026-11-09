@@ -1,0 +1,9 @@
+// BLK_N (ALU_CELLS_A, owner A). Black cell, negative-in / positive-out.
+// GO = !(GIN & (PIN | GKN)) (OAI21: A1=PIN A2=GKN B=GIN), PO = !(PIN | PKN) (NOR2)
+// Pins: GIN PIN GKN PKN GO PO VDD VSS   (docs/CONVENTIONS.md section 4)
+// Subcells come from cells/A/cells_A.scs (include that file, not this one, in testbenches/blocks).
+simulator lang=spectre
+subckt BLK_N GIN PIN GKN PKN GO PO VDD VSS
+    XG (PIN GKN GIN GO VDD VSS) OAI21_X1
+    XP (PIN PKN PO VDD VSS) NOR2_X1
+ends BLK_N

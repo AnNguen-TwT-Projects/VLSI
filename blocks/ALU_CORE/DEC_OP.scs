@@ -1,0 +1,24 @@
+// DEC_OP: sinh tu dong boi blocks/gen_blocks.py - khong sua tay
+// Can include cac cell A + stub XOR2/XNOR2 va cac khoi con truoc khi dung.
+simulator lang=spectre
+subckt DEC_OP OP_0 OP_1 OP_2 OP_3 SEL_AS SEL_AND SEL_OR SEL_XOR SEL_NOT SEL_MUL SEL_DIV \
+    VDD VSS
+I0 (OP_0 opn0 VDD VSS) INV_X1
+I1 (OP_1 opn1 VDD VSS) INV_X1
+I2 (OP_2 opn2 VDD VSS) INV_X1
+I3 (OP_3 opn3 VDD VSS) INV_X1
+I4 (opn3 opn2 h00 VDD VSS) NAND2_X1
+I5 (opn3 OP_2 h01 VDD VSS) NAND2_X1
+I6 (OP_3 opn2 h10 VDD VSS) NAND2_X1
+I7 (opn1 opn0 l00 VDD VSS) NAND2_X1
+I8 (opn1 OP_0 l01 VDD VSS) NAND2_X1
+I9 (OP_1 opn0 l10 VDD VSS) NAND2_X1
+I10 (OP_1 OP_0 l11 VDD VSS) NAND2_X1
+I11 (h00 OP_1 SEL_AS VDD VSS) NOR2_X1
+I12 (h00 l10 SEL_AND VDD VSS) NOR2_X1
+I13 (h00 l11 SEL_OR VDD VSS) NOR2_X1
+I14 (h01 l00 SEL_XOR VDD VSS) NOR2_X1
+I15 (h01 l01 SEL_NOT VDD VSS) NOR2_X1
+I16 (h10 l01 SEL_MUL VDD VSS) NOR2_X1
+I17 (h10 l11 SEL_DIV VDD VSS) NOR2_X1
+ends DEC_OP

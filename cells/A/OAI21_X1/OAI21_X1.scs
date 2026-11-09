@@ -1,0 +1,11 @@
+// OAI21_X1 (ALU_CELLS_A, owner A).  Y = !((A1 | A2) & B)
+// Pins: A1 A2 B Y VDD VSS   (docs/CONVENTIONS.md section 4)
+simulator lang=spectre
+subckt OAI21_X1 A1 A2 B Y VDD VSS
+    MN0 (Y A1 n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u
+    MN1 (Y A2 n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u
+    MN2 (n1 B VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u
+    MP0 (p1 A1 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u
+    MP1 (Y A2 p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u
+    MP2 (Y B VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u
+ends OAI21_X1

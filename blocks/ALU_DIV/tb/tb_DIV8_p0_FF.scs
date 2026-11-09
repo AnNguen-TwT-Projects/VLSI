@@ -1,0 +1,9 @@
+// DIV8 corner FF
+simulator lang=spectre
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=FF
+include "../../../cells/A/cells_A.scs"
+include "../../../cells/_stub_B/XOR2_X1/XOR2_X1.scs"
+include "../../../cells/_stub_B/XNOR2_X1/XNOR2_X1.scs"
+include "../../../cells/D/CAS_X1/CAS_X1.scs"
+include "../DIV8.scs"
+include "tb_DIV8_p0.scs"
