@@ -38,16 +38,18 @@ DZ = NOR(B_7..0)          V = Q_7 & !(sA^sB) & !DZ   (chi o -128 / -1)
 | Muc logic `CAS_X1` | 16/16 |
 | Muc logic `DIV8` | 65536/65536 cap (a,b) dung voi `div_signed` (b=0: chi kiem V=0, DZ=1) |
 | Transistor | CAS_X1 48, DIV8 4498, ALU_TOP 8006 (ALU_CORE 1340 + MUL8 2168 + DIV8 4498) |
-| Spectre DIV8 NN | xem bang duoi |
+| Spectre DIV8 NN | 60/60 vector, tre xau nhat 9.37 ns |
 | Muc logic `ALU_TOP` | 595/595 dong `vectors/alu_full.csv` (y=-1 bo qua) |
+| Spectre ALU_TOP NN smoke | 12/12 vector (ADD SUB AND OR XOR NOT MUL DIV, gom -128/-1, -7/2, 5/0), 12 ns/vector, tre xau nhat 5.2 ns (DIV), 725 s |
 
 Spectre DIV8, NN, 12 ns/vector, maxstep 40 ps, mau o cuoi chu ky, nguong 0.6 V:
 
 | Phan | Vector dung | Tre xau nhat | Thoi gian chay VM |
 |---|---|---|---|
 | p0 | 20/20 | 9.37 ns (127/0 -> 127/1, ra R_0) | 638 s |
-| p1 | (cho) | | |
-| p2 | (cho) | | |
+| p1 | 20/20 | 4.45 ns (255/0 -> 255/1, ra R_7) | 477 s |
+| p2 | 20/20 | 6.13 ns (249/2 -> 7/254, ra R_1) | 496 s |
+| **Tong** | **60/60** | **9.37 ns** | |
 
 Tre do tu 50% suon vao den lan cat 0.6 V cuoi cung cua bat ky ngo ra nao trong chu ky;
 vector co b = 0 (ngo ra khong xac dinh) khong tinh tre. Duong cham: chuoi carry 9 bit x 8 hang

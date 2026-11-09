@@ -136,7 +136,9 @@ procedure(sbDraw(cv pins insts)
     x = apply('max x)
     sbPins(cv setof(p pins cadr(p) == "input") 'input "right" -3.0 0.0 0.0 -0.75)
     sbPins(cv setof(p pins cadr(p) == "output") 'output "left" x + 1.5 0.0 0.0 -0.75)
-    sbPins(cv setof(p pins cadr(p) == "inputOutput") 'inputOutput "right" -3.0 -3.0 0.0 -0.75)))
+    ; VDD/VSS ngay duoi chan vao cuoi cung (y co dinh -3.0 trung chan vao thu 5 khi co bus)
+    sbPins(cv setof(p pins cadr(p) == "inputOutput") 'inputOutput "right" -3.0
+           -0.75 * (length(setof(p pins cadr(p) == "input")) + 1) 0.0 -0.75)))
 
 procedure(sbCell(lib cell pins insts)
   let((cv res ok)

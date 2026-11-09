@@ -22,7 +22,7 @@ from model.alu_ref import alu_full  # noqa: E402
 T_NS = 12.0   # DIV8 cham nhat (~9.4 ns o NN)
 SMOKE = [(0, 100, 27), (0, 127, 1), (1, 128, 1), (2, 0xF0, 0x3C), (3, 0x0F, 0x30),
          (4, 0xAA, 0xFF), (5, 0x55, 0), (9, 128, 128), (9, 255, 127), (11, 128, 255),
-         (11, 249, 2), (11, 5, 0)]   # 12 vector: Spectre ALU_TOP ~7700 T rat cham
+         (11, 249, 2), (11, 5, 0)]   # 12 vector: Spectre ALU_TOP ~8000 T rat cham
 
 
 def gen_top():

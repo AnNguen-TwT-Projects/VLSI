@@ -234,7 +234,7 @@ def check_res(top, rows, res, T_ns):
             bad.append((k, r, errs))
         else:
             ok += 1
-        if k and r.get('q', 0) != -1:     # b = 0: ngo ra khong xac dinh, khong do tre
+        if k and -1 not in r.values():   # b = 0: ngo ra khong xac dinh, khong do tre
             lc = [(cr.last_cross(ts, data[p], k * T, (k + 1) * T), p) for p in outs]
             lc = [x for x in lc if x[0] is not None]
             if lc:
