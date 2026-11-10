@@ -268,6 +268,6 @@ XLC8_0 (C8 ld_C8_0 VDD VSS) INV_X1
 XLC8_1 (C8 ld_C8_1 VDD VSS) INV_X1
 XLC8_2 (C8 ld_C8_2 VDD VSS) INV_X1
 XLC8_3 (C8 ld_C8_3 VDD VSS) INV_X1
-save S_0 S_1 S_2 S_3 S_4 S_5 S_6 S_7 C7 C8
+save S_0 S_1 S_2 S_3 S_4 S_5 S_6 S_7 C7 C8 VVDD:p
 opts options save=selected temp=27 reltol=1e-3
 tran tran stop=296n maxstep=10p errpreset=moderate

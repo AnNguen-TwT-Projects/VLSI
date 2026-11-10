@@ -52,7 +52,7 @@ I45 (VSS dd5 VDD c0_4 p0_5 c0_5 VDD VSS) CAS_X1
 I46 (VSS dd6 VDD c0_5 p0_6 c0_6 VDD VSS) CAS_X1
 I47 (VSS dd7 VDD c0_6 p0_7 c0_7 VDD VSS) CAS_X1
 I48 (VSS VSS VDD c0_7 p0_8 c0_8 VDD VSS) CAS_X1
-I49 (p0_8 qu7 VDD VSS) INV_X1
+I49 (p0_8 qu7 VDD VSS) INV_X4
 I50 (aa6 B_0 qu7 qu7 p1_0 c1_0 VDD VSS) CAS_X1
 I51 (p0_0 dd1 qu7 c1_0 p1_1 c1_1 VDD VSS) CAS_X1
 I52 (p0_1 dd2 qu7 c1_1 p1_2 c1_2 VDD VSS) CAS_X1
@@ -62,7 +62,7 @@ I55 (p0_4 dd5 qu7 c1_4 p1_5 c1_5 VDD VSS) CAS_X1
 I56 (p0_5 dd6 qu7 c1_5 p1_6 c1_6 VDD VSS) CAS_X1
 I57 (p0_6 dd7 qu7 c1_6 p1_7 c1_7 VDD VSS) CAS_X1
 I58 (p0_7 VSS qu7 c1_7 p1_8 c1_8 VDD VSS) CAS_X1
-I59 (p1_8 qu6 VDD VSS) INV_X1
+I59 (p1_8 qu6 VDD VSS) INV_X4
 I60 (aa5 B_0 qu6 qu6 p2_0 c2_0 VDD VSS) CAS_X1
 I61 (p1_0 dd1 qu6 c2_0 p2_1 c2_1 VDD VSS) CAS_X1
 I62 (p1_1 dd2 qu6 c2_1 p2_2 c2_2 VDD VSS) CAS_X1
@@ -72,7 +72,7 @@ I65 (p1_4 dd5 qu6 c2_4 p2_5 c2_5 VDD VSS) CAS_X1
 I66 (p1_5 dd6 qu6 c2_5 p2_6 c2_6 VDD VSS) CAS_X1
 I67 (p1_6 dd7 qu6 c2_6 p2_7 c2_7 VDD VSS) CAS_X1
 I68 (p1_7 VSS qu6 c2_7 p2_8 c2_8 VDD VSS) CAS_X1
-I69 (p2_8 qu5 VDD VSS) INV_X1
+I69 (p2_8 qu5 VDD VSS) INV_X4
 I70 (aa4 B_0 qu5 qu5 p3_0 c3_0 VDD VSS) CAS_X1
 I71 (p2_0 dd1 qu5 c3_0 p3_1 c3_1 VDD VSS) CAS_X1
 I72 (p2_1 dd2 qu5 c3_1 p3_2 c3_2 VDD VSS) CAS_X1
@@ -82,7 +82,7 @@ I75 (p2_4 dd5 qu5 c3_4 p3_5 c3_5 VDD VSS) CAS_X1
 I76 (p2_5 dd6 qu5 c3_5 p3_6 c3_6 VDD VSS) CAS_X1
 I77 (p2_6 dd7 qu5 c3_6 p3_7 c3_7 VDD VSS) CAS_X1
 I78 (p2_7 VSS qu5 c3_7 p3_8 c3_8 VDD VSS) CAS_X1
-I79 (p3_8 qu4 VDD VSS) INV_X1
+I79 (p3_8 qu4 VDD VSS) INV_X4
 I80 (aa3 B_0 qu4 qu4 p4_0 c4_0 VDD VSS) CAS_X1
 I81 (p3_0 dd1 qu4 c4_0 p4_1 c4_1 VDD VSS) CAS_X1
 I82 (p3_1 dd2 qu4 c4_1 p4_2 c4_2 VDD VSS) CAS_X1
@@ -92,7 +92,7 @@ I85 (p3_4 dd5 qu4 c4_4 p4_5 c4_5 VDD VSS) CAS_X1
 I86 (p3_5 dd6 qu4 c4_5 p4_6 c4_6 VDD VSS) CAS_X1
 I87 (p3_6 dd7 qu4 c4_6 p4_7 c4_7 VDD VSS) CAS_X1
 I88 (p3_7 VSS qu4 c4_7 p4_8 c4_8 VDD VSS) CAS_X1
-I89 (p4_8 qu3 VDD VSS) INV_X1
+I89 (p4_8 qu3 VDD VSS) INV_X4
 I90 (aa2 B_0 qu3 qu3 p5_0 c5_0 VDD VSS) CAS_X1
 I91 (p4_0 dd1 qu3 c5_0 p5_1 c5_1 VDD VSS) CAS_X1
 I92 (p4_1 dd2 qu3 c5_1 p5_2 c5_2 VDD VSS) CAS_X1
@@ -102,7 +102,7 @@ I95 (p4_4 dd5 qu3 c5_4 p5_5 c5_5 VDD VSS) CAS_X1
 I96 (p4_5 dd6 qu3 c5_5 p5_6 c5_6 VDD VSS) CAS_X1
 I97 (p4_6 dd7 qu3 c5_6 p5_7 c5_7 VDD VSS) CAS_X1
 I98 (p4_7 VSS qu3 c5_7 p5_8 c5_8 VDD VSS) CAS_X1
-I99 (p5_8 qu2 VDD VSS) INV_X1
+I99 (p5_8 qu2 VDD VSS) INV_X4
 I100 (aa1 B_0 qu2 qu2 p6_0 c6_0 VDD VSS) CAS_X1
 I101 (p5_0 dd1 qu2 c6_0 p6_1 c6_1 VDD VSS) CAS_X1
 I102 (p5_1 dd2 qu2 c6_1 p6_2 c6_2 VDD VSS) CAS_X1
@@ -112,7 +112,7 @@ I105 (p5_4 dd5 qu2 c6_4 p6_5 c6_5 VDD VSS) CAS_X1
 I106 (p5_5 dd6 qu2 c6_5 p6_6 c6_6 VDD VSS) CAS_X1
 I107 (p5_6 dd7 qu2 c6_6 p6_7 c6_7 VDD VSS) CAS_X1
 I108 (p5_7 VSS qu2 c6_7 p6_8 c6_8 VDD VSS) CAS_X1
-I109 (p6_8 qu1 VDD VSS) INV_X1
+I109 (p6_8 qu1 VDD VSS) INV_X4
 I110 (A_0 B_0 qu1 qu1 p7_0 c7_0 VDD VSS) CAS_X1
 I111 (p6_0 dd1 qu1 c7_0 p7_1 c7_1 VDD VSS) CAS_X1
 I112 (p6_1 dd2 qu1 c7_1 p7_2 c7_2 VDD VSS) CAS_X1

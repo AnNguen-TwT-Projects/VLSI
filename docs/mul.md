@@ -62,7 +62,28 @@ Tong: 4 BOOTH_ENC, 36 BOOTH_SEL, 4 INV, 7 CMP42, 9 FA, 17 HA, 1 KSA8.
   (SS: 506 ps). CMP42 dung chu ky 1 ns (`T_CELL` trong check_cells.py) vi 2 FA noi tiep o SS ~500 ps;
   voi 500 ps thi ngo ra S chua kip on dinh khi lay mau.
 
+## So sanh voi ban co so Dadda (MUL8_DADDA, `blocks/ALU_MUL/gen_dadda.py`)
+
+MUL8_DADDA = mang AND Baugh-Wooley (64 tich rieng) + cay Dadda (muc 6, 4, 3, 2) + cung bo cong cuoi nhu MUL8.
+Cung 80 vector (`tb/mul8_vectors.csv`), 3 ns/vector, tai 4x INV_X1 moi ngo ra. Cong suat do bang `tools/power.py`
+(P = VDD * |trung binh I(VVDD)|, E/phep = P * 3 ns, EDP = E * tpd).
+
+| | MUL8 (Booth r4 + 4:2) | MUL8_DADDA |
+|---|---|---|
+| Kiem tra muc cong | 65536/65536 | 65536/65536 |
+| Transistor | 2168 | 2036 |
+| Do sau cell | 17 | 16 |
+| Spectre NN | 80/80, 1427 ps | 80/80, 1169 ps |
+| Spectre SS / FF | | 80/80, 1670 / 903 ps |
+| P_avg NN | 708 uW | 470 uW |
+| E/phep NN | 2.13 pJ | 1.41 pJ |
+| EDP NN | 3033 pJ*ns | 1648 pJ*ns |
+
+Ket luan: o 8 bit, Booth radix-4 khong co loi. Booth chi giam so hang tu 8 xuong 5, nhung cell BOOTH_SEL va CMP42
+lon hon va sau hon FA, nen Dadda nhanh hon 18%, it cong suat hon 34%, EDP chi bang 54%. Booth radix-4 co loi ro
+hon khi so bit lon (16 bit tro len). Thiet ke van giu MUL8 Booth vi day la yeu cau cua de; MUL8_DADDA la ban do doi chieu.
+
 ## Chua lam / chua kiem tra
-- Do tre chi lay tren 80 vector, khong phai duong gang toi xau nhat. Chua do cong suat.
-- Chua co schematic/layout Virtuoso cho cell moi va MUL8. Ban co so AND-array + Dadda chua lam.
+- Do tre chi lay tren 80 vector, khong phai duong gang toi xau nhat.
+- Da co schematic Virtuoso cho cell moi, MUL8 va MUL8_DADDA (schCheck 0 loi). Chua co layout.
 - MUL8 chua duoc ghep vao ALU_CORE (MULP) o muc transistor.

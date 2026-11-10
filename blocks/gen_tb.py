@@ -75,7 +75,7 @@ def gen(top):
     for p in b.outs:
         for k in range(4):
             L.append(f'XL{p}_{k} ({p} ld_{p}_{k} VDD VSS) INV_X1')
-    L.append('save ' + ' '.join(b.outs))
+    L.append('save ' + ' '.join(b.outs) + ' VVDD:p')   # dong nguon -> cong suat (tools/power.py)
     L.append('opts options save=selected temp=27 reltol=1e-3')
     L.append(f'tran tran stop={len(R) * T * 1e9:g}n maxstep=10p errpreset=moderate')
     (out / f'tb_{top}.scs').write_text('\n'.join(L) + '\n', encoding='ascii', newline='\n')

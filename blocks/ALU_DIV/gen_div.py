@@ -27,6 +27,7 @@ from gen_blocks import BLOCKS, REPO, Block, bus, bits, val  # noqa: E402
 from model.alu_ref import DIV, div_signed  # noqa: E402
 
 T_NS, EDGE, VDD = 12.0, 20e-12, 1.2   # do o NN: tre xau nhat ~9.4 ns
+T_SS = 16.0  # SS ~1.43x cham hon NN (MUL8 2.04/1.43 ns): 9.4 ns -> ~13.4 ns > 12 ns
 PARTS = 3   # 60 vector chia 3 job (~4 s mo phong / ns o NN, job < 15 phut)
 MODEL = '/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs'
 CORNERS = ('NN', 'SS', 'FF')
@@ -37,6 +38,9 @@ class TieBlock(Block):
     """Block co chan noi thang VDD/VSS (hang so 1/0) trong netlist."""
     def run(self, vals):
         return super().run({**vals, 'VDD': 1, 'VSS': 0})
+
+
+gb.FUNC.setdefault('INV_X4', lambda a: (1 - a,))   # buffer cua C (cells/C/INV_X4, ghi boi gen_mul.py)
 
 
 def gen_cas():
@@ -77,7 +81,8 @@ def gen_div8():
             s, ci = d.x('CAS_X1', [x[j], dd[j], t, ci], [f'p{i}_{j}', f'c{i}_{j}'])
             S.append(s)
         qn = f'Q_0' if i == 7 else f'qu{7 - i}'
-        t = qu[7 - i] = d.x('INV_X1', [S[8]], qn)             # q = 1 khi phan du >= 0
+        # q = 1 khi phan du >= 0. q keo 9 chan T + CI (h ~ 39 voi INV_X1) -> INV_X4 (docs/sizing.md)
+        t = qu[7 - i] = d.x('INV_X1' if i == 7 else 'INV_X4', [S[8]], qn)
         P = S
     # sua phan du: Ru = P + (P<0 ? D : 0)
     ru, ci = [], 'VSS'
@@ -134,7 +139,7 @@ def check():
 
 def count(names=('CAS_X1', 'DIV8')):
     build()
-    subs = gb.parse_subckts(gb.CELL_FILES + [b.path for b in BLOCKS.values()])
+    subs = gb.parse_subckts(gb.CELL_FILES + ['cells/C/INV_X4/INV_X4.scs'] + [b.path for b in BLOCKS.values()])
 
     def n(m):
         return 1 if m.startswith('gpdk090_') else sum(n(x) for x in subs[m])
@@ -175,9 +180,21 @@ def pwl(levels, T):
 
 def write_tb(top, rows, T_ns, incs, maxstep='40p', tag=''):
     """tb_<top>.scs + tb_<top>_<corner>.scs trong TB_DIR (giong blocks/gen_tb.py)."""
-    b, T = BLOCKS[top], T_ns * 1e-9
     out = REPO / TB_DIR if top == 'DIV8' else REPO / 'blocks/ALU_TOP/tb'
     out.mkdir(parents=True, exist_ok=True)
+    write_tb_body(out / f'tb_{top}{tag}.scs', top, rows, T_ns, maxstep)
+    write_tb_body(out / f'tb_{top}{tag}_slow.scs', top, rows, T_SS, maxstep)   # chi corner SS dung
+    rel = lambda p: os.path.relpath(REPO / p, out).replace('\\', '/')
+    for cn in CORNERS:
+        base = f'tb_{top}{tag}_slow.scs' if cn == 'SS' else f'tb_{top}{tag}.scs'
+        w = [f'// {top} corner {cn}', 'simulator lang=spectre', f'include "{MODEL}" section={cn}'] + \
+            [f'include "{rel(p)}"' for p in incs] + [f'include "{base}"']
+        (out / f'tb_{top}{tag}_{cn}.scs').write_text('\n'.join(w) + '\n', encoding='ascii', newline='\n')
+    print(f'ghi {out.relative_to(REPO).as_posix()}/tb_{top}{tag}.scs ({len(rows)} vector x {T_ns:g} ns, SS {T_SS:g} ns) + 3 corner')
+
+
+def write_tb_body(path, top, rows, T_ns, maxstep):
+    b, T = BLOCKS[top], T_ns * 1e-9
     L = [f'// Testbench {top}: sinh tu dong boi {Path(sys.argv[0]).name} ({len(rows)} vector)',
          f'// {T_ns:g} ns/vector, suon {EDGE * 1e12:g} ps, tai 4x INV_X1 moi ngo ra',
          'simulator lang=spectre', 'global 0',
@@ -189,16 +206,10 @@ def write_tb(top, rows, T_ns, incs, maxstep='40p', tag=''):
     for p in b.outs:
         for k in range(4):
             L.append(f'XL{p}_{k} ({p} ld_{p}_{k} VDD VSS) INV_X1')
-    L.append('save ' + ' '.join(b.ins + b.outs))
+    L.append('save ' + ' '.join(b.ins + b.outs) + ' VVDD:p')
     L.append('opts options save=selected temp=27 reltol=1e-3')
     L.append(f'tran tran stop={len(rows) * T_ns:g}n maxstep={maxstep} errpreset=moderate')
-    (out / f'tb_{top}{tag}.scs').write_text('\n'.join(L) + '\n', encoding='ascii', newline='\n')
-    rel = lambda p: os.path.relpath(REPO / p, out).replace('\\', '/')
-    for cn in CORNERS:
-        w = [f'// {top} corner {cn}', 'simulator lang=spectre', f'include "{MODEL}" section={cn}'] + \
-            [f'include "{rel(p)}"' for p in incs] + [f'include "tb_{top}{tag}.scs"']
-        (out / f'tb_{top}{tag}_{cn}.scs').write_text('\n'.join(w) + '\n', encoding='ascii', newline='\n')
-    print(f'ghi {out.relative_to(REPO).as_posix()}/tb_{top}{tag}.scs ({len(rows)} vector x {T_ns:g} ns) + 3 corner')
+    path.write_text('\n'.join(L) + '\n', encoding='ascii', newline='\n')
 
 
 def gb_col(port):
@@ -208,7 +219,7 @@ def gb_col(port):
 
 def div_incs():
     return ['cells/A/cells_A.scs'] + [c for c in gb.CELL_FILES if '_stub_B' in c] + \
-           ['cells/D/CAS_X1/CAS_X1.scs', 'blocks/ALU_DIV/DIV8.scs']
+           ['cells/C/INV_X4/INV_X4.scs', 'cells/D/CAS_X1/CAS_X1.scs', 'blocks/ALU_DIV/DIV8.scs']
 
 
 def check_res(top, rows, res, T_ns):
@@ -217,6 +228,8 @@ def check_res(top, rows, res, T_ns):
     if not res.is_absolute() and not res.exists():
         res = cr.WORK / res
     f = res / 'tran.tran' if res.is_dir() else res
+    if f.parent.name.endswith('_SS'):
+        T_ns = T_SS   # tb SS dung chu ky dai hon (write_tb)
     data, T = cr.read_psfascii(f), T_ns * 1e-9
     ts, outs = data['time'], BLOCKS[top].outs
     ok, bad, worst = 0, [], []

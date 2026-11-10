@@ -131,6 +131,6 @@ XLDZ_0 (DZ ld_DZ_0 VDD VSS) INV_X1
 XLDZ_1 (DZ ld_DZ_1 VDD VSS) INV_X1
 XLDZ_2 (DZ ld_DZ_2 VDD VSS) INV_X1
 XLDZ_3 (DZ ld_DZ_3 VDD VSS) INV_X1
-save A_0 A_1 A_2 A_3 A_4 A_5 A_6 A_7 B_0 B_1 B_2 B_3 B_4 B_5 B_6 B_7 Q_0 Q_1 Q_2 Q_3 Q_4 Q_5 Q_6 Q_7 R_0 R_1 R_2 R_3 R_4 R_5 R_6 R_7 V DZ
+save A_0 A_1 A_2 A_3 A_4 A_5 A_6 A_7 B_0 B_1 B_2 B_3 B_4 B_5 B_6 B_7 Q_0 Q_1 Q_2 Q_3 Q_4 Q_5 Q_6 Q_7 R_0 R_1 R_2 R_3 R_4 R_5 R_6 R_7 V DZ VVDD:p
 opts options save=selected temp=27 reltol=1e-3
 tran tran stop=240n maxstep=40p errpreset=moderate

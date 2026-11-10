@@ -14,13 +14,18 @@ Nhanh: `feat/A-cells-alu-core`. Tat ca so lieu duoi day da chay that trong VM (S
 | 7 schematic khoi (KSA8, ADDSUB8, LOGIC8, DEC_OP, OUTMUX, FLAGS, ALU_CORE) | schCheck | 0 loi |
 | 5 cell B/C (FA, HA, BOOTH_ENC, BOOTH_SEL, CMP42) | Spectre NN/FF/SS | Dat het |
 | MUL8 co dau (2168 T) | 65536 cap muc cong; Spectre 80 vector NN/SS/FF | Dung het; tre 1.43 / 2.04 / 1.10 ns |
-| DIV8 co dau (4498 T) | 65536 cap muc cong; Spectre 60 vector NN | Dung het; tre xau nhat 9.37 ns |
-| ALU_TOP (8006 T) | 595 dong alu_full muc cong; Spectre 12 vector NN | Dung het; tre xau nhat 5.2 ns |
+| DIV8 co dau (4498 T) | 65536 cap muc cong; Spectre 60 vector NN/SS/FF | Dung het; tre xau nhat 9.37 / 13.47 / 7.20 ns (SS chay 16 ns/vector) |
+| ALU_TOP (8006 T) | 595 dong alu_full muc cong; Spectre 12 vector NN/SS/FF | Dung het; tre xau nhat 5.2 / 8.43 / 3.46 ns |
 
 ## Chua lam
-- SS/FF cho DIV8, ALU_TOP.
-- Schematic/layout cho cell B/C/D va khoi MUL8/DIV8/ALU_TOP.
-- Ban co so AND-array + Dadda de so sanh; dinh kich thuoc duong gang (Logical Effort); do cong suat.
+- Layout cho cell B/C/D (schematic da co, schCheck 0 loi). Layout khoi cho giang vien quyet dinh.
+
+## Da xong them (dot nay)
+- Schematic Virtuoso: BOOTH_ENC, BOOTH_SEL, CMP42, FA_X1, HA_X1, CAS_X1, MUL8, MUL8_DADDA, DIV8, ALU_TOP: 0 loi.
+- Ban co so Dadda: 80/80 o NN/SS/FF, nhanh hon Booth 18%, EDP 54% (`docs/mul.md`).
+- Cong suat NN (`tools/power.py`): KSA8 106 uW, MUL8 708 uW, MUL8_DADDA 470 uW.
+- CAS_X1 Spectre NN/FF/SS 130/130.
+- Logical Effort: q cua DIV8 dung INV_X4, tre NN 9.37 -> 8.44 ns, 60/60 (`docs/sizing.md`). SS/FF so o tren la ban INV_X1.
 - Layout cac khoi lon (cho quyet dinh cua giang vien ve layout).
 
 ## Quy tac chay job trong VM

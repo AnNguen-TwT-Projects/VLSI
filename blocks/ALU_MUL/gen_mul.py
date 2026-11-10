@@ -98,6 +98,11 @@ def make_cells():
     x = Cell('FA_X1', 'cells/C', ['A', 'B', 'CI', 'S', 'CO'], 'S = A^B^CI, CO = maj(A,B,CI). 28T mirror adder.')
     x.fa('A', 'B', 'CI', 'S', 'CO', '')
     c.append(x)
+    x = Cell('INV_X4', 'cells/C', ['A', 'Y'], 'Buffer (C): inverter 4x INV_X1 (n 0.48u / p 0.96u), '
+             'drives the high-fanout q net of each DIV8 row (docs/sizing.md).')
+    x.m('n', 'Y', 'A', 'VSS', 0.48)
+    x.m('p', 'Y', 'A', 'VDD', 0.96)
+    c.append(x)
     x = Cell('HA_X1', 'cells/C', ['A', 'B', 'S', 'CO'], 'S = A^B (XOR2 12T), CO = A&B (NAND2+INV).')
     x.xor('A', 'B', 'S', 'x')
     x.nand2('A', 'B', 'con', 'a')
@@ -139,6 +144,7 @@ def _cmp42(x1, x2, x3, x4, ci):
 gb.FUNC.update({
     'FA_X1': lambda a, b, c: (a ^ b ^ c, maj(a, b, c)),
     'HA_X1': lambda a, b: (a ^ b, a & b),
+    'INV_X4': lambda a: (nt(a),),
     'BOOTH_ENC': lambda x2, x1, x0: (x1 ^ x0, nt(nt(x2 ^ x1) | (x1 ^ x0))),
     'BOOTH_SEL': lambda aj, ajm, one, two, neg: ((one & aj | two & ajm) ^ neg,),
     'CMP42': _cmp42,
@@ -301,7 +307,7 @@ def gen_testbench():
         L.append(f'V{p} ({p} 0) vsource type=pwl wave=[ \\\n    {gen_tb.pwl([(int(r[c]) >> i) & 1 for r in R])} ]')
     L.append(f'XDUT ({" ".join(m.ins + m.outs)} VDD VSS) MUL8')
     L += [f'XL{p}_{k} ({p} ld_{p}_{k} VDD VSS) INV_X1' for p in m.outs for k in range(4)]
-    L += ['save ' + ' '.join(m.outs), 'opts options save=selected temp=27 reltol=1e-3',
+    L += ['save ' + ' '.join(m.outs) + ' VVDD:p', 'opts options save=selected temp=27 reltol=1e-3',
           f'tran tran stop={len(R) * T * 1e9:g}n maxstep=10p errpreset=moderate']
     (d / 'tb_MUL8.scs').write_text('\n'.join(L) + '\n', encoding='ascii', newline='\n')
     incs = ['cells/A/cells_A.scs'] + [c for c in gb.CELL_FILES if '_stub_B' in c] + \

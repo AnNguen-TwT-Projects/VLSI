@@ -20,7 +20,7 @@ OUT = Path(os.environ.get("VLSI_OUT", r"D:\Hoc\VLSI_Design\Share\VLSI_work\out")
 MODEL = "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs"
 VDD = 1.2
 T_PS, TR_PS = 500, 20
-T_CELL = {"CMP42": 1000}   # 2 FA in series: ~490 ps at SS, too close to the 500 ps period
+T_CELL = {"CMP42": 1000, "CAS_X1": 1000}   # 2 FA in series: ~490 ps at SS, too close to the 500 ps period
 
 # cell -> (dir, {output: logic function of the input dict})
 CELLS = {
@@ -47,6 +47,9 @@ CELLS = {
     "CMP42": ("cells/B", {"S": lambda v: (v["X1"] + v["X2"] + v["X3"] + v["X4"] + v["CI"]) % 2 == 1,
                           "C": lambda v: (v["X1"] ^ v["X2"] ^ v["X3"]) + v["X4"] + v["CI"] >= 2,
                           "CO": lambda v: v["X1"] + v["X2"] + v["X3"] >= 2}),
+    # divider cell (D), netlist written by blocks/ALU_DIV/gen_div.py
+    "CAS_X1": ("cells/D", {"S": lambda v: (v["X"] + (v["D"] ^ v["T"]) + v["CI"]) % 2 == 1,
+                           "CO": lambda v: v["X"] + (v["D"] ^ v["T"]) + v["CI"] >= 2}),
 }
 CORNERS = ["NN", "FF", "SS"]
 
@@ -98,6 +101,9 @@ def gen():
              f'include "{MODEL}" section=NN']
         if d == "cells/A":      # A's library file (every A cell once, incl. INV_X1 for the load)
             L.append('include "../cells_A.scs"')
+        elif d == "cells/D":    # CAS_X1 is built from A's NAND2 + XOR2 stub cells
+            L += ['include "../../A/cells_A.scs"', 'include "../../_stub_B/XOR2_X1/XOR2_X1.scs"',
+                  f'include "{cell}.scs"']
         else:
             L += [f'include "{cell}.scs"',
                   f'include "{os.path.relpath(inv, tbdir).replace(os.sep, "/")}"']
@@ -271,6 +277,8 @@ def same(ref, insts, num):
     ext = set(ref["pins"])
     ints_e = sorted({n for _, ns, _, _ in exp for n in ns} - ext)
     ints_h = sorted({n for _, ns, _, _ in have for n in ns} - ext)
+    if have == exp:          # scs2skill giu ten net noi bo: so thang, khong can hoan vi
+        return True
     if len(ints_e) != len(ints_h) or len(ints_e) > 8:
         return False
     for perm in itertools.permutations(ints_e):

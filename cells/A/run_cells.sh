@@ -7,7 +7,7 @@ ROOT=$PWD
 CORNERS=${*:-NN FF SS}
 fail=0
 for c in $CORNERS; do
-  for tb in cells/A/*/tb_*.scs cells/B/*/tb_*.scs cells/C/*/tb_*.scs cells/_stub_B/*/tb_*.scs; do
+  for tb in cells/A/*/tb_*.scs cells/B/*/tb_*.scs cells/C/*/tb_*.scs cells/D/*/tb_*.scs cells/_stub_B/*/tb_*.scs; do
     d=$ROOT/$(dirname "$tb"); cell=$(basename "$d")
     out=${OUTD:-$ROOT/out}/cells/$c/$cell
     rm -rf "$out"; mkdir -p "$out"

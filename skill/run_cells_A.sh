@@ -19,7 +19,7 @@ SB_DIR=$W/skill timeout 300 virtuoso -nograph -restore "$GEN" < /dev/null > "$OU
 rc=$?
 grep -E '^SB_(LIB|CELL|SYMBOL|ERROR|SUMMARY)|^\*Error\*' "$OUT/gen.log" | head -100
 echo "virtuoso rc=$rc"
-for lib in ALU_CELLS_A ALU_STUB_B; do
+for lib in ALU_CELLS_A ALU_STUB_B ALU_CELLS_B ALU_CELLS_C ALU_CELLS_D ALU_ADD ALU_CORE ALU_MUL ALU_DIV ALU_TOP; do
   [ -d "$P/$lib" ] && tar czf "$OUTD/libs/$lib.tgz" -C "$P" "$lib"
 done
 ls -l "$OUTD/libs"

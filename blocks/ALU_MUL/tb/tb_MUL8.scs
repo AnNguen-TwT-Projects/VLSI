@@ -251,6 +251,6 @@ XLP_15_0 (P_15 ld_P_15_0 VDD VSS) INV_X1
 XLP_15_1 (P_15 ld_P_15_1 VDD VSS) INV_X1
 XLP_15_2 (P_15 ld_P_15_2 VDD VSS) INV_X1
 XLP_15_3 (P_15 ld_P_15_3 VDD VSS) INV_X1
-save P_0 P_1 P_2 P_3 P_4 P_5 P_6 P_7 P_8 P_9 P_10 P_11 P_12 P_13 P_14 P_15
+save P_0 P_1 P_2 P_3 P_4 P_5 P_6 P_7 P_8 P_9 P_10 P_11 P_12 P_13 P_14 P_15 VVDD:p
 opts options save=selected temp=27 reltol=1e-3
 tran tran stop=240n maxstep=10p errpreset=moderate
