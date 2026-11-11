@@ -48,7 +48,8 @@ def runner_alive(wait=6.0):
     # Runner cu chi cap nhat heartbeat khi ranh: job dang chay (log moi ghi, chua .done) cung tinh la song
     now = time.time()
     for log in JOBS.glob("*.log"):
-        if not log.with_suffix(".done").exists() and now - log.stat().st_mtime < 900:
+        # 2000 s: runner cat job o 1800 s; Spectre chi ghi log khi xong -> 900 s lam bo job hop le
+        if not log.with_suffix(".done").exists() and now - log.stat().st_mtime < 2000:
             return True
     # So noi dung heartbeat qua thoi gian (khong dung mtime vi dong ho VM co the lech)
     hb = JOBS / ".heartbeat"
@@ -87,7 +88,8 @@ def main():
     JOBS.mkdir(parents=True, exist_ok=True)
     name = f"{time.strftime('%Y%m%d_%H%M%S')}_{os.getpid()}_{a.label}"
     manifest = stage(name)
-    if not runner_alive():
+    # thu lai 60 s: giua hai job runner chua tao log moi va chua kip ghi heartbeat
+    if not any(runner_alive() for _ in range(10)):
         print("LOI: vm_runner chua chay trong VM. Trong VM chay: bash /mnt/hgfs/Share/vm_runner.sh",
               file=sys.stderr)
         return 3

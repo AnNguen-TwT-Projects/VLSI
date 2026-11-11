@@ -23,6 +23,8 @@ globalNetConnect VSS -type pgpin -pin VSS -inst * -override
 # Thu: dat cell truoc khi ve nguon (ENCSP-270 khi ray sroute co truoc).
 # PAD="BOOTH_SEL BOOTH_ENC": chua 2 site ben phai cell nhieu chan (giam ket M2 o diem vao chan)
 if {[info exists env(PAD)]} { foreach c $env(PAD) { specifyCellPad $c 2 } }
+# Chan IO de placeDesign tu dat. Da thu editPin (vao trai / ra phai, M3): route M2 o BOOTH xau hon (7..11 loi SP).
+# placeIoPins co the chong 2 chan (ALU_TOP UTIL 0.72: Y_11/Y_12 -> LVS sai) -> doi UTIL (ALU_TOP sach o 0.66).
 setPlaceMode -timingDriven false -placeIoPins true
 placeDesign -noPrePlaceOpt
 checkPlace rpt_place.txt

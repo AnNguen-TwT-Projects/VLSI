@@ -1,4 +1,4 @@
-# Tien trinh du an ALU (cap nhat 2026-11-10)
+# Tien trinh du an ALU (cap nhat 2026-11-11)
 
 Nhanh: `feat/A-cells-alu-core`. Tat ca so lieu duoi day da chay that trong VM (Spectre/Virtuoso/Assura) hoac mo phong muc cong (Python).
 
@@ -16,9 +16,12 @@ Nhanh: `feat/A-cells-alu-core`. Tat ca so lieu duoi day da chay that trong VM (S
 | MUL8 co dau (2168 T) | 65536 cap muc cong; Spectre 80 vector NN/SS/FF/FS/SF | Dung het; tre 1.43 / 2.04 / 1.10 / 1.49 / 1.53 ns |
 | DIV8 co dau (4498 T, q dung INV_X4) | 65536 cap muc cong; Spectre 60 vector NN/SS/FF | Dung het; tre xau nhat 8.44 / 12.19 / 6.46 ns (SS chay 16 ns/vector; ban INV_X1 9.37 / 13.47 / 7.20) |
 | ALU_TOP (8006 T) | 595 dong alu_full muc cong; Spectre 12 vector NN/SS/FF/FS/SF | Dung het; tre xau nhat 5.49 / 7.94 / 3.45 / 4.60 / 6.22 ns (ban INV_X4) |
+| DIV8K co dau (5020 T, moi hang = XOR + KSA8) | 65536 cap muc cong; Spectre 60 vector NN/SS/FF | Dung het; tre xau nhat 3.98 / 5.75 / 3.04 ns (nhanh hon DIV8 2.1 lan, `docs/huong_toi_uu.md`) |
+| ALU_TOPK (8528 T, = ALU_CORE + MUL8 + DIV8K) | 595 dong alu_full muc cong; Spectre 12 vector NN/SS/FF | Dung het; tre xau nhat 4.66 / 6.72 / 3.59 ns |
+| Layout khoi P&R Encounter: ALU_CORE, MUL8, DIV8, DIV8K, DIV8F, ALU_TOP, ALU_TOPK | Assura DRC + LVS tren GDS | DRC 0, LVS Match ca 7 khoi (`docs/layout_blocks.md`) |
 
 ## Chua lam
-- Layout khoi (MUL8, DIV8, ALU_TOP) cho giang vien quyet dinh. RCX / mo phong sau layout chua lam.
+- RCX / mo phong sau layout chua lam. Bao cao + slide chua lam.
 
 ## Da xong them (dot nay)
 - Schematic Virtuoso: BOOTH_ENC, BOOTH_SEL, CMP42, FA_X1, HA_X1, CAS_X1, MUL8, MUL8_DADDA, DIV8, ALU_TOP: 0 loi.
@@ -29,10 +32,11 @@ Nhanh: `feat/A-cells-alu-core`. Tat ca so lieu duoi day da chay that trong VM (S
 - INV_X4: Spectre NN/FF/SS dat, schematic 0 loi.
 - Logical Effort: q cua DIV8 dung INV_X4, tre NN 9.37 -> 8.44 ns, 60/60 (`docs/sizing.md`); SS/FF chay lai voi INV_X4.
 - So do nop theo phep (tpd, P, E/phep, EDP) va theo corner: `docs/so_do.md`. Tre theo op: `check_results.py` in dong "tre theo op".
-- Layout cac khoi lon (cho quyet dinh cua giang vien ve layout).
 
 ## Quy tac chay job trong VM
 - `python tools/vmjob.py --label X -c "..."`: moi job chep repo vao thu muc moi `stage/<job>` + kiem md5 (hgfs tung tra noi dung cu/nham file).
 - VM: `bash /mnt/hgfs/Share/vm_runner.sh`. coreutils 8.4: khong co `timeout -k`. Khong dung `si -batch` (treo).
 - Virtuoso: `timeout 300 virtuoso -nograph -restore x.il < /dev/null`, script co errset + exit().
 - Assura can `cds.lib` trong thu muc chay (`INCLUDE ~/ALU_PROJ/cds.lib`).
+- `out/DIV8_p*_NN` la ket qua ban q = INV_X1 cu (9.37 ns); so NN cua DIV8 hien tai (INV_X4, 8.44 ns) nam o `out/DIV8X4_p*_NN`.
+- Kiem tra lai toan bo 2026-11-11: ALU_TOP va ALU_TOPK muc cong 524288/524288 (8 phep x 65536 cap, so voi dac ta viet doc lap); 49 thu muc ket qua Spectre deu dung 100%, so khop voi tai lieu.

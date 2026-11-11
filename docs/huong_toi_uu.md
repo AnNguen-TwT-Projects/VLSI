@@ -44,6 +44,22 @@ tai 4 INV_X1. DIV8F p0 cham hon vi FA_X1 guong co cong carry phuc (LE ~2) + INV 
 NAND2-NAND2 cua CAS_X1. DIV8K: tre gan nhu khong phu thuoc du lieu (3.93..3.98 ns) vi moi hang co
 cung so tang (XOR + KSA 3 tang + XOR).
 
+Theo corner (tre xau nhat 3 phan, 60 vector moi corner, SS 16 ns/vector):
+
+| Corner | DIV8 (INV_X4) | DIV8K | Ty le |
+|---|---|---|---|
+| NN | 8.44 ns | 3.98 ns | 2.12x |
+| SS | 12.19 ns | 5.75 ns | 2.12x |
+| FF | 6.46 ns | 3.04 ns | 2.13x |
+
+DIV8K E/phep: SS 13.2 pJ (16 ns/vector), FF 14.9 pJ (DIV8: 14.0 / 16.2 pJ).
+
+ALU_TOPK (= ALU_CORE + MUL8 + DIV8K, 8528 T): muc logic 595/595 dong `vectors/alu_full.csv`; Spectre 12 vector
+smoke NN / FF dung het, tre xau nhat 4.66 / 3.59 ns (ALU_TOP: 5.49 / 3.45 ns), E/phep NN 20.3 pJ (ALU_TOP 22.3 pJ).
+Smoke 12 vector khong chua cap DIV xau nhat; tre DIV that cua ALU_TOPK theo DIV8K: ~4 ns (ALU_TOP: ~8.4 ns).
+SS (16 ns/vector): 12/12 dung, tre xau nhat 6.72 ns (ALU_TOP: 7.94 ns), E/phep 18.4 pJ. Layout ALU_TOPK: 121.99 x 119.35 um, DRC 0, LVS Match (`docs/layout_blocks.md`).
+`python blocks/ALU_TOP/gen_top.py --div ksa [--check | --res out/ALU_TOPK_NN]`.
+
 ## Ket luan
 
 - DIV8K: nhanh gap 2.1 lan, dien tich khoi chi +6%, E/phep giam nhe -> dien tich x tre giam 50%,
