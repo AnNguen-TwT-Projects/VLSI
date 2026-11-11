@@ -15,9 +15,12 @@ INV_X1 1.08x2.76 = 2.98; NAND2_X1, NOR2_X1 1.62x2.76 = 4.47; AOI21_X1, OAI21_X1,
 
 ## Template (encoded in gen_layout_A.il; values in um)
 - Cell height 2.76. Columns at x = 0.27*(k+1). Cell width = 0.27*(ncols+1). Even columns hold diffusion contacts, odd columns hold poly gates (gate-to-contact distance 0.27 fits a dogbone pad for W = 0.12).
-- VSS rail: Metal1, y 0..0.24, over a continuous P+ tap (Oxide 0..0.24, Pimp -0.02..0.26, one Cont per column).
-- VDD rail: Metal1, y 2.52..2.76, over an N+ tap (Nimp 2.42..2.78).
-- Nwell: x -0.12..W+0.12, y 1.38..2.88. Implants and Nwell extend past the cell box so that abutted cells merge.
+- VSS rail: Metal1 pin y 0..0.24 (drawn -0.06..0.24), over a continuous P+ tap (Oxide -0.12..0.24,
+  Pimp -0.14..0.26, one Cont per column centred on the cell edge, y -0.06..0.06).
+- VDD rail: Metal1 pin y 2.52..2.76 (drawn to 2.82), over an N+ tap (Oxide to 2.88, Nimp 2.42..2.90, Cont y 2.70..2.82).
+- Nwell: x -0.12..W+0.12, y 1.38..3.00. Implants and Nwell extend past the cell box so that abutted cells merge.
+- Tap Cont on the cell edge (changed 2026-11-11 for place & route): flipped rows share a rail. Contacts 0.06 inside the
+  edge end up 0.12 apart across that rail (CONT.SP.1 needs 0.14); on the edge they coincide or sit 0.27 apart.
 - nMOS row centred at y 0.64, inside Nimp 0..W x 0.26..1.00. pMOS row centred at y 2.00, inside Pimp 0..W x 1.50..2.42. Poly runs from y 0.34 to 2.42.
 - Input pins: Metal1 pad 0.18x0.40 on the gate column, y 1.12..1.52 (area 0.072 >= 0.07), with a poly contact at y 1.32.
 - Output pins: Metal1 0.12 wide on a contact column, y 1.12..1.52.

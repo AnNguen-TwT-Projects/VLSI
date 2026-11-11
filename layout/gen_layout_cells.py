@@ -326,6 +326,34 @@ def route(c, ports, rng, tries=60):
         return all(n == net or x1 >= b + SP2 - 1e-9 or x2 <= a - SP2 + 1e-9
                    for L, x1, x2 in wires for n, a, b in mocc[(L, y)])
 
+    def free(x, y, net, res):
+        """Router khoi dat Via1 (dem M2 doc 0.15x0.27) + Via2 (dem M3 ngang 0.27x0.15) tai (x, y) duoc khong."""
+        if x - 0.075 < 0.07 or x + 0.075 > wcell - 0.07:
+            return False
+        for n, (yt, _, _, _, wires) in res.items():
+            if n == net or yt is None:
+                continue
+            for L, x1, x2 in wires:
+                hx, hy = (0.075, 0.135) if L == 2 else (0.135, 0.075)
+                if not (x1 >= x + hx + SP2 - 1e-9 or x2 <= x - hx - SP2 + 1e-9 or
+                        yt - 0.075 >= y + hy + SP2 - 1e-9 or yt + 0.075 <= y - hy - SP2 + 1e-9):
+                    return False
+        return True
+
+    def access(res):
+        """Moi cong phai co diem vao tu ngoai cell (khoi P&R); luu c.pinat[p] = (cot, y)."""
+        pinat = {}
+        for p in ports:
+            segs = res[p][1]
+            pts = [(col, round(y, 3)) for col, (lo, hi) in sorted(segs.items())
+                   for y in [lo + 0.135 + 0.01 * k for k in range(int((hi - lo - 0.27) / 0.01) + 1)]]
+            hit = next((pt for pt in sorted(pts, key=lambda t: abs(t[1] - YIN)) if free(X(pt[0]), pt[1], p, res)), None)
+            if hit is None:
+                return False
+            pinat[p] = hit
+        c.pinat = pinat
+        return True
+
     for attempt in range(tries):
         occ = defaultdict(list, {k: list(v) for k, v in fixed.items()})
         m2occ = defaultdict(list)
@@ -346,7 +374,7 @@ def route(c, ports, rng, tries=60):
 
         def dfs(i):
             if i == len(order):
-                return True
+                return access(res)
             budget[0] -= 1
             if budget[0] < 0:
                 return False
@@ -398,7 +426,7 @@ def density(c, ports):
     return max(sum(a <= x <= b for a, b in spans) for x in range(c.ncols))
 
 
-def build(cells, name, seed=1, samples=1500, budget_s=240):
+def build(cells, name, seed=1, samples=1500, budget_s=900):
     import time
     t0 = time.time()
     devs = flatten(cells, name)
@@ -413,7 +441,7 @@ def build(cells, name, seed=1, samples=1500, budget_s=240):
     for d, _, _, c in cands[:80]:
         if d > 2 * len(TRACKS) or time.time() - t0 > budget_s:
             break
-        if route(c, ports, rng, tries=8):
+        if route(c, ports, rng, tries=20):          # 20: rang buoc diem vao chan (access) can thu nhieu hon
             c.name, c.devs, c.ports = name, devs, ports
             c.dirs = {p: 'output' if any(p in (d, s) for _, d, _, s, _ in devs) else 'input' for p in ports}
             return c
@@ -425,19 +453,20 @@ def geometry(c):
 
     def add(lyr, x1, y1, x2, y2):
         R.append((lyr, round(x1, 4), round(y1, 4), round(x2, 4), round(y2, 4)))
-    add('Oxide', 0, 0, W, 0.24)                  # khung giong laFrame (gen_layout_A.il)
-    add('Pimp', -0.02, -0.02, W + 0.02, 0.26)
-    add('Oxide', 0, H - 0.24, W, H)
-    add('Nimp', -0.02, H - 0.34, W + 0.02, H + 0.02)
-    add('Nwell', -0.12, 1.38, W + 0.12, H + 0.12)
+    # khung giong laFrame (gen_layout_A.il): tiep xuc tap tren bien cell (hang lat dung chung ray)
+    add('Oxide', 0, -0.12, W, 0.24)
+    add('Pimp', -0.02, -0.14, W + 0.02, 0.26)
+    add('Oxide', 0, H - 0.24, W, H + 0.12)
+    add('Nimp', -0.02, H - 0.34, W + 0.02, H + 0.14)
+    add('Nwell', -0.12, 1.38, W + 0.12, H + 0.24)
     add('Nimp', 0, 0.26, W, 1.00)
     add('Pimp', 0, 1.50, W, H - 0.34)
     add('prBoundary', 0, 0, W, H)
-    add('Metal1', 0, 0, W, 0.24)
-    add('Metal1', 0, H - 0.24, W, H)
+    add('Metal1', 0, -0.06, W, 0.24)
+    add('Metal1', 0, H - 0.24, W, H + 0.06)
     for k in range(c.ncols):
-        add('Cont', X(k) - 0.06, 0.06, X(k) + 0.06, 0.18)
-        add('Cont', X(k) - 0.06, H - 0.18, X(k) + 0.06, H - 0.06)
+        add('Cont', X(k) - 0.06, -0.06, X(k) + 0.06, 0.06)
+        add('Cont', X(k) - 0.06, H - 0.06, X(k) + 0.06, H + 0.06)
     contacted = {(r, col) for r, col, _ in c.contacts}
     for r in 'np':
         yc, it = YC[r], c.item[r]
@@ -484,8 +513,12 @@ def geometry(c):
             add(f'Metal{L}', x1, y - 0.075, x2, y + 0.075)
     pins = [('VSS', 'inputOutput', 0, 0, W, 0.24), ('VDD', 'inputOutput', 0, H - 0.24, W, H)]
     for p in c.ports:
-        col, ivs = sorted(c.term[p].items())[0]
-        lo, hi = ivs[0]
+        if p in getattr(c, 'pinat', {}):          # diem vao da kiem tra (route.access)
+            col, y = c.pinat[p]
+            lo, hi = y - 0.135, y + 0.135
+        else:
+            col, ivs = sorted(c.term[p].items())[0]
+            lo, hi = ivs[0]
         pins.append((p, c.dirs[p], round(X(col) - HM, 4), round(lo, 4), round(X(col) + HM, 4), round(hi, 4)))
     return W, R, pins
 

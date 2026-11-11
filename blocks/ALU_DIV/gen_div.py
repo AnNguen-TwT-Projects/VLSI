@@ -65,9 +65,36 @@ def neg(blk, xs, s, outs, tag):
     return outs
 
 
-def gen_div8():
+VARIANTS = {'cas': 'DIV8', 'fa': 'DIV8F', 'ksa': 'DIV8K'}   # huong toi uu (docs/huong_toi_uu.md)
+
+
+def cas_row(d, kind, x, dd, t, i):
+    """Mot hang tru/cong 9 bit: x + (dd ^ t) + t. -> 9 bit tong (bit 8 = dau)."""
+    if kind == 'cas':
+        ci, S = t, []
+        for j in range(9):
+            s, ci = d.x('CAS_X1', [x[j], dd[j], t, ci], [f'p{i}_{j}', f'c{i}_{j}'])
+            S.append(s)
+        return S
+    if kind == 'fa':                     # CAS = XOR2(D,T) + FA_X1 guong: 40 T thay 48 T
+        ci, S = t, []
+        for j in range(9):
+            b = t if dd[j] == 'VSS' else d.x('XOR2_X1', [dd[j], t], f'b{i}_{j}')
+            s, ci = d.x('FA_X1', [x[j], b, ci], [f'p{i}_{j}', f'c{i}_{j}'])
+            S.append(s)
+        return S
+    # ksa: 8 bit thap qua KSA8 (log), bit 8 = x8 ^ b8 ^ C8, b8 = 0 ^ t = t
+    assert dd[8] == 'VSS'
+    b = [d.x('XOR2_X1', [dd[j], t], f'b{i}_{j}') for j in range(8)]
+    o = d.x('KSA8', x[:8] + b + [t], [f'p{i}_{j}' for j in range(8)] + [f'c{i}_7', f'c{i}_8'])
+    h = d.x('XOR2_X1', [x[8], t], f'h{i}')
+    return list(o[:8]) + [d.x('XOR2_X1', [h, o[9]], f'p{i}_8')]
+
+
+def gen_div8(kind='cas'):
     A, B, Q, R = bus('A', 8), bus('B', 8), bus('Q', 8), bus('R', 8)
-    d = TieBlock('DIV8', 'blocks/ALU_DIV/DIV8.scs', A + B, Q + R + ['V', 'DZ'])
+    name = VARIANTS[kind]
+    d = TieBlock(name, f'blocks/ALU_DIV/{name}.scs', A + B, Q + R + ['V', 'DZ'])
     sA, sB = A[7], B[7]
     aa = neg(d, A, sA, [A[0]] + [f'aa{i}' for i in range(1, 8)], 'na')   # |A|
     dd = neg(d, B, sB, [B[0]] + [f'dd{i}' for i in range(1, 8)], 'nb') + ['VSS']  # |B|, 9 bit
@@ -76,20 +103,25 @@ def gen_div8():
     qu = [None] * 8
     for i in range(8):
         x = [aa[7 - i]] + P[:8]                               # 2P + a, 9 bit
-        ci, S = t, []
-        for j in range(9):
-            s, ci = d.x('CAS_X1', [x[j], dd[j], t, ci], [f'p{i}_{j}', f'c{i}_{j}'])
-            S.append(s)
+        S = cas_row(d, kind, x, dd, t, i)
         qn = f'Q_0' if i == 7 else f'qu{7 - i}'
         # q = 1 khi phan du >= 0. q keo 9 chan T + CI (h ~ 39 voi INV_X1) -> INV_X4 (docs/sizing.md)
         t = qu[7 - i] = d.x('INV_X1' if i == 7 else 'INV_X4', [S[8]], qn)
         P = S
     # sua phan du: Ru = P + (P<0 ? D : 0)
-    ru, ci = [], 'VSS'
-    for j in range(8):
-        dm = d.x('INV_X1', [d.x('NAND2_X1', [dd[j], P[8]], f'dmn{j}')], f'dm{j}')
-        s, ci = d.x('CAS_X1', [P[j], dm, 'VSS', ci], ['R_0' if j == 0 else f'ru{j}', f'rc{j}'])
+    ru, ci, dms = [], 'VSS', []
+    names = ['R_0'] + [f'ru{j}' for j in range(1, 8)]
+    for j in range(8):                   # thu tu instance giu nhu ban goc (DIV8.scs khong doi)
+        dms.append(d.x('INV_X1', [d.x('NAND2_X1', [dd[j], P[8]], f'dmn{j}')], f'dm{j}'))
+        if kind == 'cas':
+            s, ci = d.x('CAS_X1', [P[j], dms[j], 'VSS', ci], [names[j], f'rc{j}'])
+        elif kind == 'fa':
+            s, ci = d.x('FA_X1', [P[j], dms[j], ci], [names[j], f'rc{j}'])
+        else:
+            continue
         ru.append(s)
+    if kind == 'ksa':
+        ru = list(d.x('KSA8', P[:8] + dms + ['VSS'], names + ['rc6', 'rc7'])[:8])
     sq = d.x('XOR2_X1', [sA, sB], 'sq')
     neg(d, qu, sq, Q, 'nq')
     neg(d, ru, sA, R, 'nr')
@@ -111,8 +143,8 @@ def build():
     return BLOCKS
 
 
-def run_div(a, b):
-    o = BLOCKS['DIV8'].call(bits(a, 8) + bits(b, 8))
+def run_div(a, b, name='DIV8'):
+    o = BLOCKS[name].call(bits(a, 8) + bits(b, 8))
     return val(o[:8]), val(o[8:16]), o[16], o[17]
 
 
@@ -180,7 +212,7 @@ def pwl(levels, T):
 
 def write_tb(top, rows, T_ns, incs, maxstep='40p', tag=''):
     """tb_<top>.scs + tb_<top>_<corner>.scs trong TB_DIR (giong blocks/gen_tb.py)."""
-    out = REPO / TB_DIR if top == 'DIV8' else REPO / 'blocks/ALU_TOP/tb'
+    out = REPO / TB_DIR if top.startswith('DIV8') else REPO / 'blocks/ALU_TOP/tb'
     out.mkdir(parents=True, exist_ok=True)
     write_tb_body(out / f'tb_{top}{tag}.scs', top, rows, T_ns, maxstep)
     write_tb_body(out / f'tb_{top}{tag}_slow.scs', top, rows, T_SS, maxstep)   # chi corner SS dung
@@ -264,7 +296,38 @@ def check_res(top, rows, res, T_ns):
     return 0 if not bad else 1
 
 
+def variant(kind):
+    """Phuong an toi uu DIV8F (FA_X1) / DIV8K (KSA8): netlist + 65536 cap + tb 3 phan (NN/SS/FF...).
+        python blocks/ALU_DIV/gen_div.py --variant fa            # hoac ksa
+        python blocks/ALU_DIV/gen_div.py --variant fa --res out/DIV8F_p0_NN 0"""
+    gb.FUNC.setdefault('FA_X1', lambda a, b, c: (a ^ b ^ c, (a & b) | (c & (a ^ b))))
+    build()
+    name = VARIANTS[kind]
+    if name not in BLOCKS:
+        gen_div8(kind)
+    if '--res' in sys.argv:
+        k = sys.argv.index('--res')
+        return check_res(name, part_rows(int(sys.argv[k + 2])), Path(sys.argv[k + 1]), T_NS)
+    b = BLOCKS[name]
+    (REPO / b.path).write_text(f'// {name}: sinh tu dong boi blocks/ALU_DIV/gen_div.py --variant {kind}\n'
+                               'simulator lang=spectre\n' + b.scs(), encoding='ascii', newline='\n')
+    n = 0
+    for a in range(256):
+        for bb in range(256):
+            q, r, v, dz = run_div(a, bb, name)
+            e = div_signed(a, bb)
+            assert (v, dz) == (0, 1) if bb == 0 else (q, r, v, dz) == (e['q'], e['r'], e['v'], 0), (a, bb)
+            n += 1
+    print(f'{name}: {n}/{n} cap (a,b) dung; {len(b.insts)} instance -> {b.path}')
+    incs = div_incs()[:-2] + ['cells/C/FA_X1/FA_X1.scs', 'cells/D/CAS_X1/CAS_X1.scs',
+                              'blocks/ALU_ADD/KSA8.scs', b.path]
+    for k in range(PARTS):
+        write_tb(name, part_rows(k), T_NS, incs, tag=f'_p{k}')
+
+
 def main():
+    if '--variant' in sys.argv:
+        return variant(sys.argv[sys.argv.index('--variant') + 1])
     if '--check' in sys.argv:
         return check()
     if '--count' in sys.argv:

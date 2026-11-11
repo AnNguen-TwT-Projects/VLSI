@@ -12,7 +12,7 @@ hang n tam y = 0.64, hang p tam y = 2.00, chan Metal1 (pin + label). Ghep sat du
 | ALU_STUB_B/XNOR2_X1 | 12 | 17 | 4.86 x 2.76 | 13.41 | 0 loi | Match |
 | ALU_CELLS_B/BOOTH_ENC | 28 | 39 | 10.80 x 2.76 | 29.81 | 0 loi | Match |
 | ALU_CELLS_B/BOOTH_SEL | 20 | 27 | 7.56 x 2.76 | 20.87 | 0 loi | Match |
-| ALU_CELLS_B/CMP42 | 68 (56) | 89 | 24.30 x 2.76 | 67.07 | 0 loi | Match |
+| ALU_CELLS_B/CMP42 | 68 (56) | 83 | 22.68 x 2.76 | 62.60 | 0 loi | Match |
 | ALU_CELLS_C/FA_X1 | 34 (28) | 41 | 11.34 x 2.76 | 31.30 | 0 loi | Match |
 | ALU_CELLS_C/HA_X1 | 18 | 25 | 7.02 x 2.76 | 19.38 | 0 loi | Match |
 | ALU_CELLS_C/INV_X4 | 4 (2) | 5 | 1.62 x 2.76 | 4.47 | 0 loi | Match |
@@ -37,6 +37,12 @@ Bao cao: `out/assura/<CELL>/{drc,lvs}/`.
    Kiem tra so bo trong Python: M1 cung cot khac net cach >= 0.12, M2/M3 cung track cach >= 0.14,
    dien tich M1 >= 0.07 (doan >= 0.48 um), M2/M3 >= 0.08 (>= 0.54 um), M2/M3 cach bien cell 0.07.
    Chon track bang quay lui.
+
+5. Diem vao chan cho P&R khoi (2026-11-11): moi cong phai co mot diem tren M1 cua no ma dem Via1 (M2 0.15x0.27)
+   va Via2 (M3 0.27x0.15) cach M2/M3 net khac >= 0.14 (`route.access`); pin ve dung tai diem do. Khong co diem ->
+   thu cach di day khac (`tries=20`). Truoc khi them rang buoc nay, Encounter bao ~2800 loi SHORT o chan cell.
+6. Khung cell: tiep xuc tap nam tren bien cell (giong `docs/handoff_layout_A.md`), de hai hang lat dung chung ray
+   khong vi pham CONT.SP.1.
 
 Mat do net (so net nhieu cot cat qua mot cot) quyet dinh co di day duoc khong: dat theo tang giam FA_X1
 tu 8 xuong 7, CMP42 tu 15 xuong 8; CMP42 can Metal3 cho 3 net.

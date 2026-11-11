@@ -1,0 +1,22 @@
+; Assura LVS GDS khoi vs CDL phang (layout/assura/cdl/<BLK>_flat.cdl tu layout/pnr/prep.py).
+avParameters(
+  ?inputLayout ( "gds2" "@GDS@" )
+  ?cellName "@CELL@"
+  ?rulesFile "/home/buet/cadence/gpdk090_v4.6/assura/extract.rul"
+  ?runName "@CELL@"
+  ?workingDirectory "@RUN@"
+  ?overwrite t
+  ?avrpt t
+)
+load( "/home/buet/cadence/gpdk090_v4.6/assura/compare.rul" )
+avCompareRules(
+  schematic(
+    netlist( cdl "@CDL@" )
+  )
+  bindingFile( "/home/buet/cadence/gpdk090_v4.6/assura/bind.rul" )
+  bind( net("*[*]" "*<*>") )
+  mergeSplitGate( sameOrder )
+  autoPinSwap( t 3000 )
+  expandOnError( (pins t) (swap t) (reduce t) (swapThres t) )
+)
+avLVS()
