@@ -173,6 +173,11 @@ unless(errset(sbCell("ALU_CELLS_C" "HA_X1" '(("A" "input") ("B" "input") ("S" "o
   ("MN17" "gpdk090" "nmos1v" (("D" "CO") ("G" "con") ("S" "VSS") ("B" "VSS")) (("fingers" "1") ("w" "120n") ("fw" "120n") ("l" "100n")))
   ("MP18" "gpdk090" "pmos1v" (("D" "CO") ("G" "con") ("S" "VDD") ("B" "VDD")) (("fingers" "1") ("w" "240n") ("fw" "240n") ("l" "100n"))))) t)
   sbErrors++ printf("SB_ERROR HA_X1: %L\n" errset.errset))
+unless(errset(sbCell("ALU_CELLS_C" "INV_X4" '(("A" "input") ("Y" "output") ("VDD" "inputOutput") ("VSS" "inputOutput"))
+ '(
+  ("MN1" "gpdk090" "nmos1v" (("D" "Y") ("G" "A") ("S" "VSS") ("B" "VSS")) (("fingers" "1") ("w" "480n") ("fw" "480n") ("l" "100n")))
+  ("MP2" "gpdk090" "pmos1v" (("D" "Y") ("G" "A") ("S" "VDD") ("B" "VDD")) (("fingers" "1") ("w" "960n") ("fw" "960n") ("l" "100n"))))) t)
+  sbErrors++ printf("SB_ERROR INV_X4: %L\n" errset.errset))
 unless(errset(sbCell("ALU_CELLS_D" "CAS_X1" '(("X" "input") ("D" "input") ("T" "input") ("CI" "input") ("S" "output") ("CO" "output") ("VDD" "inputOutput") ("VSS" "inputOutput"))
  '(
   ("I0" "ALU_STUB_B" "XOR2_X1" (("A" "D") ("B" "T") ("Y" "b") ("VDD" "VDD") ("VSS" "VSS")) ())

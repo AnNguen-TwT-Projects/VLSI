@@ -1,8 +1,8 @@
-; Assura LVS run file for one cell of ALU_CELLS_A: layout vs CDL netlist
+; Assura LVS run file for one cell (library @LIB@): layout vs CDL netlist
 ; (layout/assura/cdl/<CELL>.cdl, made by layout/scs2cdl.py from cells/A/<CELL>/<CELL>.scs).
-; @CELL@, @RUN@, @CDL@ are filled in by layout/run_layout_A.sh.
+; @LIB@, @CELL@, @RUN@, @CDL@ are filled in by layout/run_layout_A.sh.
 avParameters(
-  ?inputLayout ( "df2" "ALU_CELLS_A" )
+  ?inputLayout ( "df2" "@LIB@" )
   ?cellName "@CELL@"
   ?viewName "layout"
   ?rulesFile "/home/buet/cadence/gpdk090_v4.6/assura/extract.rul"

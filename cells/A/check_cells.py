@@ -41,6 +41,7 @@ CELLS = {
     "FA_X1": ("cells/C", {"S": lambda v: (v["A"] + v["B"] + v["CI"]) % 2 == 1,
                           "CO": lambda v: v["A"] + v["B"] + v["CI"] >= 2}),
     "HA_X1": ("cells/C", {"S": lambda v: v["A"] != v["B"], "CO": lambda v: v["A"] and v["B"]}),
+    "INV_X4": ("cells/C", {"Y": lambda v: not v["A"]}),   # buffer cho net q cua DIV8 (docs/sizing.md)
     "BOOTH_ENC": ("cells/B", {"ONE": lambda v: v["X1"] != v["X0"],
                               "TWO": lambda v: (v["X2"], v["X1"], v["X0"]) in ((0, 1, 1), (1, 0, 0))}),
     "BOOTH_SEL": ("cells/B", {"PP": lambda v: bool(v["ONE"] and v["AJ"] or v["TWO"] and v["AJM"]) != bool(v["NEG"])}),

@@ -9,6 +9,7 @@ fail=0
 for c in $CORNERS; do
   for tb in cells/A/*/tb_*.scs cells/B/*/tb_*.scs cells/C/*/tb_*.scs cells/D/*/tb_*.scs cells/_stub_B/*/tb_*.scs; do
     d=$ROOT/$(dirname "$tb"); cell=$(basename "$d")
+    [ -n "$ONLY" ] && [[ " $ONLY " != *" $cell "* ]] && continue   # ONLY="INV_X4 FA_X1": chi cac cell nay
     out=${OUTD:-$ROOT/out}/cells/$c/$cell
     rm -rf "$out"; mkdir -p "$out"
     # corner copy: switch model section, make the tb's own includes absolute

@@ -1,8 +1,8 @@
-; Assura DRC run file for one cell of ALU_CELLS_A (gpdk090 drc.rul, default switches:
+; Assura DRC run file for one cell (library @LIB@) (gpdk090 drc.rul, default switches:
 ; no CHECK_DFM; density/antenna are separate rule sets and are not run on single cells).
-; @CELL@ and @RUN@ are filled in by layout/run_layout_A.sh.
+; @LIB@, @CELL@ and @RUN@ are filled in by layout/run_layout_A.sh.
 avParameters(
-  ?inputLayout ( "df2" "ALU_CELLS_A" )
+  ?inputLayout ( "df2" "@LIB@" )
   ?cellName "@CELL@"
   ?viewName "layout"
   ?rulesFile "/home/buet/cadence/gpdk090_v4.6/assura/drc.rul"

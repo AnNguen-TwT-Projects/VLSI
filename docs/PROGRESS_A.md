@@ -18,13 +18,15 @@ Nhanh: `feat/A-cells-alu-core`. Tat ca so lieu duoi day da chay that trong VM (S
 | ALU_TOP (8006 T) | 595 dong alu_full muc cong; Spectre 12 vector NN/SS/FF | Dung het; tre xau nhat 5.2 / 8.43 / 3.46 ns |
 
 ## Chua lam
-- Layout cho cell B/C/D (schematic da co, schCheck 0 loi). Layout khoi cho giang vien quyet dinh.
+- Layout khoi (MUL8, DIV8, ALU_TOP) cho giang vien quyet dinh. RCX / mo phong sau layout chua lam.
 
 ## Da xong them (dot nay)
 - Schematic Virtuoso: BOOTH_ENC, BOOTH_SEL, CMP42, FA_X1, HA_X1, CAS_X1, MUL8, MUL8_DADDA, DIV8, ALU_TOP: 0 loi.
 - Ban co so Dadda: 80/80 o NN/SS/FF, nhanh hon Booth 18%, EDP 54% (`docs/mul.md`).
 - Cong suat NN (`tools/power.py`): KSA8 106 uW, MUL8 708 uW, MUL8_DADDA 470 uW.
 - CAS_X1 Spectre NN/FF/SS 130/130.
+- Layout 9 cell B/C/D (XOR2, XNOR2, BOOTH_ENC, BOOTH_SEL, CMP42, FA, HA, INV_X4, CAS) sinh tu dong: DRC 0 loi, LVS Match, GDS (`docs/layout_BCD.md`).
+- INV_X4: Spectre NN/FF/SS dat, schematic 0 loi.
 - Logical Effort: q cua DIV8 dung INV_X4, tre NN 9.37 -> 8.44 ns, 60/60 (`docs/sizing.md`). SS/FF so o tren la ban INV_X1.
 - Layout cac khoi lon (cho quyet dinh cua giang vien ve layout).
 
