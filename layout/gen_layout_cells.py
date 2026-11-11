@@ -347,7 +347,13 @@ def route(c, ports, rng, tries=60):
             segs = res[p][1]
             pts = [(col, round(y, 3)) for col, (lo, hi) in sorted(segs.items())
                    for y in [lo + 0.135 + 0.01 * k for k in range(int((hi - lo - 0.27) / 0.01) + 1)]]
-            hit = next((pt for pt in sorted(pts, key=lambda t: abs(t[1] - YIN)) if free(X(pt[0]), pt[1], p, res)), None)
+            # diem vao cua cac cong khac nhau phai cung dat via duoc: dem M2 doc / M3 ngang 0.27 dai,
+            # cach 0.14 -> |dx| >= 0.41 hoac |dy| >= 0.41 (hai chan BOOTH_SEL o cot ke nhau tung chong nhau)
+            def compat(pt):
+                return all(abs(X(pt[0]) - X(q[0])) >= 0.41 - 1e-9 or abs(pt[1] - q[1]) >= 0.41 - 1e-9
+                           for q in pinat.values())
+            hit = next((pt for pt in sorted(pts, key=lambda t: abs(t[1] - YIN))
+                        if compat(pt) and free(X(pt[0]), pt[1], p, res)), None)
             if hit is None:
                 return False
             pinat[p] = hit

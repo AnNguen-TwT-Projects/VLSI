@@ -25,21 +25,27 @@ SMOKE = [(0, 100, 27), (0, 127, 1), (1, 128, 1), (2, 0xF0, 0x3C), (3, 0x0F, 0x30
          (11, 249, 2), (11, 5, 0)]   # 12 vector: Spectre ALU_TOP ~8000 T rat cham
 
 
+KSA = '--div' in sys.argv and sys.argv[sys.argv.index('--div') + 1] == 'ksa'   # ALU_TOPK = DIV8K (docs/huong_toi_uu.md)
+TOP, DIV = ('ALU_TOPK', 'DIV8K') if KSA else ('ALU_TOP', 'DIV8')
+
+
 def gen_top():
     gen_div.build()
+    if KSA and DIV not in BLOCKS:
+        gen_div.gen_div8('ksa')
     gen_mul.gen_mul8().__class__ = gen_div.TieBlock   # MUL8 dung VDD/VSS lam hang so trong mo phong logic
-    if 'ALU_TOP' in BLOCKS:
-        return BLOCKS['ALU_TOP']
+    if TOP in BLOCKS:
+        return BLOCKS[TOP]
     A, B, OP = bus('A', 8), bus('B', 8), bus('OP', 4)
-    t = Block('ALU_TOP', 'blocks/ALU_TOP/ALU_TOP.scs', A + B + OP, bus('Y', 16) + ['Z', 'C', 'V', 'DZ'])
+    t = Block(TOP, f'blocks/ALU_TOP/{TOP}.scs', A + B + OP, bus('Y', 16) + ['Z', 'C', 'V', 'DZ'])
     t.x('MUL8', A + B, bus('MULP', 16))
-    t.x('DIV8', A + B, bus('DIVQ', 8) + bus('DIVR', 8) + ['DIVV', 'DIVDZ'])
+    t.x(DIV, A + B, bus('DIVQ', 8) + bus('DIVR', 8) + ['DIVV', 'DIVDZ'])
     t.x('ALU_CORE', A + B + OP + bus('MULP', 16) + bus('DIVQ', 8) + bus('DIVR', 8) + ['DIVV', 'DIVDZ'], t.outs)
     return t
 
 
 def run_top(op, a, b):
-    o = BLOCKS['ALU_TOP'].call(bits(a, 8) + bits(b, 8) + bits(op, 4))
+    o = BLOCKS[TOP].call(bits(a, 8) + bits(b, 8) + bits(op, 4))
     return {'y': val(o[:16]), 'z': o[16], 'c': o[17], 'v': o[18], 'dz': o[19]}
 
 
@@ -56,7 +62,7 @@ def check():
                 bad += 1
                 if bad <= 10:
                     print('SAI', dict(r), '->', got)
-    print(f'ALU_TOP muc logic: {tot - bad}/{tot} dong vectors/alu_full.csv dung (y=-1 bo qua)')
+    print(f'{TOP} muc logic: {tot - bad}/{tot} dong vectors/alu_full.csv dung (y=-1 bo qua)')
     return 1 if bad else 0
 
 
@@ -86,18 +92,18 @@ def main():
 
         def n(m):
             return 1 if m.startswith('gpdk090_') else sum(n(x) for x in subs[m])
-        for name in ('ALU_CORE', 'MUL8', 'DIV8', 'ALU_TOP'):
+        for name in ('ALU_CORE', 'MUL8', DIV, TOP):
             print(f'{name:10s} {n(name):6d} transistor')
         return 0
     if '--res' in sys.argv:
-        return gen_div.check_res('ALU_TOP', smoke_rows(), Path(sys.argv[sys.argv.index('--res') + 1]), T_NS)
+        return gen_div.check_res(TOP, smoke_rows(), Path(sys.argv[sys.argv.index('--res') + 1]), T_NS)
     p = REPO / t.path
     p.parent.mkdir(parents=True, exist_ok=True)
-    p.write_text('// ALU_TOP: sinh tu dong boi blocks/ALU_TOP/gen_top.py - khong sua tay\n'
-                 '// = ALU_CORE + MUL8 + DIV8. Can include moi cell/khoi con (xem tb/tb_ALU_TOP_NN.scs).\n'
+    p.write_text(f'// {TOP}: sinh tu dong boi blocks/ALU_TOP/gen_top.py - khong sua tay\n'
+                 f'// = ALU_CORE + MUL8 + {DIV}. Can include moi cell/khoi con (xem tb/tb_ALU_TOP_NN.scs).\n'
                  'simulator lang=spectre\n' + t.scs(), encoding='ascii', newline='\n')
     print('ghi', t.path)
-    gen_div.write_tb('ALU_TOP', smoke_rows(), T_NS, incs(), tag='')
+    gen_div.write_tb(TOP, smoke_rows(), T_NS, incs(), tag='')
     return 0
 
 

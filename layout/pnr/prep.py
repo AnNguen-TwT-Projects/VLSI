@@ -23,7 +23,7 @@ from scs2cdl import subckt  # noqa: E402
 
 WORK = Path(r"D:\Hoc\VLSI_Design\Share\VLSI_work")
 PNR = REPO / "layout" / "pnr"
-BLOCKS = ("ALU_CORE", "MUL8", "DIV8", "ALU_TOP") + tuple(a for a in sys.argv[1:] if a.startswith("DIV8"))  # + phuong an: DIV8F DIV8K
+BLOCKS = ("ALU_CORE", "MUL8", "DIV8", "ALU_TOP") + tuple(a for a in sys.argv[1:] if a.startswith(("DIV8", "ALU_TOPK")))  # + phuong an: DIV8F DIV8K
 SUP = ("VDD", "VSS")
 FILLS = (1, 2, 4, 8)
 LIBS = gc.LIBS + (("ALU_CELLS_P", None),)

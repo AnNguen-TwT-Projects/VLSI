@@ -1973,16 +1973,16 @@ MACRO HA_X1
     DIRECTION INPUT ;
     PORT
       LAYER Metal1 ;
-        RECT 0.465 0.88 0.615 1.15 ;
-        RECT 0.465 0.66 0.615 1.44 ;
-        RECT 3.165 0.66 3.315 1.44 ;
-        RECT 4.245 0.66 4.395 1.44 ;
+        RECT 4.245 1.53 4.395 1.8 ;
+        RECT 4.245 1.2 4.395 2.37 ;
+        RECT 0.465 1.2 0.615 2.37 ;
+        RECT 3.165 1.2 3.315 2.37 ;
       LAYER Via1 ;
-        RECT 0.47 0.72 0.61 0.86 ;
-        RECT 3.17 0.72 3.31 0.86 ;
-        RECT 4.25 0.72 4.39 0.86 ;
+        RECT 4.25 2.17 4.39 2.31 ;
+        RECT 0.47 2.17 0.61 2.31 ;
+        RECT 3.17 2.17 3.31 2.31 ;
       LAYER Metal2 ;
-        RECT 0.41 0.715 4.45 0.865 ;
+        RECT 0.41 2.165 4.45 2.315 ;
     END
   END A
   PIN B
@@ -2133,7 +2133,7 @@ MACRO INV_X4
     DIRECTION OUTPUT ;
     PORT
       LAYER Metal1 ;
-        RECT 0.735 0.88 0.885 1.15 ;
+        RECT 0.735 0.78 0.885 1.05 ;
         RECT 0.735 0.52 0.885 2.12 ;
     END
   END Y
