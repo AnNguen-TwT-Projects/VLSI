@@ -1,0 +1,14 @@
+// KSA8 corner SF: sinh tu dong boi blocks/gen_tb.py
+simulator lang=spectre
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=SF
+include "../../../cells/A/cells_A.scs"
+include "../../../cells/_stub_B/XOR2_X1/XOR2_X1.scs"
+include "../../../cells/_stub_B/XNOR2_X1/XNOR2_X1.scs"
+include "../KSA8.scs"
+include "../ADDSUB8.scs"
+include "../../ALU_CORE/LOGIC8.scs"
+include "../../ALU_CORE/DEC_OP.scs"
+include "../../ALU_CORE/OUTMUX.scs"
+include "../../ALU_CORE/FLAGS.scs"
+include "../../ALU_CORE/ALU_CORE.scs"
+include "tb_KSA8.scs"

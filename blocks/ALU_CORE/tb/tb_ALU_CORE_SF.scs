@@ -1,0 +1,14 @@
+// ALU_CORE corner SF: sinh tu dong boi blocks/gen_tb.py
+simulator lang=spectre
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=SF
+include "../../../cells/A/cells_A.scs"
+include "../../../cells/_stub_B/XOR2_X1/XOR2_X1.scs"
+include "../../../cells/_stub_B/XNOR2_X1/XNOR2_X1.scs"
+include "../../ALU_ADD/KSA8.scs"
+include "../../ALU_ADD/ADDSUB8.scs"
+include "../LOGIC8.scs"
+include "../DEC_OP.scs"
+include "../OUTMUX.scs"
+include "../FLAGS.scs"
+include "../ALU_CORE.scs"
+include "tb_ALU_CORE.scs"

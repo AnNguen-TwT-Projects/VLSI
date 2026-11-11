@@ -19,7 +19,7 @@ from gen_blocks import BLOCKS, CELL_FILES, REPO, build  # noqa: E402
 
 T, EDGE, VDD = 2e-9, 20e-12, 1.2
 MODEL = '/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs'
-CORNERS = ('NN', 'SS', 'FF')
+CORNERS = ('NN', 'SS', 'FF', 'FS', 'SF')  # FS/SF: kiem tra cheo, dung chu ky NN
 # top -> (thu muc, file vector, ham chon vector de do tre)
 BENCH = {
     'KSA8': ('blocks/ALU_ADD/tb', 'vectors/ksa8.csv', lambda r: True),

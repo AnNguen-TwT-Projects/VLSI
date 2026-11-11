@@ -38,7 +38,7 @@ DZ = NOR(B_7..0)          V = Q_7 & !(sA^sB) & !DZ   (chi o -128 / -1)
 | Muc logic `CAS_X1` | 16/16 |
 | Muc logic `DIV8` | 65536/65536 cap (a,b) dung voi `div_signed` (b=0: chi kiem V=0, DZ=1) |
 | Transistor | CAS_X1 48, DIV8 4498, ALU_TOP 8006 (ALU_CORE 1340 + MUL8 2168 + DIV8 4498) |
-| Spectre DIV8 NN / SS / FF | 60/60 vector moi corner, tre xau nhat 9.37 / 13.47 / 7.20 ns (SS 16 ns/vector) |
+| Spectre DIV8 NN / SS / FF | 60/60 vector moi corner, tre xau nhat 9.37 / 13.47 / 7.20 ns (SS 16 ns/vector); ban INV_X4 8.44 / 12.19 / 6.46 ns (`docs/sizing.md`) |
 | Muc logic `ALU_TOP` | 595/595 dong `vectors/alu_full.csv` (y=-1 bo qua) |
 | Spectre ALU_TOP NN smoke | 12/12 vector (ADD SUB AND OR XOR NOT MUL DIV, gom -128/-1, -7/2, 5/0), 12 ns/vector, tre xau nhat 5.2 ns (DIV), 725 s |
 

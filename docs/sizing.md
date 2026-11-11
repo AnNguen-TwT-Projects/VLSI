@@ -71,3 +71,12 @@ Ca 60/60 vector dung; muc cong 65536/65536. Loi do duoc (0.93 ns) nho hon uoc lu
 dien dung day va tang XOR2 cua stub B. So transistor khong doi (4498 T, INV_X4 van 2 T, chi rong hon).
 Cong suat NN ban INV_X4 (`tools/power.py`, 12 ns/vector): 1.53 / 1.09 / 1.06 mW cho p0 / p1 / p2,
 trung binh ~1.23 mW, ~14.7 pJ/phep. Ban truoc khong luu VVDD:p nen chua co so de so sanh cong suat.
+
+Ban INV_X4 o SS (16 ns/vector) / FF (12 ns/vector), 20/20 moi phan:
+
+| Phan | SS tre | SS E/phep | FF tre | FF E/phep |
+|---|---|---|---|---|
+| p0 | 12.19 ns | 17.5 pJ | 6.46 ns | 19.9 pJ |
+| p1 | 6.15 ns | 12.4 pJ | 3.70 ns | 14.6 pJ |
+| p2 | 6.74 ns | 12.0 pJ | 4.15 ns | 14.2 pJ |
+| **Xau nhat** | **12.19 ns** (INV_X1: 13.47) | | **6.46 ns** (INV_X1: 7.20) | |

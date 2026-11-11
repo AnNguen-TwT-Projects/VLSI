@@ -30,7 +30,7 @@ T_NS, EDGE, VDD = 12.0, 20e-12, 1.2   # do o NN: tre xau nhat ~9.4 ns
 T_SS = 16.0  # SS ~1.43x cham hon NN (MUL8 2.04/1.43 ns): 9.4 ns -> ~13.4 ns > 12 ns
 PARTS = 3   # 60 vector chia 3 job (~4 s mo phong / ns o NN, job < 15 phut)
 MODEL = '/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs'
-CORNERS = ('NN', 'SS', 'FF')
+CORNERS = ('NN', 'SS', 'FF', 'FS', 'SF')  # FS/SF: kiem tra cheo, dung chu ky NN
 TB_DIR = 'blocks/ALU_DIV/tb'
 
 
@@ -190,7 +190,7 @@ def write_tb(top, rows, T_ns, incs, maxstep='40p', tag=''):
         w = [f'// {top} corner {cn}', 'simulator lang=spectre', f'include "{MODEL}" section={cn}'] + \
             [f'include "{rel(p)}"' for p in incs] + [f'include "{base}"']
         (out / f'tb_{top}{tag}_{cn}.scs').write_text('\n'.join(w) + '\n', encoding='ascii', newline='\n')
-    print(f'ghi {out.relative_to(REPO).as_posix()}/tb_{top}{tag}.scs ({len(rows)} vector x {T_ns:g} ns, SS {T_SS:g} ns) + 3 corner')
+    print(f'ghi {out.relative_to(REPO).as_posix()}/tb_{top}{tag}.scs ({len(rows)} vector x {T_ns:g} ns, SS {T_SS:g} ns) + {len(CORNERS)} corner')
 
 
 def write_tb_body(path, top, rows, T_ns, maxstep):

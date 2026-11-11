@@ -71,7 +71,7 @@ def main():
     ts = data['time']
     outs = build()[top].outs
     R, sel = rows(top), BENCH[top][2]
-    ok, bad, weak, worst = 0, [], 0, []
+    ok, bad, weak, worst, by_op = 0, [], 0, [], {}
     for k, r in enumerate(R):
         t_s = (k + 1) * T - 20e-12
         errs = []
@@ -90,12 +90,16 @@ def main():
             bad.append((k, r, errs))
         else:
             ok += 1
-        if k and sel(r):
+        if k:
             lc = [(last_cross(ts, data[p], k * T, (k + 1) * T), p) for p in outs]
             lc = [x for x in lc if x[0] is not None]
             if lc:
                 tc, p = max(lc)
-                worst.append((tc - k * T - EDGE / 2, k, p))
+                d = tc - k * T - EDGE / 2
+                o = r.get('op')
+                by_op[o] = max(by_op.get(o, d), d)  # moi op, ke ca vector sel() bo qua
+                if sel(r):
+                    worst.append((d, k, p))
     for k, r, errs in bad[:30]:
         print(f'SAI vector {k}: {dict(r)}: ' + ', '.join(errs))
     print(f'{top} {f.parent.name}: {ok}/{len(R)} vector dung, {len(bad)} sai'
@@ -105,6 +109,8 @@ def main():
         r = R[k]
         print(f'  tre {d * 1e12:7.1f} ps  vector {k} op={r.get("op", "-")} a={r["a"]} b={r["b"]}'
               f' (truoc: a={R[k - 1]["a"]} b={R[k - 1]["b"]} op={R[k - 1].get("op", "-")}) -> {p}')
+    if len(by_op) > 1:
+        print('  tre theo op: ' + ', '.join(f'op{o} {d * 1e12:.1f} ps' for o, d in sorted(by_op.items())))
     if worst:
         print(f'TPD_WORST {worst[0][0] * 1e12:.1f} ps')
     return 0 if not bad else 1
