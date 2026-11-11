@@ -1,0 +1,6 @@
+// MUL8 sau layout (RCX), corner NN
+simulator lang=spectre
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=NN
+include "../../cells/A/cells_A.scs"
+include "MUL8_rcx.scs"
+include "../../blocks/ALU_MUL/tb/tb_MUL8.scs"

@@ -52,9 +52,40 @@ python tools/vmjob.py --label pnr -c "bash layout/pnr/run_pnr.sh pnr drc lvs DIV
 | LVS ALU_TOP ngan mach Y_11/Y_12 (UTIL 0.72) | placeDesign dat 2 chan IO chong nhau | doi UTIL (0.66 sach). Da thu editPin (vao trai / ra phai, M3): het chong nhung them 7..11 loi METAL2.SP o BOOTH -> khong dung |
 | Job bi bo "vm_runner chua chay" du runner song | giua 2 job runner chua tao log moi, chua ghi heartbeat | vmjob.py thu lai 60 s truoc khi bao loi |
 
+## RCX va mo phong sau layout
+
+Trich ky sinh bang Assura RCX, che do C (chi tu), decoupled (moi tu noi ve VSS), tren GDS da LVS Match; netlist co dien tich va chu vi khuech tan that (AD/AS/PD/PS) cua tung transistor. Tong tu (khong ke VDD-VSS): ALU_CORE 718 fF (687 net), MUL8 1365 fF (1082 net), DIV8K 2706 fF (2403 net), ALU_TOPK 4819 fF (4096 net).
+Mo phong Spectre dung cung testbench va cung vector nhu truoc layout.
+
+| Khoi / corner | Vector dung | tpd truoc layout | tpd sau layout | E/phep truoc | E/phep sau |
+|---|---|---|---|---|---|
+| ALU_CORE NN | 498/498 | 781.9 ps | 692.6 ps | 0.543 pJ | 0.460 pJ |
+| MUL8 NN | 80/80 | 1427.4 ps | 1595.2 ps | 2.125 pJ | 2.154 pJ |
+| DIV8K phan p0 NN | 20/20 | 3975.3 ps | 3801.7 ps | 15.08 pJ | 13.75 pJ |
+| ALU_TOPK NN | 12/12 | 4660.6 ps | 3583.0 ps | 20.27 pJ | 17.92 pJ |
+| ALU_TOPK SS (16 ns/vector) | 12/12 | 6723.9 ps | 5143.0 ps | 18.38 pJ | 16.76 pJ |
+| ALU_TOPK FF | 12/12 | 3591.7 ps | 2745.8 ps | 21.75 pJ | 19.74 pJ |
+
+Giai thich: netlist truoc layout khong khai bao ad/as/pd/ps, nen mo hinh gpdk090 (gpdk090_mos.scs) dung mac dinh as = ad = 1 um2, ps = pd = 1 um cho moi transistor, trong khi layout that chi khoang 0.04..0.26 um2, trung vi 0.08 um2 (khuech tan dung chung). Vi vay so truoc layout bi quan ve tu tiep giap; sau layout thay bang gia tri that cong tu day. Khoi nhieu day (MUL8) thi tu day lam tre tang 12%; ALU_CORE, DIV8K, ALU_TOPK nhanh hon 11% / 4% / 23%.
+
+Lenh chay lai:
+
+```bash
+# VM: LVS + RCX -> out/assura/ALU_TOPK/rcx/ALU_TOPK_rcx.sp
+python tools/vmjob.py --label rcx -c "bash layout/pnr/run_pnr.sh rcx ALU_TOPK"
+# Windows: -> layout/rcx/ALU_TOPK_rcx.scs + tb_ALU_TOPK_post_{NN,SS,FF}.scs
+python layout/rcx2scs.py ALU_TOPK
+# VM: Spectre, 1 testbench / job
+python tools/vmjob.py --label post -c "bash layout/run_post.sh ALU_TOPK_post_NN"
+# So ket qua
+python blocks/ALU_TOP/gen_top.py --div ksa --res out/ALU_TOPK_post_NN
+# MUL8: gen_mul.py --result out/MUL8_post_NN ; DIV8K: gen_div.py --variant ksa --res out/DIV8K_p0_post_NN 0
+# ALU_CORE: check_results.py ALU_CORE out/ALU_CORE_post_NN
+```
+
 ## Han che
 
-- Chua trich RC (RCX) va chua mo phong sau layout.
+- RCX chua trich dien tro day (R), tu ghep giua cac net quy ve VSS (decoupled); DIV8K chi chay phan p0 (phan xau nhat truoc layout) o NN; ALU_CORE, MUL8 chi NN.
 - Khong co thu vien thoi gian (.lib) -> dat/di day khong theo tre.
 - FILL1 dung rieng vi pham Nwell/implant (chi dung giua cell khac, DRC khoi sach).
 - Ket qua P&R lap lai duoc: chay lai ca 6 khoi (2026-11-11) cho cung kich thuoc, DRC 0, LVS Match.

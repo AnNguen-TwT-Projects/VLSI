@@ -41,3 +41,16 @@ Chu ky vector: SS 16 ns cho DIV8 va ALU_TOP, con lai 12 ns (DIV8/ALU_TOP), 3 ns 
 E/phep phu thuoc chu ky (gom dong ro), nen so sanh giua corner chi dung cung chu ky.
 FS/SF dung chu ky NN, chi de kiem tra cheo; DIV8 khong chay FS/SF rieng (da nam trong ALU_TOP FS/SF).
 ALU_TOP tpd do tren 12 vector smoke (tre DIV trong ALU_TOP 5.49 ns < 8.44 ns cua DIV8 vi khong co cap vector xau nhat).
+
+## Sau layout (RCX)
+
+| Khoi / corner | Vector dung | tpd truoc layout | tpd sau layout | E/phep truoc | E/phep sau |
+|---|---|---|---|---|---|
+| ALU_CORE NN | 498/498 | 781.9 ps | 692.6 ps | 0.543 pJ | 0.460 pJ |
+| MUL8 NN | 80/80 | 1427.4 ps | 1595.2 ps | 2.125 pJ | 2.154 pJ |
+| DIV8K phan p0 NN | 20/20 | 3975.3 ps | 3801.7 ps | 15.08 pJ | 13.75 pJ |
+| ALU_TOPK NN | 12/12 | 4660.6 ps | 3583.0 ps | 20.27 pJ | 17.92 pJ |
+| ALU_TOPK SS (16 ns/vector) | 12/12 | 6723.9 ps | 5143.0 ps | 18.38 pJ | 16.76 pJ |
+| ALU_TOPK FF | 12/12 | 3591.7 ps | 2745.8 ps | 21.75 pJ | 19.74 pJ |
+
+Chi tiet va lenh chay lai: `docs/layout_blocks.md`.

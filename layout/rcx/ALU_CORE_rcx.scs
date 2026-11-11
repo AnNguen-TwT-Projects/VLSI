@@ -1,0 +1,2032 @@
+// ALU_CORE sau layout: Assura RCX -> layout/rcx2scs.py - khong sua tay
+simulator lang=spectre
+subckt ALU_CORE A_0 A_1 A_2 A_3 A_4 A_5 A_6 A_7 B_0 B_1 B_2 B_3 B_4 B_5 B_6 B_7 OP_0 OP_1 OP_2 OP_3 MULP_0 MULP_1 MULP_2 MULP_3 MULP_4 MULP_5 MULP_6 MULP_7 MULP_8 MULP_9 MULP_10 MULP_11 MULP_12 MULP_13 MULP_14 MULP_15 DIVQ_0 DIVQ_1 DIVQ_2 DIVQ_3 DIVQ_4 DIVQ_5 DIVQ_6 DIVQ_7 DIVR_0 DIVR_1 DIVR_2 DIVR_3 DIVR_4 DIVR_5 DIVR_6 DIVR_7 DIVV DIVDZ Y_0 Y_1 Y_2 Y_3 Y_4 Y_5 Y_6 Y_7 Y_8 Y_9 Y_10 Y_11 Y_12 Y_13 Y_14 Y_15 Z C V DZ VDD VSS
+    I_MXI1_I8_I8_MN1 (XI1_I8_I8_Bn I1_bx0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I8_MN5 (XI1_I8_I8_n2 I1_bx0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I8_MN4 (I1_I8_pn0 XI1_I8_I8_An XI1_I8_I8_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I8_MN2 (XI1_I8_I8_n1 A_0 I1_I8_pn0 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I8_MN3 (VSS XI1_I8_I8_Bn XI1_I8_I8_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I8_MN0 (XI1_I8_I8_An A_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I11_MN1 (XI1_I8_I11_Bn I1_bx3 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I11_MN5 (XI1_I8_I11_n2 I1_bx3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I11_MN4 (I1_I8_pn3 XI1_I8_I11_An XI1_I8_I11_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I11_MN2 (XI1_I8_I11_n1 A_3 I1_I8_pn3 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I11_MN3 (VSS XI1_I8_I11_Bn XI1_I8_I11_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I11_MN0 (XI1_I8_I11_An A_3 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I37_MN1 (XI1_I8_I37_Bn OP_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I37_MN5 (XI1_I8_I37_n2 OP_0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I37_MN4 (S_0 XI1_I8_I37_An XI1_I8_I37_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I37_MN2 (XI1_I8_I37_n1 I1_I8_pn0 S_0 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I37_MN3 (VSS XI1_I8_I37_Bn XI1_I8_I37_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I37_MN0 (XI1_I8_I37_An I1_I8_pn0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I13_MN1 (XI1_I8_I13_Bn I1_bx5 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I13_MN5 (XI1_I8_I13_n2 I1_bx5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I13_MN4 (I1_I8_pn5 XI1_I8_I13_An XI1_I8_I13_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I13_MN2 (XI1_I8_I13_n1 A_5 I1_I8_pn5 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I13_MN3 (VSS XI1_I8_I13_Bn XI1_I8_I13_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I13_MN0 (XI1_I8_I13_An A_5 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I42_MN1 (XI1_I8_I42_Bn I1_I8_G4_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I42_MN5 (XI1_I8_I42_n2 I1_I8_G4_0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I42_MN4 (S_5 XI1_I8_I42_An XI1_I8_I42_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I42_MN2 (XI1_I8_I42_n1 I1_I8_pn5 S_5 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I42_MN3 (VSS XI1_I8_I42_Bn XI1_I8_I42_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I42_MN0 (XI1_I8_I42_An I1_I8_pn5 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I12_MN1 (XI1_I8_I12_Bn I1_bx4 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I12_MN5 (XI1_I8_I12_n2 I1_bx4 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I12_MN4 (I1_I8_pn4 XI1_I8_I12_An XI1_I8_I12_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I12_MN2 (XI1_I8_I12_n1 A_4 I1_I8_pn4 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I12_MN3 (VSS XI1_I8_I12_Bn XI1_I8_I12_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I12_MN0 (XI1_I8_I12_An A_4 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I14_MN1 (XI1_I8_I14_Bn I1_bx6 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I14_MN5 (XI1_I8_I14_n2 I1_bx6 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I14_MN4 (I1_I8_pn6 XI1_I8_I14_An XI1_I8_I14_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I14_MN2 (XI1_I8_I14_n1 A_6 I1_I8_pn6 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I14_MN3 (VSS XI1_I8_I14_Bn XI1_I8_I14_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I14_MN0 (XI1_I8_I14_An A_6 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I38_MN1 (XI1_I8_I38_Bn I1_I8_G0_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I38_MN5 (XI1_I8_I38_n2 I1_I8_G0_0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I38_MN4 (S_1 XI1_I8_I38_An XI1_I8_I38_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I38_MN2 (XI1_I8_I38_n1 I1_I8_pn1 S_1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I38_MN3 (VSS XI1_I8_I38_Bn XI1_I8_I38_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I38_MN0 (XI1_I8_I38_An I1_I8_pn1 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I39_MN1 (XI1_I8_I39_Bn I1_I8_G1_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I39_MN5 (XI1_I8_I39_n2 I1_I8_G1_0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I39_MN4 (S_2 XI1_I8_I39_An XI1_I8_I39_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I39_MN2 (XI1_I8_I39_n1 I1_I8_pn2 S_2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I39_MN3 (VSS XI1_I8_I39_Bn XI1_I8_I39_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I39_MN0 (XI1_I8_I39_An I1_I8_pn2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I9_MN1 (XI1_I8_I9_Bn I1_bx1 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I9_MN5 (XI1_I8_I9_n2 I1_bx1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I9_MN4 (I1_I8_pn1 XI1_I8_I9_An XI1_I8_I9_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I9_MN2 (XI1_I8_I9_n1 A_1 I1_I8_pn1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I9_MN3 (VSS XI1_I8_I9_Bn XI1_I8_I9_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I9_MN0 (XI1_I8_I9_An A_1 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I43_MN1 (XI1_I8_I43_Bn I1_I8_G5_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I43_MN5 (XI1_I8_I43_n2 I1_I8_G5_0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I43_MN4 (S_6 XI1_I8_I43_An XI1_I8_I43_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I43_MN2 (XI1_I8_I43_n1 I1_I8_pn6 S_6 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I43_MN3 (VSS XI1_I8_I43_Bn XI1_I8_I43_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I43_MN0 (XI1_I8_I43_An I1_I8_pn6 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I10_MN1 (XI1_I8_I10_Bn I1_bx2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I10_MN5 (XI1_I8_I10_n2 I1_bx2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I10_MN4 (I1_I8_pn2 XI1_I8_I10_An XI1_I8_I10_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I10_MN2 (XI1_I8_I10_n1 A_2 I1_I8_pn2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I10_MN3 (VSS XI1_I8_I10_Bn XI1_I8_I10_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I10_MN0 (XI1_I8_I10_An A_2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I44_MN1 (XI1_I8_I44_Bn C7 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I44_MN5 (XI1_I8_I44_n2 C7 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I44_MN4 (S_7 XI1_I8_I44_An XI1_I8_I44_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I44_MN2 (XI1_I8_I44_n1 I1_I8_pn7 S_7 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I44_MN3 (VSS XI1_I8_I44_Bn XI1_I8_I44_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I44_MN0 (XI1_I8_I44_An I1_I8_pn7 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I15_MN1 (XI1_I8_I15_Bn I1_bx7 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I15_MN5 (XI1_I8_I15_n2 I1_bx7 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I15_MN4 (I1_I8_pn7 XI1_I8_I15_An XI1_I8_I15_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I15_MN2 (XI1_I8_I15_n1 A_7 I1_I8_pn7 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I15_MN3 (VSS XI1_I8_I15_Bn XI1_I8_I15_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I15_MN0 (XI1_I8_I15_An A_7 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI3_I70_MN2 (I3_q5_2 I3_o5_2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0468p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI3_I70_MN0 (XI3_I70_n1 SEL_AS I3_q5_2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0468p pd=0.68u ps=0.68u
+    I_MXI3_I70_MN1 (VSS S_5 XI3_I70_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I30_XG_MN2 (I1_I8_G6_3n I1_I8_G6_5 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0468p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI1_I8_I30_XG_MN0 (XI1_I8_I30_XG_n1 I1_I8_P6_5 I1_I8_G6_3n VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0468p pd=0.68u ps=0.68u
+    I_MXI1_I8_I30_XG_MN1 (VSS I1_I8_G4_3 XI1_I8_I30_XG_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I28_XG_MN2 (I1_I8_G4_1n I1_I8_G4_3 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0468p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI1_I8_I28_XG_MN0 (XI1_I8_I28_XG_n1 I1_I8_P4_3 I1_I8_G4_1n VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0468p pd=0.68u ps=0.68u
+    I_MXI1_I8_I28_XG_MN1 (VSS I1_I8_G2_1 XI1_I8_I28_XG_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I46_MN2 (I3_q3_2 I3_o3_2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0468p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI3_I46_MN0 (XI3_I46_n1 SEL_AS I3_q3_2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0468p pd=0.68u ps=0.68u
+    I_MXI3_I46_MN1 (VSS S_3 XI3_I46_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I10_MN2 (I3_q0_2 I3_o0_2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0468p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI3_I10_MN0 (XI3_I10_n1 SEL_AS I3_q0_2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0468p pd=0.68u ps=0.68u
+    I_MXI3_I10_MN1 (VSS S_0 XI3_I10_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I58_MN2 (I3_q4_2 I3_o4_2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0468p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI3_I58_MN0 (XI3_I58_n1 SEL_AS I3_q4_2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0468p pd=0.68u ps=0.68u
+    I_MXI3_I58_MN1 (VSS S_4 XI3_I58_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I26_XG_MN2 (I1_I8_G2_0n I1_I8_G2_1 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0468p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI1_I8_I26_XG_MN0 (XI1_I8_I26_XG_n1 I1_I8_P2_1 I1_I8_G2_0n VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0468p pd=0.68u ps=0.68u
+    I_MXI1_I8_I26_XG_MN1 (VSS I1_I8_G0_0 XI1_I8_I26_XG_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I31_XG_MN2 (I1_I8_G7_4n I1_I8_G7_6 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0468p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI1_I8_I31_XG_MN0 (XI1_I8_I31_XG_n1 I1_I8_P7_6 I1_I8_G7_4n VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0468p pd=0.68u ps=0.68u
+    I_MXI1_I8_I31_XG_MN1 (VSS I1_I8_G5_4 XI1_I8_I31_XG_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I29_XG_MN2 (I1_I8_G5_2n I1_I8_G5_4 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0468p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI1_I8_I29_XG_MN0 (XI1_I8_I29_XG_n1 I1_I8_P5_4 I1_I8_G5_2n VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0468p pd=0.68u ps=0.68u
+    I_MXI1_I8_I29_XG_MN1 (VSS I1_I8_G3_2 XI1_I8_I29_XG_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I27_XG_MN2 (I1_I8_G3_0n I1_I8_G3_2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0468p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI1_I8_I27_XG_MN0 (XI1_I8_I27_XG_n1 I1_I8_P3_2 I1_I8_G3_0n VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0468p pd=0.68u ps=0.68u
+    I_MXI1_I8_I27_XG_MN1 (VSS I1_I8_G1_0 XI1_I8_I27_XG_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I34_MN2 (I3_q2_2 I3_o2_2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0468p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI3_I34_MN0 (XI3_I34_n1 SEL_AS I3_q2_2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0468p pd=0.68u ps=0.68u
+    I_MXI3_I34_MN1 (VSS S_2 XI3_I34_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I22_MN2 (I3_q1_2 I3_o1_2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0468p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI3_I22_MN0 (XI3_I22_n1 SEL_AS I3_q1_2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0468p pd=0.68u ps=0.68u
+    I_MXI3_I22_MN1 (VSS S_1 XI3_I22_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I82_MN2 (I3_q6_2 I3_o6_2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0468p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI3_I82_MN0 (XI3_I82_n1 SEL_AS I3_q6_2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0468p pd=0.68u ps=0.68u
+    I_MXI3_I82_MN1 (VSS S_6 XI3_I82_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I94_MN2 (I3_q7_2 I3_o7_2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0468p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI3_I94_MN0 (XI3_I94_n1 SEL_AS I3_q7_2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0468p pd=0.68u ps=0.68u
+    I_MXI3_I94_MN1 (VSS S_7 XI3_I94_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I17_XG_MN2 (XI1_I8_I17_XG_n1 I1_I8_gn0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I17_XG_MN0 (I1_I8_G0_0 I1_I8_pn0 XI1_I8_I17_XG_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I17_XG_MN1 (XI1_I8_I17_XG_n1 I1_I8_cinn I1_I8_G0_0 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I22_XG_MN2 (XI1_I8_I22_XG_n1 I1_I8_gn4 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I22_XG_MN0 (I1_I8_G4_3 I1_I8_pn4 XI1_I8_I22_XG_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I22_XG_MN1 (XI1_I8_I22_XG_n1 I1_I8_gn3 I1_I8_G4_3 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I23_XG_MN2 (XI1_I8_I23_XG_n1 I1_I8_gn5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I23_XG_MN0 (I1_I8_G5_4 I1_I8_pn5 XI1_I8_I23_XG_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I23_XG_MN1 (XI1_I8_I23_XG_n1 I1_I8_gn4 I1_I8_G5_4 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I24_XG_MN2 (XI1_I8_I24_XG_n1 I1_I8_gn6 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I24_XG_MN0 (I1_I8_G6_5 I1_I8_pn6 XI1_I8_I24_XG_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I24_XG_MN1 (XI1_I8_I24_XG_n1 I1_I8_gn5 I1_I8_G6_5 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I35_XG_MN2 (XI1_I8_I35_XG_n1 I1_I8_G6_3n VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I35_XG_MN0 (C7 I1_I8_P6_3n XI1_I8_I35_XG_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I35_XG_MN1 (XI1_I8_I35_XG_n1 I1_I8_G2_0n C7 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I32_XG_MN2 (XI1_I8_I32_XG_n1 I1_I8_G4_1n VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I32_XG_MN0 (I1_I8_G4_0 I1_I8_P4_1n XI1_I8_I32_XG_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I32_XG_MN1 (XI1_I8_I32_XG_n1 I1_I8_G0_0n I1_I8_G4_0 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I19_XG_MN2 (XI1_I8_I19_XG_n1 I1_I8_gn1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I19_XG_MN0 (I1_I8_G1_0 I1_I8_pn1 XI1_I8_I19_XG_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I19_XG_MN1 (XI1_I8_I19_XG_n1 I1_I8_G0_0n I1_I8_G1_0 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I21_XG_MN2 (XI1_I8_I21_XG_n1 I1_I8_gn3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I21_XG_MN0 (I1_I8_G3_2 I1_I8_pn3 XI1_I8_I21_XG_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I21_XG_MN1 (XI1_I8_I21_XG_n1 I1_I8_gn2 I1_I8_G3_2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I20_XG_MN2 (XI1_I8_I20_XG_n1 I1_I8_gn2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I20_XG_MN0 (I1_I8_G2_1 I1_I8_pn2 XI1_I8_I20_XG_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I20_XG_MN1 (XI1_I8_I20_XG_n1 I1_I8_gn1 I1_I8_G2_1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I25_XG_MN2 (XI1_I8_I25_XG_n1 I1_I8_gn7 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I25_XG_MN0 (I1_I8_G7_6 I1_I8_pn7 XI1_I8_I25_XG_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I25_XG_MN1 (XI1_I8_I25_XG_n1 I1_I8_gn6 I1_I8_G7_6 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I36_XG_MN2 (XI1_I8_I36_XG_n1 I1_I8_G7_4n VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I36_XG_MN0 (C8 I1_I8_P7_4n XI1_I8_I36_XG_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I36_XG_MN1 (XI1_I8_I36_XG_n1 I1_I8_G3_0n C8 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I34_XG_MN2 (XI1_I8_I34_XG_n1 I1_I8_G5_2n VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I34_XG_MN0 (I1_I8_G5_0 I1_I8_P5_2n XI1_I8_I34_XG_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I34_XG_MN1 (XI1_I8_I34_XG_n1 I1_I8_G1_0n I1_I8_G5_0 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I30_MN1 (XI2_I30_n1 B_5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I30_MN0 (I2_nand5 A_5 XI2_I30_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I60_MN1 (XI3_I60_n1 AND_5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I60_MN0 (I3_n5_0 SEL_AND XI3_I60_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I66_MN1 (XI3_I66_n1 I3_n5_1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I66_MN0 (I3_o5_0 I3_n5_0 XI3_I66_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I61_MN1 (XI3_I61_n1 OR_5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I61_MN0 (I3_n5_1 SEL_OR XI3_I61_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I48_MN1 (XI3_I48_n1 AND_4 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I48_MN0 (I3_n4_0 SEL_AND XI3_I48_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I54_MN1 (XI3_I54_n1 I3_n4_1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I54_MN0 (I3_o4_0 I3_n4_0 XI3_I54_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I24_MN1 (XI2_I24_n1 B_4 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I24_MN0 (I2_nand4 A_4 XI2_I24_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I49_MN1 (XI3_I49_n1 OR_4 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I49_MN0 (I3_n4_1 SEL_OR XI3_I49_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I18_MN1 (XI2_I18_n1 B_3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I18_MN0 (I2_nand3 A_3 XI2_I18_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I38_MN1 (XI3_I38_n1 XOR_3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I38_MN0 (I3_n3_2 SEL_XOR XI3_I38_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I37_MN1 (XI3_I37_n1 OR_3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I37_MN0 (I3_n3_1 SEL_OR XI3_I37_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I36_MN1 (XI3_I36_n1 AND_3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I36_MN0 (I3_n3_0 SEL_AND XI3_I36_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I42_MN1 (XI3_I42_n1 I3_n3_1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I42_MN0 (I3_o3_0 I3_n3_0 XI3_I42_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I0_MN1 (XI2_I0_n1 B_0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I0_MN0 (I2_nand0 A_0 XI2_I0_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I62_MN1 (XI3_I62_n1 XOR_5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I62_MN0 (I3_n5_2 SEL_XOR XI3_I62_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I63_MN1 (XI3_I63_n1 NOT_5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I63_MN0 (I3_n5_3 SEL_NOT XI3_I63_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I67_MN1 (XI3_I67_n1 I3_n5_3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I67_MN0 (I3_o5_1 I3_n5_2 XI3_I67_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I55_MN1 (XI3_I55_n1 I3_n4_3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I55_MN0 (I3_o4_1 I3_n4_2 XI3_I55_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I50_MN1 (XI3_I50_n1 XOR_4 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I50_MN0 (I3_n4_2 SEL_XOR XI3_I50_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I51_MN1 (XI3_I51_n1 NOT_4 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I51_MN0 (I3_n4_3 SEL_NOT XI3_I51_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I3_MN1 (XI1_I8_I3_n1 I1_bx3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I3_MN0 (I1_I8_gn3 A_3 XI1_I8_I3_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I39_MN1 (XI3_I39_n1 NOT_3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I39_MN0 (I3_n3_3 SEL_NOT XI3_I39_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I43_MN1 (XI3_I43_n1 I3_n3_3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I43_MN0 (I3_o3_1 I3_n3_2 XI3_I43_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I0_MN1 (XI1_I8_I0_n1 I1_bx0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I0_MN0 (I1_I8_gn0 A_0 XI1_I8_I0_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I0_MN1 (XI3_I0_n1 AND_0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I0_MN0 (I3_n0_0 SEL_AND XI3_I0_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I7_MN1 (XI3_I7_n1 I3_n0_3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I7_MN0 (I3_o0_1 I3_n0_2 XI3_I7_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I6_MN1 (XI3_I6_n1 I3_n0_1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I6_MN0 (I3_o0_0 I3_n0_0 XI3_I6_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I2_MN1 (XI3_I2_n1 XOR_0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I2_MN0 (I3_n0_2 SEL_XOR XI3_I2_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I1_MN1 (XI3_I1_n1 OR_0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I1_MN0 (I3_n0_1 SEL_OR XI3_I1_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I3_MN1 (XI3_I3_n1 NOT_0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I3_MN0 (I3_n0_3 SEL_NOT XI3_I3_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I5_MN1 (XI1_I8_I5_n1 I1_bx5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I5_MN0 (I1_I8_gn5 A_5 XI1_I8_I5_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I71_MN1 (XI3_I71_n1 I3_q5_2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I71_MN0 (Y_5 I3_q5_1 XI3_I71_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I65_MN1 (XI3_I65_n1 DIVQ_5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I65_MN0 (I3_n5_5 SEL_DIV XI3_I65_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I64_MN1 (XI3_I64_n1 MULP_5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I64_MN0 (I3_n5_4 SEL_MUL XI3_I64_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I68_MN1 (XI3_I68_n1 I3_n5_5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I68_MN0 (I3_o5_2 I3_n5_4 XI3_I68_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I59_MN1 (XI3_I59_n1 I3_q4_2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I59_MN0 (Y_4 I3_q4_1 XI3_I59_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I30_XP_MN1 (XI1_I8_I30_XP_n1 I1_I8_P4_3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I30_XP_MN0 (I1_I8_P6_3n I1_I8_P6_5 XI1_I8_I30_XP_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I4_MN1 (XI1_I8_I4_n1 I1_bx4 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I4_MN0 (I1_I8_gn4 A_4 XI1_I8_I4_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I40_MN1 (XI3_I40_n1 MULP_3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I40_MN0 (I3_n3_4 SEL_MUL XI3_I40_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I47_MN1 (XI3_I47_n1 I3_q3_2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I47_MN0 (Y_3 I3_q3_1 XI3_I47_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I44_MN1 (XI3_I44_n1 I3_n3_5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I44_MN0 (I3_o3_2 I3_n3_4 XI3_I44_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I4_MN1 (XI3_I4_n1 MULP_0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I4_MN0 (I3_n0_4 SEL_MUL XI3_I4_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I41_MN1 (XI3_I41_n1 DIVQ_3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I41_MN0 (I3_n3_5 SEL_DIV XI3_I41_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I5_MN1 (XI3_I5_n1 DIVQ_0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I5_MN0 (I3_n0_5 SEL_DIV XI3_I5_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I8_MN1 (XI3_I8_n1 I3_n0_5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I8_MN0 (I3_o0_2 I3_n0_4 XI3_I8_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI0_I9_MN1 (XI0_I9_n1 I0_opn0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI0_I9_MN0 (I0_l10 OP_1 XI0_I9_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I11_MN1 (XI3_I11_n1 I3_q0_2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I11_MN0 (Y_0 I3_q0_1 XI3_I11_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI0_I7_MN1 (XI0_I7_n1 I0_opn0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI0_I7_MN0 (I0_l00 I0_opn1 XI0_I7_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI0_I8_MN1 (XI0_I8_n1 OP_0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI0_I8_MN0 (I0_l01 I0_opn1 XI0_I8_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI0_I5_MN1 (XI0_I5_n1 OP_2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI0_I5_MN0 (I0_h01 I0_opn3 XI0_I5_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I53_MN1 (XI3_I53_n1 DIVQ_4 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I53_MN0 (I3_n4_5 SEL_DIV XI3_I53_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I56_MN1 (XI3_I56_n1 I3_n4_5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I56_MN0 (I3_o4_2 I3_n4_4 XI3_I56_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I52_MN1 (XI3_I52_n1 MULP_4 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I52_MN0 (I3_n4_4 SEL_MUL XI3_I52_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I28_XP_MN1 (XI1_I8_I28_XP_n1 I1_I8_P2_1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I28_XP_MN0 (I1_I8_P4_1n I1_I8_P4_3 XI1_I8_I28_XP_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I32_MN1 (XI3_I32_n1 I3_n2_5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I32_MN0 (I3_o2_2 I3_n2_4 XI3_I32_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI0_I10_MN1 (XI0_I10_n1 OP_0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI0_I10_MN0 (I0_l11 OP_1 XI0_I10_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I28_MN1 (XI3_I28_n1 MULP_2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I28_MN0 (I3_n2_4 SEL_MUL XI3_I28_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I29_MN1 (XI3_I29_n1 DIVQ_2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I29_MN0 (I3_n2_5 SEL_DIV XI3_I29_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI0_I4_MN1 (XI0_I4_n1 I0_opn2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI0_I4_MN0 (I0_h00 I0_opn3 XI0_I4_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI0_I6_MN1 (XI0_I6_n1 I0_opn2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI0_I6_MN0 (I0_h10 OP_3 XI0_I6_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I36_MN1 (XI2_I36_n1 B_6 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I36_MN0 (I2_nand6 A_6 XI2_I36_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I74_MN1 (XI3_I74_n1 XOR_6 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I74_MN0 (I3_n6_2 SEL_XOR XI3_I74_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I6_MN1 (XI1_I8_I6_n1 I1_bx6 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I6_MN0 (I1_I8_gn6 A_6 XI1_I8_I6_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I29_XP_MN1 (XI1_I8_I29_XP_n1 I1_I8_P3_2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I29_XP_MN0 (I1_I8_P5_2n I1_I8_P5_4 XI1_I8_I29_XP_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I35_MN1 (XI3_I35_n1 I3_q2_2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I35_MN0 (Y_2 I3_q2_1 XI3_I35_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I1_MN1 (XI1_I8_I1_n1 I1_bx1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I1_MN0 (I1_I8_gn1 A_1 XI1_I8_I1_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I8_MN1 (XI4_I8_n1 I4_za1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I8_MN0 (I4_zb0 I4_za0 XI4_I8_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I23_MN1 (XI3_I23_n1 I3_q1_2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I23_MN0 (Y_1 I3_q1_1 XI3_I23_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I19_MN1 (XI3_I19_n1 I3_n1_3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I19_MN0 (I3_o1_1 I3_n1_2 XI3_I19_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I20_MN1 (XI3_I20_n1 I3_n1_5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I20_MN0 (I3_o1_2 I3_n1_4 XI3_I20_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I15_MN1 (XI3_I15_n1 NOT_1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I15_MN0 (I3_n1_3 SEL_NOT XI3_I15_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I16_MN1 (XI3_I16_n1 MULP_1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I16_MN0 (I3_n1_4 SEL_MUL XI3_I16_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I17_MN1 (XI3_I17_n1 DIVQ_1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I17_MN0 (I3_n1_5 SEL_DIV XI3_I17_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I73_MN1 (XI3_I73_n1 OR_6 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I73_MN0 (I3_n6_1 SEL_OR XI3_I73_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I78_MN1 (XI3_I78_n1 I3_n6_1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I78_MN0 (I3_o6_0 I3_n6_0 XI3_I78_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I72_MN1 (XI3_I72_n1 AND_6 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I72_MN0 (I3_n6_0 SEL_AND XI3_I72_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I79_MN1 (XI3_I79_n1 I3_n6_3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I79_MN0 (I3_o6_1 I3_n6_2 XI3_I79_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I75_MN1 (XI3_I75_n1 NOT_6 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I75_MN0 (I3_n6_3 SEL_NOT XI3_I75_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I9_MN1 (XI4_I9_n1 I4_za3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I9_MN0 (I4_zb1 I4_za2 XI4_I9_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I31_XP_MN1 (XI1_I8_I31_XP_n1 I1_I8_P5_4 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I31_XP_MN0 (I1_I8_P7_4n I1_I8_P7_6 XI1_I8_I31_XP_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I2_MN1 (XI1_I8_I2_n1 I1_bx2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I2_MN0 (I1_I8_gn2 A_2 XI1_I8_I2_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I27_MN1 (XI3_I27_n1 NOT_2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I27_MN0 (I3_n2_3 SEL_NOT XI3_I27_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I31_MN1 (XI3_I31_n1 I3_n2_3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I31_MN0 (I3_o2_1 I3_n2_2 XI3_I31_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I26_MN1 (XI3_I26_n1 XOR_2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I26_MN0 (I3_n2_2 SEL_XOR XI3_I26_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I25_MN1 (XI3_I25_n1 OR_2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I25_MN0 (I3_n2_1 SEL_OR XI3_I25_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I12_MN1 (XI3_I12_n1 AND_1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I12_MN0 (I3_n1_0 SEL_AND XI3_I12_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I18_MN1 (XI3_I18_n1 I3_n1_1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I18_MN0 (I3_o1_0 I3_n1_0 XI3_I18_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I6_MN1 (XI2_I6_n1 B_1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I6_MN0 (I2_nand1 A_1 XI2_I6_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I13_MN1 (XI3_I13_n1 OR_1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I13_MN0 (I3_n1_1 SEL_OR XI3_I13_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I14_MN1 (XI3_I14_n1 XOR_1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I14_MN0 (I3_n1_2 SEL_XOR XI3_I14_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I86_MN1 (XI3_I86_n1 XOR_7 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I86_MN0 (I3_n7_2 SEL_XOR XI3_I86_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I87_MN1 (XI3_I87_n1 NOT_7 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I87_MN0 (I3_n7_3 SEL_NOT XI3_I87_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I91_MN1 (XI3_I91_n1 I3_n7_3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I91_MN0 (I3_o7_1 I3_n7_2 XI3_I91_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I84_MN1 (XI3_I84_n1 AND_7 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I84_MN0 (I3_n7_0 SEL_AND XI3_I84_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I7_MN1 (XI1_I8_I7_n1 I1_bx7 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I7_MN0 (I1_I8_gn7 A_7 XI1_I8_I7_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I85_MN1 (XI3_I85_n1 OR_7 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I85_MN0 (I3_n7_1 SEL_OR XI3_I85_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I90_MN1 (XI3_I90_n1 I3_n7_1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I90_MN0 (I3_o7_0 I3_n7_0 XI3_I90_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I83_MN1 (XI3_I83_n1 I3_q6_2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I83_MN0 (Y_6 I3_q6_1 XI3_I83_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I95_MN1 (XI3_I95_n1 I3_q7_2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I95_MN0 (Y_7 I3_q7_1 XI3_I95_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I76_MN1 (XI3_I76_n1 MULP_6 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I76_MN0 (I3_n6_4 SEL_MUL XI3_I76_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I77_MN1 (XI3_I77_n1 DIVQ_6 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I77_MN0 (I3_n6_5 SEL_DIV XI3_I77_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I80_MN1 (XI3_I80_n1 I3_n6_5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I80_MN0 (I3_o6_2 I3_n6_4 XI3_I80_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I12_MN1 (XI2_I12_n1 B_2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I12_MN0 (I2_nand2 A_2 XI2_I12_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I16_MN1 (XI4_I16_n1 SEL_AS VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I16_MN0 (I4_cn C8 XI4_I16_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I118_MN1 (XI3_I118_n1 DIVR_7 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I118_MN0 (I3_hd15 SEL_DIV XI3_I118_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I119_MN1 (XI3_I119_n1 I3_hd15 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I119_MN0 (Y_15 I3_hm15 XI3_I119_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I24_MN1 (XI3_I24_n1 AND_2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I24_MN0 (I3_n2_0 SEL_AND XI3_I24_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I117_MN1 (XI3_I117_n1 MULP_15 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I117_MN0 (I3_hm15 SEL_MUL XI3_I117_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I14_MN1 (XI4_I14_n1 I4_zc1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I14_MN0 (I4_zd I4_zc0 XI4_I14_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I30_MN1 (XI3_I30_n1 I3_n2_1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I30_MN0 (I3_o2_0 I3_n2_0 XI3_I30_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I106_MN1 (XI3_I106_n1 DIVR_3 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I106_MN0 (I3_hd11 SEL_DIV XI3_I106_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I99_MN1 (XI3_I99_n1 MULP_9 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I99_MN0 (I3_hm9 SEL_MUL XI3_I99_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I22_MN1 (XI4_I22_n1 DIVDZ VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I22_MN0 (I4_dzn SEL_DIV XI4_I22_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I101_MN1 (XI3_I101_n1 I3_hd9 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I101_MN0 (Y_9 I3_hm9 XI3_I101_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I103_MN1 (XI3_I103_n1 DIVR_2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I103_MN0 (I3_hd10 SEL_DIV XI3_I103_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I100_MN1 (XI3_I100_n1 DIVR_1 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I100_MN0 (I3_hd9 SEL_DIV XI3_I100_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I42_MN1 (XI2_I42_n1 B_7 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I42_MN0 (I2_nand7 A_7 XI2_I42_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I92_MN1 (XI3_I92_n1 I3_n7_5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I92_MN0 (I3_o7_2 I3_n7_4 XI3_I92_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I21_MN1 (XI4_I21_n1 I4_v2 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I21_MN0 (V I4_v1 XI4_I21_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I89_MN1 (XI3_I89_n1 DIVQ_7 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I89_MN0 (I3_n7_5 SEL_DIV XI3_I89_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I20_MN1 (XI4_I20_n1 DIVV VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I20_MN0 (I4_v2 SEL_DIV XI4_I20_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I19_MN1 (XI4_I19_n1 I4_ovf VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I19_MN0 (I4_v1 SEL_AS XI4_I19_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I88_MN1 (XI3_I88_n1 MULP_7 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I88_MN0 (I3_n7_4 SEL_MUL XI3_I88_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I112_MN1 (XI3_I112_n1 DIVR_5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I112_MN0 (I3_hd13 SEL_DIV XI3_I112_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I109_MN1 (XI3_I109_n1 DIVR_4 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I109_MN0 (I3_hd12 SEL_DIV XI3_I109_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I113_MN1 (XI3_I113_n1 I3_hd13 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I113_MN0 (Y_13 I3_hm13 XI3_I113_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I115_MN1 (XI3_I115_n1 DIVR_6 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I115_MN0 (I3_hd14 SEL_DIV XI3_I115_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I111_MN1 (XI3_I111_n1 MULP_13 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I111_MN0 (I3_hm13 SEL_MUL XI3_I111_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I108_MN1 (XI3_I108_n1 MULP_12 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I108_MN0 (I3_hm12 SEL_MUL XI3_I108_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I116_MN1 (XI3_I116_n1 I3_hd14 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I116_MN0 (Y_14 I3_hm14 XI3_I116_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I110_MN1 (XI3_I110_n1 I3_hd12 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I110_MN0 (Y_12 I3_hm12 XI3_I110_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I11_MN1 (XI4_I11_n1 I4_za7 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I11_MN0 (I4_zb3 I4_za6 XI4_I11_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I114_MN1 (XI3_I114_n1 MULP_14 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I114_MN0 (I3_hm14 SEL_MUL XI3_I114_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I105_MN1 (XI3_I105_n1 MULP_11 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I105_MN0 (I3_hm11 SEL_MUL XI3_I105_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I107_MN1 (XI3_I107_n1 I3_hd11 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I107_MN0 (Y_11 I3_hm11 XI3_I107_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I10_MN1 (XI4_I10_n1 I4_za5 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I10_MN0 (I4_zb2 I4_za4 XI4_I10_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I98_MN1 (XI3_I98_n1 I3_hd8 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I98_MN0 (Y_8 I3_hm8 XI3_I98_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I102_MN1 (XI3_I102_n1 MULP_10 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I102_MN0 (I3_hm10 SEL_MUL XI3_I102_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I104_MN1 (XI3_I104_n1 I3_hd10 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I104_MN0 (Y_10 I3_hm10 XI3_I104_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I97_MN1 (XI3_I97_n1 DIVR_0 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I97_MN0 (I3_hd8 SEL_DIV XI3_I97_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I96_MN1 (XI3_I96_n1 MULP_8 VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I96_MN0 (I3_hm8 SEL_MUL XI3_I96_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I32_MN0 (I2_nor5 A_5 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI2_I32_MN1 (VSS B_5 I2_nor5 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI2_I26_MN0 (I2_nor4 A_4 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI2_I26_MN1 (VSS B_4 I2_nor4 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI2_I20_MN0 (I2_nor3 A_3 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI2_I20_MN1 (VSS B_3 I2_nor3 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI2_I2_MN0 (I2_nor0 A_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI2_I2_MN1 (VSS B_0 I2_nor0 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI3_I69_MN0 (I3_q5_1 I3_o5_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI3_I69_MN1 (VSS I3_o5_1 I3_q5_1 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI3_I57_MN0 (I3_q4_1 I3_o4_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI3_I57_MN1 (VSS I3_o4_1 I3_q4_1 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI3_I45_MN0 (I3_q3_1 I3_o3_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI3_I45_MN1 (VSS I3_o3_1 I3_q3_1 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI3_I9_MN0 (I3_q0_1 I3_o0_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI3_I9_MN1 (VSS I3_o0_1 I3_q0_1 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI4_I2_MN0 (I4_za2 Y_4 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI4_I2_MN1 (VSS Y_5 I4_za2 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI1_I8_I22_XP_MN0 (I1_I8_P4_3 I1_I8_pn4 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI1_I8_I22_XP_MN1 (VSS I1_I8_pn3 I1_I8_P4_3 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI0_I14_MN0 (SEL_XOR I0_h01 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI0_I14_MN1 (VSS I0_l00 SEL_XOR VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI0_I15_MN0 (SEL_NOT I0_h01 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI0_I15_MN1 (VSS I0_l01 SEL_NOT VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI1_I8_I24_XP_MN0 (I1_I8_P6_5 I1_I8_pn6 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI1_I8_I24_XP_MN1 (VSS I1_I8_pn5 I1_I8_P6_5 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI1_I8_I23_XP_MN0 (I1_I8_P5_4 I1_I8_pn5 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI1_I8_I23_XP_MN1 (VSS I1_I8_pn4 I1_I8_P5_4 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI1_I8_I20_XP_MN0 (I1_I8_P2_1 I1_I8_pn2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI1_I8_I20_XP_MN1 (VSS I1_I8_pn1 I1_I8_P2_1 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI0_I12_MN0 (SEL_AND I0_h00 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI0_I12_MN1 (VSS I0_l10 SEL_AND VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI0_I11_MN0 (SEL_AS I0_h00 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI0_I11_MN1 (VSS OP_1 SEL_AS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI0_I13_MN0 (SEL_OR I0_h00 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI0_I13_MN1 (VSS I0_l11 SEL_OR VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI0_I17_MN0 (SEL_DIV I0_h10 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI0_I17_MN1 (VSS I0_l11 SEL_DIV VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI0_I16_MN0 (SEL_MUL I0_h10 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI0_I16_MN1 (VSS I0_l01 SEL_MUL VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI2_I38_MN0 (I2_nor6 A_6 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI2_I38_MN1 (VSS B_6 I2_nor6 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI1_I8_I21_XP_MN0 (I1_I8_P3_2 I1_I8_pn3 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI1_I8_I21_XP_MN1 (VSS I1_I8_pn2 I1_I8_P3_2 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI4_I1_MN0 (I4_za1 Y_2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI4_I1_MN1 (VSS Y_3 I4_za1 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI3_I21_MN0 (I3_q1_1 I3_o1_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI3_I21_MN1 (VSS I3_o1_1 I3_q1_1 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI4_I0_MN0 (I4_za0 Y_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI4_I0_MN1 (VSS Y_1 I4_za0 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI3_I81_MN0 (I3_q6_1 I3_o6_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI3_I81_MN1 (VSS I3_o6_1 I3_q6_1 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI1_I8_I25_XP_MN0 (I1_I8_P7_6 I1_I8_pn7 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI1_I8_I25_XP_MN1 (VSS I1_I8_pn6 I1_I8_P7_6 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI3_I33_MN0 (I3_q2_1 I3_o2_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI3_I33_MN1 (VSS I3_o2_1 I3_q2_1 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI4_I12_MN0 (I4_zc0 I4_zb0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI4_I12_MN1 (VSS I4_zb1 I4_zc0 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI2_I8_MN0 (I2_nor1 A_1 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI2_I8_MN1 (VSS B_1 I2_nor1 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI3_I93_MN0 (I3_q7_1 I3_o7_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI3_I93_MN1 (VSS I3_o7_1 I3_q7_1 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI4_I3_MN0 (I4_za3 Y_6 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI4_I3_MN1 (VSS Y_7 I4_za3 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI2_I14_MN0 (I2_nor2 A_2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI2_I14_MN1 (VSS B_2 I2_nor2 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI4_I7_MN0 (I4_za7 Y_14 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI4_I7_MN1 (VSS Y_15 I4_za7 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI2_I44_MN0 (I2_nor7 A_7 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI2_I44_MN1 (VSS B_7 I2_nor7 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI4_I6_MN0 (I4_za6 Y_12 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI4_I6_MN1 (VSS Y_13 I4_za6 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI4_I13_MN0 (I4_zc1 I4_zb2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI4_I13_MN1 (VSS I4_zb3 I4_zc1 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI4_I5_MN0 (I4_za5 Y_10 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI4_I5_MN1 (VSS Y_11 I4_za5 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI4_I4_MN0 (I4_za4 Y_8 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0408p as=0.0696p pd=0.68u ps=1.16u
+    I_MXI4_I4_MN1 (VSS Y_9 I4_za4 VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0408p pd=1.16u ps=0.68u
+    I_MXI2_I31_MN0 (AND_5 I2_nand5 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I33_MN0 (OR_5 I2_nor5 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I25_MN0 (AND_4 I2_nand4 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I27_MN0 (OR_4 I2_nor4 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I21_MN0 (OR_3 I2_nor3 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I19_MN0 (AND_3 I2_nand3 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I1_MN0 (AND_0 I2_nand0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I3_MN0 (OR_0 I2_nor0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I35_MN0 (NOT_5 A_5 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I29_MN0 (NOT_4 A_4 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I23_MN0 (NOT_3 A_3 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I16_MN0 (I1_I8_cinn OP_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I5_MN0 (NOT_0 A_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI0_I0_MN0 (I0_opn0 OP_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI0_I2_MN0 (I0_opn2 OP_2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I18_MN0 (I1_I8_G0_0n I1_I8_G0_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI0_I1_MN0 (I0_opn1 OP_1 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI0_I3_MN0 (I0_opn3 OP_3 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I39_MN0 (OR_6 I2_nor6 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I37_MN0 (AND_6 I2_nand6 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I41_MN0 (NOT_6 A_6 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I33_MN0 (I1_I8_G1_0n I1_I8_G1_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I11_MN0 (NOT_1 A_1 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I17_MN0 (NOT_2 A_2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I15_MN0 (OR_2 I2_nor2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I7_MN0 (AND_1 I2_nand1 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I9_MN0 (OR_1 I2_nor1 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I47_MN0 (NOT_7 A_7 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I45_MN0 (OR_7 I2_nor7 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI4_I17_MN0 (C I4_cn VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I13_MN0 (AND_2 I2_nand2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI4_I15_MN0 (Z I4_zd VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI4_I23_MN0 (DZ I4_dzn VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I43_MN0 (AND_7 I2_nand7 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I28_MN1 (XI2_I28_Bn B_4 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I28_MN5 (XI2_I28_n2 XI2_I28_Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I28_MN4 (XOR_4 XI2_I28_An XI2_I28_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI2_I28_MN2 (XI2_I28_n1 A_4 XOR_4 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI2_I28_MN3 (VSS B_4 XI2_I28_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I28_MN0 (XI2_I28_An A_4 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I22_MN1 (XI2_I22_Bn B_3 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I22_MN5 (XI2_I22_n2 XI2_I22_Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I22_MN4 (XOR_3 XI2_I22_An XI2_I22_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI2_I22_MN2 (XI2_I22_n1 A_3 XOR_3 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI2_I22_MN3 (VSS B_3 XI2_I22_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I22_MN0 (XI2_I22_An A_3 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I0_MN1 (XI1_I0_Bn OP_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I0_MN5 (XI1_I0_n2 XI1_I0_Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I0_MN4 (I1_bx0 XI1_I0_An XI1_I0_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I0_MN2 (XI1_I0_n1 B_0 I1_bx0 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I0_MN3 (VSS OP_0 XI1_I0_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I0_MN0 (XI1_I0_An B_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I4_MN1 (XI2_I4_Bn B_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I4_MN5 (XI2_I4_n2 XI2_I4_Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I4_MN4 (XOR_0 XI2_I4_An XI2_I4_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI2_I4_MN2 (XI2_I4_n1 A_0 XOR_0 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI2_I4_MN3 (VSS B_0 XI2_I4_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I4_MN0 (XI2_I4_An A_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I34_MN1 (XI2_I34_Bn B_5 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I34_MN5 (XI2_I34_n2 XI2_I34_Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I34_MN4 (XOR_5 XI2_I34_An XI2_I34_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI2_I34_MN2 (XI2_I34_n1 A_5 XOR_5 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI2_I34_MN3 (VSS B_5 XI2_I34_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I34_MN0 (XI2_I34_An A_5 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I3_MN1 (XI1_I3_Bn OP_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I3_MN5 (XI1_I3_n2 XI1_I3_Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I3_MN4 (I1_bx3 XI1_I3_An XI1_I3_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I3_MN2 (XI1_I3_n1 B_3 I1_bx3 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I3_MN3 (VSS OP_0 XI1_I3_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I3_MN0 (XI1_I3_An B_3 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I4_MN1 (XI1_I4_Bn OP_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I4_MN5 (XI1_I4_n2 XI1_I4_Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I4_MN4 (I1_bx4 XI1_I4_An XI1_I4_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I4_MN2 (XI1_I4_n1 B_4 I1_bx4 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I4_MN3 (VSS OP_0 XI1_I4_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I4_MN0 (XI1_I4_An B_4 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I5_MN1 (XI1_I5_Bn OP_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I5_MN5 (XI1_I5_n2 XI1_I5_Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I5_MN4 (I1_bx5 XI1_I5_An XI1_I5_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I5_MN2 (XI1_I5_n1 B_5 I1_bx5 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I5_MN3 (VSS OP_0 XI1_I5_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I5_MN0 (XI1_I5_An B_5 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I40_MN1 (XI1_I8_I40_Bn I1_I8_G2_0n VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I40_MN5 (XI1_I8_I40_n2 XI1_I8_I40_Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I40_MN4 (S_3 XI1_I8_I40_An XI1_I8_I40_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I40_MN2 (XI1_I8_I40_n1 I1_I8_pn3 S_3 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I40_MN3 (VSS I1_I8_G2_0n XI1_I8_I40_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I40_MN0 (XI1_I8_I40_An I1_I8_pn3 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I6_MN1 (XI1_I6_Bn OP_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I6_MN5 (XI1_I6_n2 XI1_I6_Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I6_MN4 (I1_bx6 XI1_I6_An XI1_I6_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I6_MN2 (XI1_I6_n1 B_6 I1_bx6 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I6_MN3 (VSS OP_0 XI1_I6_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I6_MN0 (XI1_I6_An B_6 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I40_MN1 (XI2_I40_Bn B_6 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I40_MN5 (XI2_I40_n2 XI2_I40_Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I40_MN4 (XOR_6 XI2_I40_An XI2_I40_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI2_I40_MN2 (XI2_I40_n1 A_6 XOR_6 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI2_I40_MN3 (VSS B_6 XI2_I40_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I40_MN0 (XI2_I40_An A_6 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I41_MN1 (XI1_I8_I41_Bn I1_I8_G3_0n VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I41_MN5 (XI1_I8_I41_n2 XI1_I8_I41_Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I41_MN4 (S_4 XI1_I8_I41_An XI1_I8_I41_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I41_MN2 (XI1_I8_I41_n1 I1_I8_pn4 S_4 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I8_I41_MN3 (VSS I1_I8_G3_0n XI1_I8_I41_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I41_MN0 (XI1_I8_I41_An I1_I8_pn4 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I2_MN1 (XI1_I2_Bn OP_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I2_MN5 (XI1_I2_n2 XI1_I2_Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I2_MN4 (I1_bx2 XI1_I2_An XI1_I2_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I2_MN2 (XI1_I2_n1 B_2 I1_bx2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I2_MN3 (VSS OP_0 XI1_I2_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I2_MN0 (XI1_I2_An B_2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I16_MN1 (XI2_I16_Bn B_2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I16_MN5 (XI2_I16_n2 XI2_I16_Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I16_MN4 (XOR_2 XI2_I16_An XI2_I16_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI2_I16_MN2 (XI2_I16_n1 A_2 XOR_2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI2_I16_MN3 (VSS B_2 XI2_I16_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I16_MN0 (XI2_I16_An A_2 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I1_MN1 (XI1_I1_Bn OP_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I1_MN5 (XI1_I1_n2 XI1_I1_Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I1_MN4 (I1_bx1 XI1_I1_An XI1_I1_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I1_MN2 (XI1_I1_n1 B_1 I1_bx1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I1_MN3 (VSS OP_0 XI1_I1_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I1_MN0 (XI1_I1_An B_1 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I10_MN1 (XI2_I10_Bn B_1 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I10_MN5 (XI2_I10_n2 XI2_I10_Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I10_MN4 (XOR_1 XI2_I10_An XI2_I10_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI2_I10_MN2 (XI2_I10_n1 A_1 XOR_1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI2_I10_MN3 (VSS B_1 XI2_I10_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I10_MN0 (XI2_I10_An A_1 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I46_MN1 (XI2_I46_Bn B_7 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI2_I46_MN5 (XI2_I46_n2 XI2_I46_Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I46_MN4 (XOR_7 XI2_I46_An XI2_I46_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI2_I46_MN2 (XI2_I46_n1 A_7 XOR_7 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI2_I46_MN3 (VSS B_7 XI2_I46_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I46_MN0 (XI2_I46_An A_7 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I7_MN1 (XI1_I7_Bn OP_0 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I7_MN5 (XI1_I7_n2 XI1_I7_Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I7_MN4 (I1_bx7 XI1_I7_An XI1_I7_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I7_MN2 (XI1_I7_n1 B_7 I1_bx7 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI1_I7_MN3 (VSS OP_0 XI1_I7_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I7_MN0 (XI1_I7_An B_7 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI4_I18_MN1 (XI4_I18_Bn C8 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI4_I18_MN5 (XI4_I18_n2 XI4_I18_Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I18_MN4 (I4_ovf XI4_I18_An XI4_I18_n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI4_I18_MN2 (XI4_I18_n1 C7 I4_ovf VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0528p as=0.0528p pd=0.68u ps=0.68u
+    I_MXI4_I18_MN3 (VSS C8 XI4_I18_n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I18_MN0 (XI4_I18_An C7 VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u ad=0.0696p as=0.0696p pd=1.16u ps=1.16u
+    I_MXI1_I8_I8_MP1 (VDD I1_bx0 XI1_I8_I8_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I8_MP5 (I1_I8_pn0 I1_bx0 XI1_I8_I8_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I8_MP4 (XI1_I8_I8_p1 XI1_I8_I8_An I1_I8_pn0 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I8_MP2 (VDD A_0 XI1_I8_I8_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I8_MP3 (XI1_I8_I8_p1 XI1_I8_I8_Bn VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I8_MP0 (VDD A_0 XI1_I8_I8_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I11_MP1 (VDD I1_bx3 XI1_I8_I11_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I11_MP5 (I1_I8_pn3 I1_bx3 XI1_I8_I11_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I11_MP4 (XI1_I8_I11_p1 XI1_I8_I11_An I1_I8_pn3 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I11_MP2 (VDD A_3 XI1_I8_I11_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I11_MP3 (XI1_I8_I11_p1 XI1_I8_I11_Bn VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I11_MP0 (VDD A_3 XI1_I8_I11_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I37_MP1 (VDD OP_0 XI1_I8_I37_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I37_MP5 (S_0 OP_0 XI1_I8_I37_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I37_MP4 (XI1_I8_I37_p1 XI1_I8_I37_An S_0 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I37_MP2 (VDD I1_I8_pn0 XI1_I8_I37_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I37_MP3 (XI1_I8_I37_p1 XI1_I8_I37_Bn VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I37_MP0 (VDD I1_I8_pn0 XI1_I8_I37_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I13_MP1 (VDD I1_bx5 XI1_I8_I13_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I13_MP5 (I1_I8_pn5 I1_bx5 XI1_I8_I13_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I13_MP4 (XI1_I8_I13_p1 XI1_I8_I13_An I1_I8_pn5 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I13_MP2 (VDD A_5 XI1_I8_I13_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I13_MP3 (XI1_I8_I13_p1 XI1_I8_I13_Bn VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I13_MP0 (VDD A_5 XI1_I8_I13_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I42_MP1 (VDD I1_I8_G4_0 XI1_I8_I42_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I42_MP5 (S_5 I1_I8_G4_0 XI1_I8_I42_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I42_MP4 (XI1_I8_I42_p1 XI1_I8_I42_An S_5 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I42_MP2 (VDD I1_I8_pn5 XI1_I8_I42_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I42_MP3 (XI1_I8_I42_p1 XI1_I8_I42_Bn VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I42_MP0 (VDD I1_I8_pn5 XI1_I8_I42_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I12_MP1 (VDD I1_bx4 XI1_I8_I12_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I12_MP5 (I1_I8_pn4 I1_bx4 XI1_I8_I12_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I12_MP4 (XI1_I8_I12_p1 XI1_I8_I12_An I1_I8_pn4 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I12_MP2 (VDD A_4 XI1_I8_I12_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I12_MP3 (XI1_I8_I12_p1 XI1_I8_I12_Bn VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I12_MP0 (VDD A_4 XI1_I8_I12_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I14_MP1 (VDD I1_bx6 XI1_I8_I14_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I14_MP5 (I1_I8_pn6 I1_bx6 XI1_I8_I14_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I14_MP4 (XI1_I8_I14_p1 XI1_I8_I14_An I1_I8_pn6 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I14_MP2 (VDD A_6 XI1_I8_I14_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I14_MP3 (XI1_I8_I14_p1 XI1_I8_I14_Bn VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I14_MP0 (VDD A_6 XI1_I8_I14_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I38_MP1 (VDD I1_I8_G0_0 XI1_I8_I38_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I38_MP5 (S_1 I1_I8_G0_0 XI1_I8_I38_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I38_MP4 (XI1_I8_I38_p1 XI1_I8_I38_An S_1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I38_MP2 (VDD I1_I8_pn1 XI1_I8_I38_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I38_MP3 (XI1_I8_I38_p1 XI1_I8_I38_Bn VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I38_MP0 (VDD I1_I8_pn1 XI1_I8_I38_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I39_MP1 (VDD I1_I8_G1_0 XI1_I8_I39_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I39_MP5 (S_2 I1_I8_G1_0 XI1_I8_I39_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I39_MP4 (XI1_I8_I39_p1 XI1_I8_I39_An S_2 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I39_MP2 (VDD I1_I8_pn2 XI1_I8_I39_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I39_MP3 (XI1_I8_I39_p1 XI1_I8_I39_Bn VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I39_MP0 (VDD I1_I8_pn2 XI1_I8_I39_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I9_MP1 (VDD I1_bx1 XI1_I8_I9_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I9_MP5 (I1_I8_pn1 I1_bx1 XI1_I8_I9_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I9_MP4 (XI1_I8_I9_p1 XI1_I8_I9_An I1_I8_pn1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I9_MP2 (VDD A_1 XI1_I8_I9_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I9_MP3 (XI1_I8_I9_p1 XI1_I8_I9_Bn VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I9_MP0 (VDD A_1 XI1_I8_I9_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I43_MP1 (VDD I1_I8_G5_0 XI1_I8_I43_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I43_MP5 (S_6 I1_I8_G5_0 XI1_I8_I43_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I43_MP4 (XI1_I8_I43_p1 XI1_I8_I43_An S_6 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I43_MP2 (VDD I1_I8_pn6 XI1_I8_I43_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I43_MP3 (XI1_I8_I43_p1 XI1_I8_I43_Bn VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I43_MP0 (VDD I1_I8_pn6 XI1_I8_I43_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I10_MP1 (VDD I1_bx2 XI1_I8_I10_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I10_MP5 (I1_I8_pn2 I1_bx2 XI1_I8_I10_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I10_MP4 (XI1_I8_I10_p1 XI1_I8_I10_An I1_I8_pn2 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I10_MP2 (VDD A_2 XI1_I8_I10_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I10_MP3 (XI1_I8_I10_p1 XI1_I8_I10_Bn VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I10_MP0 (VDD A_2 XI1_I8_I10_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I44_MP1 (VDD C7 XI1_I8_I44_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I44_MP5 (S_7 C7 XI1_I8_I44_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I44_MP4 (XI1_I8_I44_p1 XI1_I8_I44_An S_7 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I44_MP2 (VDD I1_I8_pn7 XI1_I8_I44_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I44_MP3 (XI1_I8_I44_p1 XI1_I8_I44_Bn VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I44_MP0 (VDD I1_I8_pn7 XI1_I8_I44_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I15_MP1 (VDD I1_bx7 XI1_I8_I15_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I15_MP5 (I1_I8_pn7 I1_bx7 XI1_I8_I15_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I15_MP4 (XI1_I8_I15_p1 XI1_I8_I15_An I1_I8_pn7 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I15_MP2 (VDD A_7 XI1_I8_I15_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I15_MP3 (XI1_I8_I15_p1 XI1_I8_I15_Bn VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I15_MP0 (VDD A_7 XI1_I8_I15_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI3_I70_MP2 (XI3_I70_p1 I3_o5_2 I3_q5_2 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI3_I70_MP0 (VDD SEL_AS XI3_I70_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI3_I70_MP1 (XI3_I70_p1 S_5 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I30_XG_MP2 (XI1_I8_I30_XG_p1 I1_I8_G6_5 I1_I8_G6_3n VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I30_XG_MP0 (VDD I1_I8_P6_5 XI1_I8_I30_XG_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I30_XG_MP1 (XI1_I8_I30_XG_p1 I1_I8_G4_3 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I28_XG_MP2 (XI1_I8_I28_XG_p1 I1_I8_G4_3 I1_I8_G4_1n VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I28_XG_MP0 (VDD I1_I8_P4_3 XI1_I8_I28_XG_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I28_XG_MP1 (XI1_I8_I28_XG_p1 I1_I8_G2_1 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI3_I46_MP2 (XI3_I46_p1 I3_o3_2 I3_q3_2 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI3_I46_MP0 (VDD SEL_AS XI3_I46_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI3_I46_MP1 (XI3_I46_p1 S_3 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI3_I10_MP2 (XI3_I10_p1 I3_o0_2 I3_q0_2 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI3_I10_MP0 (VDD SEL_AS XI3_I10_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI3_I10_MP1 (XI3_I10_p1 S_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI3_I58_MP2 (XI3_I58_p1 I3_o4_2 I3_q4_2 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI3_I58_MP0 (VDD SEL_AS XI3_I58_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI3_I58_MP1 (XI3_I58_p1 S_4 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I26_XG_MP2 (XI1_I8_I26_XG_p1 I1_I8_G2_1 I1_I8_G2_0n VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I26_XG_MP0 (VDD I1_I8_P2_1 XI1_I8_I26_XG_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I26_XG_MP1 (XI1_I8_I26_XG_p1 I1_I8_G0_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I31_XG_MP2 (XI1_I8_I31_XG_p1 I1_I8_G7_6 I1_I8_G7_4n VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I31_XG_MP0 (VDD I1_I8_P7_6 XI1_I8_I31_XG_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I31_XG_MP1 (XI1_I8_I31_XG_p1 I1_I8_G5_4 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I29_XG_MP2 (XI1_I8_I29_XG_p1 I1_I8_G5_4 I1_I8_G5_2n VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I29_XG_MP0 (VDD I1_I8_P5_4 XI1_I8_I29_XG_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I29_XG_MP1 (XI1_I8_I29_XG_p1 I1_I8_G3_2 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I27_XG_MP2 (XI1_I8_I27_XG_p1 I1_I8_G3_2 I1_I8_G3_0n VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I27_XG_MP0 (VDD I1_I8_P3_2 XI1_I8_I27_XG_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I27_XG_MP1 (XI1_I8_I27_XG_p1 I1_I8_G1_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI3_I34_MP2 (XI3_I34_p1 I3_o2_2 I3_q2_2 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI3_I34_MP0 (VDD SEL_AS XI3_I34_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI3_I34_MP1 (XI3_I34_p1 S_2 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI3_I22_MP2 (XI3_I22_p1 I3_o1_2 I3_q1_2 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI3_I22_MP0 (VDD SEL_AS XI3_I22_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI3_I22_MP1 (XI3_I22_p1 S_1 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI3_I82_MP2 (XI3_I82_p1 I3_o6_2 I3_q6_2 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI3_I82_MP0 (VDD SEL_AS XI3_I82_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI3_I82_MP1 (XI3_I82_p1 S_6 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI3_I94_MP2 (XI3_I94_p1 I3_o7_2 I3_q7_2 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI3_I94_MP0 (VDD SEL_AS XI3_I94_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI3_I94_MP1 (XI3_I94_p1 S_7 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I17_XG_MP2 (VDD I1_I8_gn0 I1_I8_G0_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0936p as=0.0816p pd=0.92u ps=1.16u
+    I_MXI1_I8_I17_XG_MP0 (XI1_I8_I17_XG_p1 I1_I8_pn0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.0936p pd=0.92u ps=0.92u
+    I_MXI1_I8_I17_XG_MP1 (I1_I8_G0_0 I1_I8_cinn XI1_I8_I17_XG_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I22_XG_MP2 (VDD I1_I8_gn4 I1_I8_G4_3 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0936p as=0.0816p pd=0.92u ps=1.16u
+    I_MXI1_I8_I22_XG_MP0 (XI1_I8_I22_XG_p1 I1_I8_pn4 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.0936p pd=0.92u ps=0.92u
+    I_MXI1_I8_I22_XG_MP1 (I1_I8_G4_3 I1_I8_gn3 XI1_I8_I22_XG_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I23_XG_MP2 (VDD I1_I8_gn5 I1_I8_G5_4 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0936p as=0.0816p pd=0.92u ps=1.16u
+    I_MXI1_I8_I23_XG_MP0 (XI1_I8_I23_XG_p1 I1_I8_pn5 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.0936p pd=0.92u ps=0.92u
+    I_MXI1_I8_I23_XG_MP1 (I1_I8_G5_4 I1_I8_gn4 XI1_I8_I23_XG_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I24_XG_MP2 (VDD I1_I8_gn6 I1_I8_G6_5 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0936p as=0.0816p pd=0.92u ps=1.16u
+    I_MXI1_I8_I24_XG_MP0 (XI1_I8_I24_XG_p1 I1_I8_pn6 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.0936p pd=0.92u ps=0.92u
+    I_MXI1_I8_I24_XG_MP1 (I1_I8_G6_5 I1_I8_gn5 XI1_I8_I24_XG_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I35_XG_MP2 (VDD I1_I8_G6_3n C7 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0936p as=0.0816p pd=0.92u ps=1.16u
+    I_MXI1_I8_I35_XG_MP0 (XI1_I8_I35_XG_p1 I1_I8_P6_3n VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.0936p pd=0.92u ps=0.92u
+    I_MXI1_I8_I35_XG_MP1 (C7 I1_I8_G2_0n XI1_I8_I35_XG_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I32_XG_MP2 (VDD I1_I8_G4_1n I1_I8_G4_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0936p as=0.0816p pd=0.92u ps=1.16u
+    I_MXI1_I8_I32_XG_MP0 (XI1_I8_I32_XG_p1 I1_I8_P4_1n VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.0936p pd=0.92u ps=0.92u
+    I_MXI1_I8_I32_XG_MP1 (I1_I8_G4_0 I1_I8_G0_0n XI1_I8_I32_XG_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I19_XG_MP2 (VDD I1_I8_gn1 I1_I8_G1_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0936p as=0.0816p pd=0.92u ps=1.16u
+    I_MXI1_I8_I19_XG_MP0 (XI1_I8_I19_XG_p1 I1_I8_pn1 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.0936p pd=0.92u ps=0.92u
+    I_MXI1_I8_I19_XG_MP1 (I1_I8_G1_0 I1_I8_G0_0n XI1_I8_I19_XG_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I21_XG_MP2 (VDD I1_I8_gn3 I1_I8_G3_2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0936p as=0.0816p pd=0.92u ps=1.16u
+    I_MXI1_I8_I21_XG_MP0 (XI1_I8_I21_XG_p1 I1_I8_pn3 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.0936p pd=0.92u ps=0.92u
+    I_MXI1_I8_I21_XG_MP1 (I1_I8_G3_2 I1_I8_gn2 XI1_I8_I21_XG_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I20_XG_MP2 (VDD I1_I8_gn2 I1_I8_G2_1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0936p as=0.0816p pd=0.92u ps=1.16u
+    I_MXI1_I8_I20_XG_MP0 (XI1_I8_I20_XG_p1 I1_I8_pn2 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.0936p pd=0.92u ps=0.92u
+    I_MXI1_I8_I20_XG_MP1 (I1_I8_G2_1 I1_I8_gn1 XI1_I8_I20_XG_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I25_XG_MP2 (VDD I1_I8_gn7 I1_I8_G7_6 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0936p as=0.0816p pd=0.92u ps=1.16u
+    I_MXI1_I8_I25_XG_MP0 (XI1_I8_I25_XG_p1 I1_I8_pn7 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.0936p pd=0.92u ps=0.92u
+    I_MXI1_I8_I25_XG_MP1 (I1_I8_G7_6 I1_I8_gn6 XI1_I8_I25_XG_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I36_XG_MP2 (VDD I1_I8_G7_4n C8 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0936p as=0.0816p pd=0.92u ps=1.16u
+    I_MXI1_I8_I36_XG_MP0 (XI1_I8_I36_XG_p1 I1_I8_P7_4n VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.0936p pd=0.92u ps=0.92u
+    I_MXI1_I8_I36_XG_MP1 (C8 I1_I8_G3_0n XI1_I8_I36_XG_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I34_XG_MP2 (VDD I1_I8_G5_2n I1_I8_G5_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0936p as=0.0816p pd=0.92u ps=1.16u
+    I_MXI1_I8_I34_XG_MP0 (XI1_I8_I34_XG_p1 I1_I8_P5_2n VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.0936p pd=0.92u ps=0.92u
+    I_MXI1_I8_I34_XG_MP1 (I1_I8_G5_0 I1_I8_G1_0n XI1_I8_I34_XG_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI2_I30_MP1 (I2_nand5 B_5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I30_MP0 (VDD A_5 I2_nand5 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I60_MP1 (I3_n5_0 AND_5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I60_MP0 (VDD SEL_AND I3_n5_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I66_MP1 (I3_o5_0 I3_n5_1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I66_MP0 (VDD I3_n5_0 I3_o5_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I61_MP1 (I3_n5_1 OR_5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I61_MP0 (VDD SEL_OR I3_n5_1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I48_MP1 (I3_n4_0 AND_4 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I48_MP0 (VDD SEL_AND I3_n4_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I54_MP1 (I3_o4_0 I3_n4_1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I54_MP0 (VDD I3_n4_0 I3_o4_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I24_MP1 (I2_nand4 B_4 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I24_MP0 (VDD A_4 I2_nand4 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I49_MP1 (I3_n4_1 OR_4 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I49_MP0 (VDD SEL_OR I3_n4_1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I18_MP1 (I2_nand3 B_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I18_MP0 (VDD A_3 I2_nand3 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I38_MP1 (I3_n3_2 XOR_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I38_MP0 (VDD SEL_XOR I3_n3_2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I37_MP1 (I3_n3_1 OR_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I37_MP0 (VDD SEL_OR I3_n3_1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I36_MP1 (I3_n3_0 AND_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I36_MP0 (VDD SEL_AND I3_n3_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I42_MP1 (I3_o3_0 I3_n3_1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I42_MP0 (VDD I3_n3_0 I3_o3_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I0_MP1 (I2_nand0 B_0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I0_MP0 (VDD A_0 I2_nand0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I62_MP1 (I3_n5_2 XOR_5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I62_MP0 (VDD SEL_XOR I3_n5_2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I63_MP1 (I3_n5_3 NOT_5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I63_MP0 (VDD SEL_NOT I3_n5_3 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I67_MP1 (I3_o5_1 I3_n5_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I67_MP0 (VDD I3_n5_2 I3_o5_1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I55_MP1 (I3_o4_1 I3_n4_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I55_MP0 (VDD I3_n4_2 I3_o4_1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I50_MP1 (I3_n4_2 XOR_4 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I50_MP0 (VDD SEL_XOR I3_n4_2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I51_MP1 (I3_n4_3 NOT_4 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I51_MP0 (VDD SEL_NOT I3_n4_3 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I3_MP1 (I1_I8_gn3 I1_bx3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I3_MP0 (VDD A_3 I1_I8_gn3 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I39_MP1 (I3_n3_3 NOT_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I39_MP0 (VDD SEL_NOT I3_n3_3 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I43_MP1 (I3_o3_1 I3_n3_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I43_MP0 (VDD I3_n3_2 I3_o3_1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I0_MP1 (I1_I8_gn0 I1_bx0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I0_MP0 (VDD A_0 I1_I8_gn0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I0_MP1 (I3_n0_0 AND_0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I0_MP0 (VDD SEL_AND I3_n0_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I7_MP1 (I3_o0_1 I3_n0_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I7_MP0 (VDD I3_n0_2 I3_o0_1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I6_MP1 (I3_o0_0 I3_n0_1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I6_MP0 (VDD I3_n0_0 I3_o0_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I2_MP1 (I3_n0_2 XOR_0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I2_MP0 (VDD SEL_XOR I3_n0_2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I1_MP1 (I3_n0_1 OR_0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I1_MP0 (VDD SEL_OR I3_n0_1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I3_MP1 (I3_n0_3 NOT_0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I3_MP0 (VDD SEL_NOT I3_n0_3 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I5_MP1 (I1_I8_gn5 I1_bx5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I5_MP0 (VDD A_5 I1_I8_gn5 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I71_MP1 (Y_5 I3_q5_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I71_MP0 (VDD I3_q5_1 Y_5 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I65_MP1 (I3_n5_5 DIVQ_5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I65_MP0 (VDD SEL_DIV I3_n5_5 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I64_MP1 (I3_n5_4 MULP_5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I64_MP0 (VDD SEL_MUL I3_n5_4 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I68_MP1 (I3_o5_2 I3_n5_5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I68_MP0 (VDD I3_n5_4 I3_o5_2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I59_MP1 (Y_4 I3_q4_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I59_MP0 (VDD I3_q4_1 Y_4 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I30_XP_MP1 (I1_I8_P6_3n I1_I8_P4_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I30_XP_MP0 (VDD I1_I8_P6_5 I1_I8_P6_3n VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I4_MP1 (I1_I8_gn4 I1_bx4 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I4_MP0 (VDD A_4 I1_I8_gn4 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I40_MP1 (I3_n3_4 MULP_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I40_MP0 (VDD SEL_MUL I3_n3_4 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I47_MP1 (Y_3 I3_q3_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I47_MP0 (VDD I3_q3_1 Y_3 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I44_MP1 (I3_o3_2 I3_n3_5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I44_MP0 (VDD I3_n3_4 I3_o3_2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I4_MP1 (I3_n0_4 MULP_0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I4_MP0 (VDD SEL_MUL I3_n0_4 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I41_MP1 (I3_n3_5 DIVQ_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I41_MP0 (VDD SEL_DIV I3_n3_5 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I5_MP1 (I3_n0_5 DIVQ_0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I5_MP0 (VDD SEL_DIV I3_n0_5 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I8_MP1 (I3_o0_2 I3_n0_5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I8_MP0 (VDD I3_n0_4 I3_o0_2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI0_I9_MP1 (I0_l10 I0_opn0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI0_I9_MP0 (VDD OP_1 I0_l10 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I11_MP1 (Y_0 I3_q0_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I11_MP0 (VDD I3_q0_1 Y_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI0_I7_MP1 (I0_l00 I0_opn0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI0_I7_MP0 (VDD I0_opn1 I0_l00 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI0_I8_MP1 (I0_l01 OP_0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI0_I8_MP0 (VDD I0_opn1 I0_l01 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI0_I5_MP1 (I0_h01 OP_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI0_I5_MP0 (VDD I0_opn3 I0_h01 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I53_MP1 (I3_n4_5 DIVQ_4 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I53_MP0 (VDD SEL_DIV I3_n4_5 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I56_MP1 (I3_o4_2 I3_n4_5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I56_MP0 (VDD I3_n4_4 I3_o4_2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I52_MP1 (I3_n4_4 MULP_4 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I52_MP0 (VDD SEL_MUL I3_n4_4 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I28_XP_MP1 (I1_I8_P4_1n I1_I8_P2_1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I28_XP_MP0 (VDD I1_I8_P4_3 I1_I8_P4_1n VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I32_MP1 (I3_o2_2 I3_n2_5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I32_MP0 (VDD I3_n2_4 I3_o2_2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI0_I10_MP1 (I0_l11 OP_0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI0_I10_MP0 (VDD OP_1 I0_l11 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I28_MP1 (I3_n2_4 MULP_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I28_MP0 (VDD SEL_MUL I3_n2_4 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I29_MP1 (I3_n2_5 DIVQ_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I29_MP0 (VDD SEL_DIV I3_n2_5 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI0_I4_MP1 (I0_h00 I0_opn2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI0_I4_MP0 (VDD I0_opn3 I0_h00 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI0_I6_MP1 (I0_h10 I0_opn2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI0_I6_MP0 (VDD OP_3 I0_h10 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I36_MP1 (I2_nand6 B_6 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I36_MP0 (VDD A_6 I2_nand6 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I74_MP1 (I3_n6_2 XOR_6 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I74_MP0 (VDD SEL_XOR I3_n6_2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I6_MP1 (I1_I8_gn6 I1_bx6 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I6_MP0 (VDD A_6 I1_I8_gn6 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I29_XP_MP1 (I1_I8_P5_2n I1_I8_P3_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I29_XP_MP0 (VDD I1_I8_P5_4 I1_I8_P5_2n VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I35_MP1 (Y_2 I3_q2_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I35_MP0 (VDD I3_q2_1 Y_2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I1_MP1 (I1_I8_gn1 I1_bx1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I1_MP0 (VDD A_1 I1_I8_gn1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I8_MP1 (I4_zb0 I4_za1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I8_MP0 (VDD I4_za0 I4_zb0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I23_MP1 (Y_1 I3_q1_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I23_MP0 (VDD I3_q1_1 Y_1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I19_MP1 (I3_o1_1 I3_n1_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I19_MP0 (VDD I3_n1_2 I3_o1_1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I20_MP1 (I3_o1_2 I3_n1_5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I20_MP0 (VDD I3_n1_4 I3_o1_2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I15_MP1 (I3_n1_3 NOT_1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I15_MP0 (VDD SEL_NOT I3_n1_3 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I16_MP1 (I3_n1_4 MULP_1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I16_MP0 (VDD SEL_MUL I3_n1_4 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I17_MP1 (I3_n1_5 DIVQ_1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I17_MP0 (VDD SEL_DIV I3_n1_5 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I73_MP1 (I3_n6_1 OR_6 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I73_MP0 (VDD SEL_OR I3_n6_1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I78_MP1 (I3_o6_0 I3_n6_1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I78_MP0 (VDD I3_n6_0 I3_o6_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I72_MP1 (I3_n6_0 AND_6 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I72_MP0 (VDD SEL_AND I3_n6_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I79_MP1 (I3_o6_1 I3_n6_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I79_MP0 (VDD I3_n6_2 I3_o6_1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I75_MP1 (I3_n6_3 NOT_6 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I75_MP0 (VDD SEL_NOT I3_n6_3 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I9_MP1 (I4_zb1 I4_za3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I9_MP0 (VDD I4_za2 I4_zb1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I31_XP_MP1 (I1_I8_P7_4n I1_I8_P5_4 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I31_XP_MP0 (VDD I1_I8_P7_6 I1_I8_P7_4n VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I2_MP1 (I1_I8_gn2 I1_bx2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I2_MP0 (VDD A_2 I1_I8_gn2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I27_MP1 (I3_n2_3 NOT_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I27_MP0 (VDD SEL_NOT I3_n2_3 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I31_MP1 (I3_o2_1 I3_n2_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I31_MP0 (VDD I3_n2_2 I3_o2_1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I26_MP1 (I3_n2_2 XOR_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I26_MP0 (VDD SEL_XOR I3_n2_2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I25_MP1 (I3_n2_1 OR_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I25_MP0 (VDD SEL_OR I3_n2_1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I12_MP1 (I3_n1_0 AND_1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I12_MP0 (VDD SEL_AND I3_n1_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I18_MP1 (I3_o1_0 I3_n1_1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I18_MP0 (VDD I3_n1_0 I3_o1_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I6_MP1 (I2_nand1 B_1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I6_MP0 (VDD A_1 I2_nand1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I13_MP1 (I3_n1_1 OR_1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I13_MP0 (VDD SEL_OR I3_n1_1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I14_MP1 (I3_n1_2 XOR_1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I14_MP0 (VDD SEL_XOR I3_n1_2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I86_MP1 (I3_n7_2 XOR_7 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I86_MP0 (VDD SEL_XOR I3_n7_2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I87_MP1 (I3_n7_3 NOT_7 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I87_MP0 (VDD SEL_NOT I3_n7_3 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I91_MP1 (I3_o7_1 I3_n7_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I91_MP0 (VDD I3_n7_2 I3_o7_1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I84_MP1 (I3_n7_0 AND_7 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I84_MP0 (VDD SEL_AND I3_n7_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI1_I8_I7_MP1 (I1_I8_gn7 I1_bx7 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI1_I8_I7_MP0 (VDD A_7 I1_I8_gn7 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I85_MP1 (I3_n7_1 OR_7 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I85_MP0 (VDD SEL_OR I3_n7_1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I90_MP1 (I3_o7_0 I3_n7_1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I90_MP0 (VDD I3_n7_0 I3_o7_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I83_MP1 (Y_6 I3_q6_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I83_MP0 (VDD I3_q6_1 Y_6 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I95_MP1 (Y_7 I3_q7_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I95_MP0 (VDD I3_q7_1 Y_7 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I76_MP1 (I3_n6_4 MULP_6 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I76_MP0 (VDD SEL_MUL I3_n6_4 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I77_MP1 (I3_n6_5 DIVQ_6 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I77_MP0 (VDD SEL_DIV I3_n6_5 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I80_MP1 (I3_o6_2 I3_n6_5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I80_MP0 (VDD I3_n6_4 I3_o6_2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I12_MP1 (I2_nand2 B_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I12_MP0 (VDD A_2 I2_nand2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I16_MP1 (I4_cn SEL_AS VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I16_MP0 (VDD C8 I4_cn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I118_MP1 (I3_hd15 DIVR_7 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I118_MP0 (VDD SEL_DIV I3_hd15 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I119_MP1 (Y_15 I3_hd15 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I119_MP0 (VDD I3_hm15 Y_15 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I24_MP1 (I3_n2_0 AND_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I24_MP0 (VDD SEL_AND I3_n2_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I117_MP1 (I3_hm15 MULP_15 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I117_MP0 (VDD SEL_MUL I3_hm15 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I14_MP1 (I4_zd I4_zc1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I14_MP0 (VDD I4_zc0 I4_zd VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I30_MP1 (I3_o2_0 I3_n2_1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I30_MP0 (VDD I3_n2_0 I3_o2_0 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I106_MP1 (I3_hd11 DIVR_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I106_MP0 (VDD SEL_DIV I3_hd11 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I99_MP1 (I3_hm9 MULP_9 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I99_MP0 (VDD SEL_MUL I3_hm9 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I22_MP1 (I4_dzn DIVDZ VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I22_MP0 (VDD SEL_DIV I4_dzn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I101_MP1 (Y_9 I3_hd9 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I101_MP0 (VDD I3_hm9 Y_9 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I103_MP1 (I3_hd10 DIVR_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I103_MP0 (VDD SEL_DIV I3_hd10 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I100_MP1 (I3_hd9 DIVR_1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I100_MP0 (VDD SEL_DIV I3_hd9 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I42_MP1 (I2_nand7 B_7 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI2_I42_MP0 (VDD A_7 I2_nand7 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I92_MP1 (I3_o7_2 I3_n7_5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I92_MP0 (VDD I3_n7_4 I3_o7_2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I21_MP1 (V I4_v2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I21_MP0 (VDD I4_v1 V VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I89_MP1 (I3_n7_5 DIVQ_7 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I89_MP0 (VDD SEL_DIV I3_n7_5 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I20_MP1 (I4_v2 DIVV VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I20_MP0 (VDD SEL_DIV I4_v2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I19_MP1 (I4_v1 I4_ovf VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I19_MP0 (VDD SEL_AS I4_v1 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I88_MP1 (I3_n7_4 MULP_7 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I88_MP0 (VDD SEL_MUL I3_n7_4 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I112_MP1 (I3_hd13 DIVR_5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I112_MP0 (VDD SEL_DIV I3_hd13 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I109_MP1 (I3_hd12 DIVR_4 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I109_MP0 (VDD SEL_DIV I3_hd12 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I113_MP1 (Y_13 I3_hd13 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I113_MP0 (VDD I3_hm13 Y_13 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I115_MP1 (I3_hd14 DIVR_6 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I115_MP0 (VDD SEL_DIV I3_hd14 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I111_MP1 (I3_hm13 MULP_13 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I111_MP0 (VDD SEL_MUL I3_hm13 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I108_MP1 (I3_hm12 MULP_12 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I108_MP0 (VDD SEL_MUL I3_hm12 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I116_MP1 (Y_14 I3_hd14 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I116_MP0 (VDD I3_hm14 Y_14 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I110_MP1 (Y_12 I3_hd12 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I110_MP0 (VDD I3_hm12 Y_12 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I11_MP1 (I4_zb3 I4_za7 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I11_MP0 (VDD I4_za6 I4_zb3 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I114_MP1 (I3_hm14 MULP_14 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I114_MP0 (VDD SEL_MUL I3_hm14 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I105_MP1 (I3_hm11 MULP_11 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I105_MP0 (VDD SEL_MUL I3_hm11 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I107_MP1 (Y_11 I3_hd11 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I107_MP0 (VDD I3_hm11 Y_11 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI4_I10_MP1 (I4_zb2 I4_za5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI4_I10_MP0 (VDD I4_za4 I4_zb2 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I98_MP1 (Y_8 I3_hd8 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I98_MP0 (VDD I3_hm8 Y_8 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I102_MP1 (I3_hm10 MULP_10 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I102_MP0 (VDD SEL_MUL I3_hm10 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I104_MP1 (Y_10 I3_hd10 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I104_MP0 (VDD I3_hm10 Y_10 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I97_MP1 (I3_hd8 DIVR_0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I97_MP0 (VDD SEL_DIV I3_hd8 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI3_I96_MP1 (I3_hm8 MULP_8 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0528p as=0.0816p pd=0.68u ps=1.16u
+    I_MXI3_I96_MP0 (VDD SEL_MUL I3_hm8 VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0528p pd=1.16u ps=0.68u
+    I_MXI2_I32_MP0 (XI2_I32_p1 A_5 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI2_I32_MP1 (I2_nor5 B_5 XI2_I32_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI2_I26_MP0 (XI2_I26_p1 A_4 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI2_I26_MP1 (I2_nor4 B_4 XI2_I26_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI2_I20_MP0 (XI2_I20_p1 A_3 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI2_I20_MP1 (I2_nor3 B_3 XI2_I20_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI2_I2_MP0 (XI2_I2_p1 A_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI2_I2_MP1 (I2_nor0 B_0 XI2_I2_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI3_I69_MP0 (XI3_I69_p1 I3_o5_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI3_I69_MP1 (I3_q5_1 I3_o5_1 XI3_I69_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI3_I57_MP0 (XI3_I57_p1 I3_o4_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI3_I57_MP1 (I3_q4_1 I3_o4_1 XI3_I57_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI3_I45_MP0 (XI3_I45_p1 I3_o3_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI3_I45_MP1 (I3_q3_1 I3_o3_1 XI3_I45_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI3_I9_MP0 (XI3_I9_p1 I3_o0_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI3_I9_MP1 (I3_q0_1 I3_o0_1 XI3_I9_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI4_I2_MP0 (XI4_I2_p1 Y_4 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI4_I2_MP1 (I4_za2 Y_5 XI4_I2_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I22_XP_MP0 (XI1_I8_I22_XP_p1 I1_I8_pn4 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I22_XP_MP1 (I1_I8_P4_3 I1_I8_pn3 XI1_I8_I22_XP_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI0_I14_MP0 (XI0_I14_p1 I0_h01 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI0_I14_MP1 (SEL_XOR I0_l00 XI0_I14_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI0_I15_MP0 (XI0_I15_p1 I0_h01 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI0_I15_MP1 (SEL_NOT I0_l01 XI0_I15_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I24_XP_MP0 (XI1_I8_I24_XP_p1 I1_I8_pn6 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I24_XP_MP1 (I1_I8_P6_5 I1_I8_pn5 XI1_I8_I24_XP_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I23_XP_MP0 (XI1_I8_I23_XP_p1 I1_I8_pn5 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I23_XP_MP1 (I1_I8_P5_4 I1_I8_pn4 XI1_I8_I23_XP_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I20_XP_MP0 (XI1_I8_I20_XP_p1 I1_I8_pn2 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I20_XP_MP1 (I1_I8_P2_1 I1_I8_pn1 XI1_I8_I20_XP_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI0_I12_MP0 (XI0_I12_p1 I0_h00 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI0_I12_MP1 (SEL_AND I0_l10 XI0_I12_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI0_I11_MP0 (XI0_I11_p1 I0_h00 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI0_I11_MP1 (SEL_AS OP_1 XI0_I11_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI0_I13_MP0 (XI0_I13_p1 I0_h00 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI0_I13_MP1 (SEL_OR I0_l11 XI0_I13_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI0_I17_MP0 (XI0_I17_p1 I0_h10 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI0_I17_MP1 (SEL_DIV I0_l11 XI0_I17_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI0_I16_MP0 (XI0_I16_p1 I0_h10 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI0_I16_MP1 (SEL_MUL I0_l01 XI0_I16_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI2_I38_MP0 (XI2_I38_p1 A_6 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI2_I38_MP1 (I2_nor6 B_6 XI2_I38_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I21_XP_MP0 (XI1_I8_I21_XP_p1 I1_I8_pn3 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I21_XP_MP1 (I1_I8_P3_2 I1_I8_pn2 XI1_I8_I21_XP_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI4_I1_MP0 (XI4_I1_p1 Y_2 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI4_I1_MP1 (I4_za1 Y_3 XI4_I1_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI3_I21_MP0 (XI3_I21_p1 I3_o1_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI3_I21_MP1 (I3_q1_1 I3_o1_1 XI3_I21_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI4_I0_MP0 (XI4_I0_p1 Y_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI4_I0_MP1 (I4_za0 Y_1 XI4_I0_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI3_I81_MP0 (XI3_I81_p1 I3_o6_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI3_I81_MP1 (I3_q6_1 I3_o6_1 XI3_I81_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I25_XP_MP0 (XI1_I8_I25_XP_p1 I1_I8_pn7 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I25_XP_MP1 (I1_I8_P7_6 I1_I8_pn6 XI1_I8_I25_XP_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI3_I33_MP0 (XI3_I33_p1 I3_o2_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI3_I33_MP1 (I3_q2_1 I3_o2_1 XI3_I33_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI4_I12_MP0 (XI4_I12_p1 I4_zb0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI4_I12_MP1 (I4_zc0 I4_zb1 XI4_I12_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI2_I8_MP0 (XI2_I8_p1 A_1 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI2_I8_MP1 (I2_nor1 B_1 XI2_I8_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI3_I93_MP0 (XI3_I93_p1 I3_o7_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI3_I93_MP1 (I3_q7_1 I3_o7_1 XI3_I93_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI4_I3_MP0 (XI4_I3_p1 Y_6 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI4_I3_MP1 (I4_za3 Y_7 XI4_I3_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI2_I14_MP0 (XI2_I14_p1 A_2 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI2_I14_MP1 (I2_nor2 B_2 XI2_I14_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI4_I7_MP0 (XI4_I7_p1 Y_14 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI4_I7_MP1 (I4_za7 Y_15 XI4_I7_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI2_I44_MP0 (XI2_I44_p1 A_7 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI2_I44_MP1 (I2_nor7 B_7 XI2_I44_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI4_I6_MP0 (XI4_I6_p1 Y_12 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI4_I6_MP1 (I4_za6 Y_13 XI4_I6_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI4_I13_MP0 (XI4_I13_p1 I4_zb2 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI4_I13_MP1 (I4_zc1 I4_zb3 XI4_I13_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI4_I5_MP0 (XI4_I5_p1 Y_10 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI4_I5_MP1 (I4_za5 Y_11 XI4_I5_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI4_I4_MP0 (XI4_I4_p1 Y_8 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI4_I4_MP1 (I4_za4 Y_9 XI4_I4_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI2_I31_MP0 (AND_5 I2_nand5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I33_MP0 (OR_5 I2_nor5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I25_MP0 (AND_4 I2_nand4 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I27_MP0 (OR_4 I2_nor4 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I21_MP0 (OR_3 I2_nor3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I19_MP0 (AND_3 I2_nand3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I1_MP0 (AND_0 I2_nand0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I3_MP0 (OR_0 I2_nor0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I35_MP0 (NOT_5 A_5 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I29_MP0 (NOT_4 A_4 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I23_MP0 (NOT_3 A_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I16_MP0 (I1_I8_cinn OP_0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I5_MP0 (NOT_0 A_0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI0_I0_MP0 (I0_opn0 OP_0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI0_I2_MP0 (I0_opn2 OP_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I18_MP0 (I1_I8_G0_0n I1_I8_G0_0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI0_I1_MP0 (I0_opn1 OP_1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI0_I3_MP0 (I0_opn3 OP_3 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I39_MP0 (OR_6 I2_nor6 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I37_MP0 (AND_6 I2_nand6 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I41_MP0 (NOT_6 A_6 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I33_MP0 (I1_I8_G1_0n I1_I8_G1_0 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I11_MP0 (NOT_1 A_1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I17_MP0 (NOT_2 A_2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I15_MP0 (OR_2 I2_nor2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I7_MP0 (AND_1 I2_nand1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I9_MP0 (OR_1 I2_nor1 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I47_MP0 (NOT_7 A_7 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I45_MP0 (OR_7 I2_nor7 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI4_I17_MP0 (C I4_cn VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I13_MP0 (AND_2 I2_nand2 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI4_I15_MP0 (Z I4_zd VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI4_I23_MP0 (DZ I4_dzn VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I43_MP0 (AND_7 I2_nand7 VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I28_MP1 (VDD B_4 XI2_I28_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I28_MP5 (XOR_4 XI2_I28_Bn XI2_I28_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI2_I28_MP4 (XI2_I28_p1 XI2_I28_An XOR_4 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI2_I28_MP2 (VDD A_4 XI2_I28_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI2_I28_MP3 (XI2_I28_p1 B_4 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI2_I28_MP0 (VDD A_4 XI2_I28_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I22_MP1 (VDD B_3 XI2_I22_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I22_MP5 (XOR_3 XI2_I22_Bn XI2_I22_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI2_I22_MP4 (XI2_I22_p1 XI2_I22_An XOR_3 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI2_I22_MP2 (VDD A_3 XI2_I22_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI2_I22_MP3 (XI2_I22_p1 B_3 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI2_I22_MP0 (VDD A_3 XI2_I22_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I0_MP1 (VDD OP_0 XI1_I0_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I0_MP5 (I1_bx0 XI1_I0_Bn XI1_I0_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I0_MP4 (XI1_I0_p1 XI1_I0_An I1_bx0 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I0_MP2 (VDD B_0 XI1_I0_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I0_MP3 (XI1_I0_p1 OP_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I0_MP0 (VDD B_0 XI1_I0_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I4_MP1 (VDD B_0 XI2_I4_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I4_MP5 (XOR_0 XI2_I4_Bn XI2_I4_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI2_I4_MP4 (XI2_I4_p1 XI2_I4_An XOR_0 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI2_I4_MP2 (VDD A_0 XI2_I4_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI2_I4_MP3 (XI2_I4_p1 B_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI2_I4_MP0 (VDD A_0 XI2_I4_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I34_MP1 (VDD B_5 XI2_I34_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I34_MP5 (XOR_5 XI2_I34_Bn XI2_I34_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI2_I34_MP4 (XI2_I34_p1 XI2_I34_An XOR_5 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI2_I34_MP2 (VDD A_5 XI2_I34_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI2_I34_MP3 (XI2_I34_p1 B_5 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI2_I34_MP0 (VDD A_5 XI2_I34_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I3_MP1 (VDD OP_0 XI1_I3_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I3_MP5 (I1_bx3 XI1_I3_Bn XI1_I3_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I3_MP4 (XI1_I3_p1 XI1_I3_An I1_bx3 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I3_MP2 (VDD B_3 XI1_I3_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I3_MP3 (XI1_I3_p1 OP_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I3_MP0 (VDD B_3 XI1_I3_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I4_MP1 (VDD OP_0 XI1_I4_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I4_MP5 (I1_bx4 XI1_I4_Bn XI1_I4_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I4_MP4 (XI1_I4_p1 XI1_I4_An I1_bx4 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I4_MP2 (VDD B_4 XI1_I4_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I4_MP3 (XI1_I4_p1 OP_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I4_MP0 (VDD B_4 XI1_I4_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I5_MP1 (VDD OP_0 XI1_I5_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I5_MP5 (I1_bx5 XI1_I5_Bn XI1_I5_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I5_MP4 (XI1_I5_p1 XI1_I5_An I1_bx5 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I5_MP2 (VDD B_5 XI1_I5_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I5_MP3 (XI1_I5_p1 OP_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I5_MP0 (VDD B_5 XI1_I5_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I40_MP1 (VDD I1_I8_G2_0n XI1_I8_I40_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I40_MP5 (S_3 XI1_I8_I40_Bn XI1_I8_I40_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I40_MP4 (XI1_I8_I40_p1 XI1_I8_I40_An S_3 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I40_MP2 (VDD I1_I8_pn3 XI1_I8_I40_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I40_MP3 (XI1_I8_I40_p1 I1_I8_G2_0n VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I40_MP0 (VDD I1_I8_pn3 XI1_I8_I40_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I6_MP1 (VDD OP_0 XI1_I6_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I6_MP5 (I1_bx6 XI1_I6_Bn XI1_I6_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I6_MP4 (XI1_I6_p1 XI1_I6_An I1_bx6 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I6_MP2 (VDD B_6 XI1_I6_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I6_MP3 (XI1_I6_p1 OP_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I6_MP0 (VDD B_6 XI1_I6_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I40_MP1 (VDD B_6 XI2_I40_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I40_MP5 (XOR_6 XI2_I40_Bn XI2_I40_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI2_I40_MP4 (XI2_I40_p1 XI2_I40_An XOR_6 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI2_I40_MP2 (VDD A_6 XI2_I40_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI2_I40_MP3 (XI2_I40_p1 B_6 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI2_I40_MP0 (VDD A_6 XI2_I40_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I41_MP1 (VDD I1_I8_G3_0n XI1_I8_I41_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I8_I41_MP5 (S_4 XI1_I8_I41_Bn XI1_I8_I41_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I8_I41_MP4 (XI1_I8_I41_p1 XI1_I8_I41_An S_4 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I41_MP2 (VDD I1_I8_pn4 XI1_I8_I41_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I8_I41_MP3 (XI1_I8_I41_p1 I1_I8_G3_0n VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I8_I41_MP0 (VDD I1_I8_pn4 XI1_I8_I41_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I2_MP1 (VDD OP_0 XI1_I2_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I2_MP5 (I1_bx2 XI1_I2_Bn XI1_I2_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I2_MP4 (XI1_I2_p1 XI1_I2_An I1_bx2 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I2_MP2 (VDD B_2 XI1_I2_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I2_MP3 (XI1_I2_p1 OP_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I2_MP0 (VDD B_2 XI1_I2_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I16_MP1 (VDD B_2 XI2_I16_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I16_MP5 (XOR_2 XI2_I16_Bn XI2_I16_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI2_I16_MP4 (XI2_I16_p1 XI2_I16_An XOR_2 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI2_I16_MP2 (VDD A_2 XI2_I16_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI2_I16_MP3 (XI2_I16_p1 B_2 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI2_I16_MP0 (VDD A_2 XI2_I16_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I1_MP1 (VDD OP_0 XI1_I1_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I1_MP5 (I1_bx1 XI1_I1_Bn XI1_I1_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I1_MP4 (XI1_I1_p1 XI1_I1_An I1_bx1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I1_MP2 (VDD B_1 XI1_I1_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I1_MP3 (XI1_I1_p1 OP_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I1_MP0 (VDD B_1 XI1_I1_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I10_MP1 (VDD B_1 XI2_I10_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I10_MP5 (XOR_1 XI2_I10_Bn XI2_I10_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI2_I10_MP4 (XI2_I10_p1 XI2_I10_An XOR_1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI2_I10_MP2 (VDD A_1 XI2_I10_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI2_I10_MP3 (XI2_I10_p1 B_1 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI2_I10_MP0 (VDD A_1 XI2_I10_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I46_MP1 (VDD B_7 XI2_I46_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI2_I46_MP5 (XOR_7 XI2_I46_Bn XI2_I46_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI2_I46_MP4 (XI2_I46_p1 XI2_I46_An XOR_7 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI2_I46_MP2 (VDD A_7 XI2_I46_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI2_I46_MP3 (XI2_I46_p1 B_7 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI2_I46_MP0 (VDD A_7 XI2_I46_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I7_MP1 (VDD OP_0 XI1_I7_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI1_I7_MP5 (I1_bx7 XI1_I7_Bn XI1_I7_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI1_I7_MP4 (XI1_I7_p1 XI1_I7_An I1_bx7 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I7_MP2 (VDD B_7 XI1_I7_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI1_I7_MP3 (XI1_I7_p1 OP_0 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI1_I7_MP0 (VDD B_7 XI1_I7_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI4_I18_MP1 (VDD C8 XI4_I18_Bn VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_MXI4_I18_MP5 (I4_ovf XI4_I18_Bn XI4_I18_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1632p pd=0.92u ps=1.64u
+    I_MXI4_I18_MP4 (XI4_I18_p1 XI4_I18_An I4_ovf VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI4_I18_MP2 (VDD C7 XI4_I18_p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1056p as=0.1056p pd=0.92u ps=0.92u
+    I_MXI4_I18_MP3 (XI4_I18_p1 C8 VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u ad=0.1632p as=0.1056p pd=1.64u ps=0.92u
+    I_MXI4_I18_MP0 (VDD C7 XI4_I18_An VDD) gpdk090_pmos1v w=0.24u l=0.1u ad=0.0816p as=0.0816p pd=1.16u ps=1.16u
+    I_C1 (VDD VSS) capacitor c=1.089E-13
+    I_C2 (A_0 VSS) capacitor c=5.926E-15
+    I_C3 (A_1 VSS) capacitor c=6.332E-15
+    I_C4 (A_2 VSS) capacitor c=6.254E-15
+    I_C5 (A_3 VSS) capacitor c=5.922E-15
+    I_C6 (A_4 VSS) capacitor c=5.788E-15
+    I_C7 (A_5 VSS) capacitor c=5.193E-15
+    I_C8 (A_6 VSS) capacitor c=5.070E-15
+    I_C9 (A_7 VSS) capacitor c=5.814E-15
+    I_C10 (B_0 VSS) capacitor c=3.761E-15
+    I_C11 (B_1 VSS) capacitor c=4.877E-15
+    I_C12 (B_2 VSS) capacitor c=5.533E-15
+    I_C13 (B_3 VSS) capacitor c=4.114E-15
+    I_C14 (B_4 VSS) capacitor c=4.338E-15
+    I_C15 (B_5 VSS) capacitor c=3.804E-15
+    I_C16 (B_6 VSS) capacitor c=3.738E-15
+    I_C17 (B_7 VSS) capacitor c=3.980E-15
+    I_C18 (C VSS) capacitor c=1.148E-15
+    I_C19 (DIVDZ VSS) capacitor c=1.365E-15
+    I_C20 (DIVQ_0 VSS) capacitor c=2.178E-15
+    I_C21 (DIVQ_1 VSS) capacitor c=9.073E-16
+    I_C22 (DIVQ_2 VSS) capacitor c=1.142E-15
+    I_C23 (DIVQ_3 VSS) capacitor c=2.058E-15
+    I_C24 (DIVQ_4 VSS) capacitor c=1.204E-15
+    I_C25 (DIVQ_5 VSS) capacitor c=1.758E-15
+    I_C26 (DIVQ_6 VSS) capacitor c=1.408E-15
+    I_C27 (DIVQ_7 VSS) capacitor c=6.606E-16
+    I_C28 (DIVR_0 VSS) capacitor c=6.664E-16
+    I_C29 (DIVR_1 VSS) capacitor c=9.004E-16
+    I_C30 (DIVR_2 VSS) capacitor c=1.325E-15
+    I_C31 (DIVR_3 VSS) capacitor c=1.593E-15
+    I_C32 (DIVR_4 VSS) capacitor c=7.475E-16
+    I_C33 (DIVR_5 VSS) capacitor c=9.669E-16
+    I_C34 (DIVR_6 VSS) capacitor c=8.915E-16
+    I_C35 (DIVR_7 VSS) capacitor c=1.177E-15
+    I_C36 (DIVV VSS) capacitor c=7.365E-16
+    I_C37 (DZ VSS) capacitor c=7.641E-16
+    I_C38 (MULP_0 VSS) capacitor c=1.918E-15
+    I_C39 (MULP_1 VSS) capacitor c=8.821E-16
+    I_C40 (MULP_10 VSS) capacitor c=6.964E-16
+    I_C41 (MULP_11 VSS) capacitor c=8.829E-16
+    I_C42 (MULP_12 VSS) capacitor c=7.493E-16
+    I_C43 (MULP_13 VSS) capacitor c=6.909E-16
+    I_C44 (MULP_14 VSS) capacitor c=1.140E-15
+    I_C45 (MULP_15 VSS) capacitor c=1.763E-15
+    I_C46 (MULP_2 VSS) capacitor c=1.675E-15
+    I_C47 (MULP_3 VSS) capacitor c=1.401E-15
+    I_C48 (MULP_4 VSS) capacitor c=2.401E-15
+    I_C49 (MULP_5 VSS) capacitor c=1.524E-15
+    I_C50 (MULP_6 VSS) capacitor c=1.695E-15
+    I_C51 (MULP_7 VSS) capacitor c=6.318E-16
+    I_C52 (MULP_8 VSS) capacitor c=7.982E-16
+    I_C53 (MULP_9 VSS) capacitor c=1.960E-15
+    I_C54 (OP_0 VSS) capacitor c=2.503E-14
+    I_C55 (OP_1 VSS) capacitor c=3.736E-15
+    I_C56 (OP_2 VSS) capacitor c=9.062E-16
+    I_C57 (OP_3 VSS) capacitor c=1.195E-15
+    I_C58 (V VSS) capacitor c=1.023E-15
+    I_C59 (Y_0 VSS) capacitor c=3.422E-15
+    I_C60 (Y_1 VSS) capacitor c=1.613E-15
+    I_C61 (Y_10 VSS) capacitor c=1.645E-15
+    I_C62 (Y_11 VSS) capacitor c=1.998E-15
+    I_C63 (Y_12 VSS) capacitor c=1.120E-15
+    I_C64 (Y_13 VSS) capacitor c=2.186E-15
+    I_C65 (Y_14 VSS) capacitor c=1.949E-15
+    I_C66 (Y_15 VSS) capacitor c=2.011E-15
+    I_C67 (Y_2 VSS) capacitor c=3.357E-15
+    I_C68 (Y_3 VSS) capacitor c=3.917E-15
+    I_C69 (Y_4 VSS) capacitor c=2.857E-15
+    I_C70 (Y_5 VSS) capacitor c=2.386E-15
+    I_C71 (Y_6 VSS) capacitor c=1.959E-15
+    I_C72 (Y_7 VSS) capacitor c=1.856E-15
+    I_C73 (Y_8 VSS) capacitor c=1.477E-15
+    I_C74 (Y_9 VSS) capacitor c=2.324E-15
+    I_C75 (Z VSS) capacitor c=1.584E-15
+    I_C76 (C7 VSS) capacitor c=4.406E-15
+    I_C77 (C8 VSS) capacitor c=3.886E-15
+    I_C78 (I4_ovf VSS) capacitor c=1.261E-15
+    I_C79 (I1_bx7 VSS) capacitor c=2.754E-15
+    I_C80 (XOR_7 VSS) capacitor c=8.992E-16
+    I_C81 (XOR_1 VSS) capacitor c=1.180E-15
+    I_C82 (I1_bx1 VSS) capacitor c=2.539E-15
+    I_C83 (XOR_2 VSS) capacitor c=1.143E-15
+    I_C84 (I1_bx2 VSS) capacitor c=1.913E-15
+    I_C85 (I1_I8_pn4 VSS) capacitor c=5.203E-15
+    I_C86 (I1_I8_G3_0n VSS) capacitor c=2.488E-15
+    I_C87 (S_4 VSS) capacitor c=2.037E-15
+    I_C88 (XOR_6 VSS) capacitor c=9.018E-16
+    I_C89 (I1_bx6 VSS) capacitor c=2.396E-15
+    I_C90 (I1_I8_pn3 VSS) capacitor c=4.913E-15
+    I_C91 (I1_I8_G2_0n VSS) capacitor c=2.942E-15
+    I_C92 (S_3 VSS) capacitor c=9.459E-16
+    I_C93 (I1_bx5 VSS) capacitor c=1.815E-15
+    I_C94 (I1_bx4 VSS) capacitor c=2.370E-15
+    I_C95 (I1_bx3 VSS) capacitor c=1.924E-15
+    I_C96 (XOR_5 VSS) capacitor c=1.179E-15
+    I_C97 (XOR_0 VSS) capacitor c=1.239E-15
+    I_C98 (I1_bx0 VSS) capacitor c=2.098E-15
+    I_C99 (XOR_3 VSS) capacitor c=1.097E-15
+    I_C100 (XOR_4 VSS) capacitor c=1.593E-15
+    I_C101 (I2_nand7 VSS) capacitor c=9.268E-16
+    I_C102 (AND_7 VSS) capacitor c=7.671E-16
+    I_C103 (I4_dzn VSS) capacitor c=1.604E-15
+    I_C104 (I4_zd VSS) capacitor c=6.876E-16
+    I_C105 (I2_nand2 VSS) capacitor c=6.369E-16
+    I_C106 (AND_2 VSS) capacitor c=7.979E-16
+    I_C107 (I4_cn VSS) capacitor c=6.677E-16
+    I_C108 (I2_nor7 VSS) capacitor c=1.452E-15
+    I_C109 (OR_7 VSS) capacitor c=7.731E-16
+    I_C110 (NOT_7 VSS) capacitor c=7.194E-16
+    I_C111 (I2_nor1 VSS) capacitor c=6.656E-16
+    I_C112 (OR_1 VSS) capacitor c=8.387E-16
+    I_C113 (I2_nand1 VSS) capacitor c=6.630E-16
+    I_C114 (AND_1 VSS) capacitor c=9.582E-16
+    I_C115 (I2_nor2 VSS) capacitor c=1.542E-15
+    I_C116 (OR_2 VSS) capacitor c=7.964E-16
+    I_C117 (NOT_2 VSS) capacitor c=5.258E-16
+    I_C118 (NOT_1 VSS) capacitor c=5.453E-16
+    I_C119 (I1_I8_G1_0 VSS) capacitor c=3.680E-15
+    I_C120 (I1_I8_G1_0n VSS) capacitor c=8.288E-16
+    I_C121 (NOT_6 VSS) capacitor c=7.454E-16
+    I_C122 (I2_nand6 VSS) capacitor c=6.681E-16
+    I_C123 (AND_6 VSS) capacitor c=7.923E-16
+    I_C124 (I2_nor6 VSS) capacitor c=8.547E-16
+    I_C125 (OR_6 VSS) capacitor c=6.726E-16
+    I_C126 (I0_opn3 VSS) capacitor c=1.651E-15
+    I_C127 (I0_opn1 VSS) capacitor c=1.622E-15
+    I_C128 (I1_I8_G0_0 VSS) capacitor c=4.271E-15
+    I_C129 (I1_I8_G0_0n VSS) capacitor c=1.683E-15
+    I_C130 (I0_opn2 VSS) capacitor c=1.243E-15
+    I_C131 (I0_opn0 VSS) capacitor c=1.171E-15
+    I_C132 (NOT_0 VSS) capacitor c=5.124E-16
+    I_C133 (I1_I8_cinn VSS) capacitor c=6.696E-16
+    I_C134 (NOT_3 VSS) capacitor c=5.771E-16
+    I_C135 (NOT_4 VSS) capacitor c=5.638E-16
+    I_C136 (NOT_5 VSS) capacitor c=5.386E-16
+    I_C137 (I2_nor0 VSS) capacitor c=7.088E-16
+    I_C138 (OR_0 VSS) capacitor c=1.014E-15
+    I_C139 (I2_nand0 VSS) capacitor c=6.939E-16
+    I_C140 (AND_0 VSS) capacitor c=8.525E-16
+    I_C141 (I2_nand3 VSS) capacitor c=7.291E-16
+    I_C142 (AND_3 VSS) capacitor c=7.908E-16
+    I_C143 (I2_nor3 VSS) capacitor c=6.805E-16
+    I_C144 (OR_3 VSS) capacitor c=9.205E-16
+    I_C145 (I2_nor4 VSS) capacitor c=6.854E-16
+    I_C146 (OR_4 VSS) capacitor c=7.332E-16
+    I_C147 (I2_nand4 VSS) capacitor c=6.518E-16
+    I_C148 (AND_4 VSS) capacitor c=8.871E-16
+    I_C149 (I2_nor5 VSS) capacitor c=1.029E-15
+    I_C150 (OR_5 VSS) capacitor c=1.173E-15
+    I_C151 (I2_nand5 VSS) capacitor c=6.932E-16
+    I_C152 (AND_5 VSS) capacitor c=7.148E-16
+    I_C153 (I4_za4 VSS) capacitor c=1.213E-15
+    I_C154 (I4_za5 VSS) capacitor c=8.972E-16
+    I_C155 (I4_zb2 VSS) capacitor c=8.540E-16
+    I_C156 (I4_zb3 VSS) capacitor c=9.819E-16
+    I_C157 (I4_zc1 VSS) capacitor c=1.205E-15
+    I_C158 (I4_za6 VSS) capacitor c=1.088E-15
+    I_C159 (I4_za7 VSS) capacitor c=7.951E-16
+    I_C160 (I4_za3 VSS) capacitor c=7.898E-16
+    I_C161 (I3_o7_0 VSS) capacitor c=9.136E-16
+    I_C162 (I3_o7_1 VSS) capacitor c=1.146E-15
+    I_C163 (I3_q7_1 VSS) capacitor c=1.119E-15
+    I_C164 (I4_zb0 VSS) capacitor c=1.595E-15
+    I_C165 (I4_zb1 VSS) capacitor c=4.900E-15
+    I_C166 (I4_zc0 VSS) capacitor c=1.337E-15
+    I_C167 (I3_o2_0 VSS) capacitor c=1.138E-15
+    I_C168 (I3_o2_1 VSS) capacitor c=7.875E-16
+    I_C169 (I3_q2_1 VSS) capacitor c=1.036E-15
+    I_C170 (I1_I8_pn7 VSS) capacitor c=4.006E-15
+    I_C171 (I1_I8_pn6 VSS) capacitor c=5.147E-15
+    I_C172 (I1_I8_P7_6 VSS) capacitor c=1.538E-15
+    I_C173 (I3_o6_0 VSS) capacitor c=6.253E-16
+    I_C174 (I3_o6_1 VSS) capacitor c=9.000E-16
+    I_C175 (I3_q6_1 VSS) capacitor c=2.046E-15
+    I_C176 (I4_za0 VSS) capacitor c=1.554E-15
+    I_C177 (I3_o1_0 VSS) capacitor c=9.891E-16
+    I_C178 (I3_o1_1 VSS) capacitor c=9.475E-16
+    I_C179 (I3_q1_1 VSS) capacitor c=8.169E-16
+    I_C180 (I4_za1 VSS) capacitor c=9.054E-16
+    I_C181 (I1_I8_pn2 VSS) capacitor c=3.931E-15
+    I_C182 (I1_I8_P3_2 VSS) capacitor c=1.574E-15
+    I_C183 (I0_h10 VSS) capacitor c=1.475E-15
+    I_C184 (I0_l01 VSS) capacitor c=1.794E-15
+    I_C185 (SEL_MUL VSS) capacitor c=1.812E-14
+    I_C186 (I0_l11 VSS) capacitor c=1.806E-15
+    I_C187 (SEL_DIV VSS) capacitor c=1.913E-14
+    I_C188 (I0_h00 VSS) capacitor c=2.147E-15
+    I_C189 (SEL_OR VSS) capacitor c=1.480E-14
+    I_C190 (SEL_AS VSS) capacitor c=1.258E-14
+    I_C191 (I0_l10 VSS) capacitor c=1.058E-15
+    I_C192 (SEL_AND VSS) capacitor c=1.475E-14
+    I_C193 (I1_I8_pn1 VSS) capacitor c=4.049E-15
+    I_C194 (I1_I8_P2_1 VSS) capacitor c=1.308E-15
+    I_C195 (I1_I8_pn5 VSS) capacitor c=5.070E-15
+    I_C196 (I1_I8_P5_4 VSS) capacitor c=3.075E-15
+    I_C197 (I1_I8_P6_5 VSS) capacitor c=1.895E-15
+    I_C198 (I0_h01 VSS) capacitor c=1.227E-15
+    I_C199 (SEL_NOT VSS) capacitor c=1.175E-14
+    I_C200 (I0_l00 VSS) capacitor c=1.189E-15
+    I_C201 (SEL_XOR VSS) capacitor c=1.556E-14
+    I_C202 (I1_I8_P4_3 VSS) capacitor c=2.655E-15
+    I_C203 (I4_za2 VSS) capacitor c=2.660E-15
+    I_C204 (I3_o0_0 VSS) capacitor c=6.503E-16
+    I_C205 (I3_o0_1 VSS) capacitor c=9.744E-16
+    I_C206 (I3_q0_1 VSS) capacitor c=9.428E-16
+    I_C207 (I3_o3_0 VSS) capacitor c=8.439E-16
+    I_C208 (I3_o3_1 VSS) capacitor c=7.726E-16
+    I_C209 (I3_q3_1 VSS) capacitor c=1.360E-15
+    I_C210 (I3_o4_0 VSS) capacitor c=8.785E-16
+    I_C211 (I3_o4_1 VSS) capacitor c=9.256E-16
+    I_C212 (I3_q4_1 VSS) capacitor c=1.490E-15
+    I_C213 (I3_o5_0 VSS) capacitor c=8.859E-16
+    I_C214 (I3_o5_1 VSS) capacitor c=7.837E-16
+    I_C215 (I3_q5_1 VSS) capacitor c=1.270E-15
+    I_C216 (I3_hm8 VSS) capacitor c=7.450E-16
+    I_C217 (I3_hd8 VSS) capacitor c=8.614E-16
+    I_C218 (I3_hm10 VSS) capacitor c=1.016E-15
+    I_C219 (I3_hd10 VSS) capacitor c=8.422E-16
+    I_C220 (I3_hm11 VSS) capacitor c=1.259E-15
+    I_C221 (I3_hd11 VSS) capacitor c=9.760E-16
+    I_C222 (I3_hm14 VSS) capacitor c=7.509E-16
+    I_C223 (I3_hm12 VSS) capacitor c=9.979E-16
+    I_C224 (I3_hd12 VSS) capacitor c=1.272E-15
+    I_C225 (I3_hd14 VSS) capacitor c=6.106E-16
+    I_C226 (I3_hm13 VSS) capacitor c=1.042E-15
+    I_C227 (I3_hd13 VSS) capacitor c=8.975E-16
+    I_C228 (I3_n7_4 VSS) capacitor c=1.252E-15
+    I_C229 (I4_v1 VSS) capacitor c=7.616E-16
+    I_C230 (I4_v2 VSS) capacitor c=7.797E-16
+    I_C231 (I3_n7_5 VSS) capacitor c=8.245E-16
+    I_C232 (I3_o7_2 VSS) capacitor c=8.369E-16
+    I_C233 (I3_hd9 VSS) capacitor c=9.672E-16
+    I_C234 (I3_hm9 VSS) capacitor c=1.020E-15
+    I_C235 (I3_n2_0 VSS) capacitor c=1.059E-15
+    I_C236 (I3_n2_1 VSS) capacitor c=8.722E-16
+    I_C237 (I3_hm15 VSS) capacitor c=8.218E-16
+    I_C238 (I3_hd15 VSS) capacitor c=6.121E-16
+    I_C239 (I3_n6_4 VSS) capacitor c=7.405E-16
+    I_C240 (I3_n6_5 VSS) capacitor c=7.803E-16
+    I_C241 (I3_o6_2 VSS) capacitor c=1.323E-15
+    I_C242 (I3_q7_2 VSS) capacitor c=8.397E-16
+    I_C243 (I3_q6_2 VSS) capacitor c=9.516E-16
+    I_C244 (I3_n7_0 VSS) capacitor c=1.044E-15
+    I_C245 (I3_n7_1 VSS) capacitor c=6.132E-16
+    I_C246 (I1_I8_gn7 VSS) capacitor c=1.177E-15
+    I_C247 (I3_n7_2 VSS) capacitor c=1.459E-15
+    I_C248 (I3_n7_3 VSS) capacitor c=6.182E-16
+    I_C249 (I3_n1_2 VSS) capacitor c=1.120E-15
+    I_C250 (I3_n1_1 VSS) capacitor c=9.583E-16
+    I_C251 (I3_n1_0 VSS) capacitor c=1.025E-15
+    I_C252 (I3_n2_2 VSS) capacitor c=8.442E-16
+    I_C253 (I3_n2_3 VSS) capacitor c=7.085E-16
+    I_C254 (I1_I8_gn2 VSS) capacitor c=1.464E-15
+    I_C255 (I1_I8_P7_4n VSS) capacitor c=8.608E-16
+    I_C256 (I3_n6_3 VSS) capacitor c=6.977E-16
+    I_C257 (I3_n6_2 VSS) capacitor c=8.958E-16
+    I_C258 (I3_n6_0 VSS) capacitor c=1.031E-15
+    I_C259 (I3_n6_1 VSS) capacitor c=8.428E-16
+    I_C260 (I3_n1_5 VSS) capacitor c=9.974E-16
+    I_C261 (I3_n1_4 VSS) capacitor c=1.167E-15
+    I_C262 (I3_n1_3 VSS) capacitor c=6.286E-16
+    I_C263 (I3_o1_2 VSS) capacitor c=1.308E-15
+    I_C264 (I3_q1_2 VSS) capacitor c=6.579E-16
+    I_C265 (I1_I8_gn1 VSS) capacitor c=2.987E-15
+    I_C266 (I3_q2_2 VSS) capacitor c=9.487E-16
+    I_C267 (I1_I8_P5_2n VSS) capacitor c=1.386E-15
+    I_C268 (I1_I8_gn6 VSS) capacitor c=2.074E-15
+    I_C269 (I3_n2_5 VSS) capacitor c=1.133E-15
+    I_C270 (I3_n2_4 VSS) capacitor c=9.785E-16
+    I_C271 (I3_o2_2 VSS) capacitor c=1.266E-15
+    I_C272 (I1_I8_P4_1n VSS) capacitor c=1.200E-15
+    I_C273 (I3_n4_4 VSS) capacitor c=8.338E-16
+    I_C274 (I3_n4_5 VSS) capacitor c=1.030E-15
+    I_C275 (I3_o4_2 VSS) capacitor c=9.605E-16
+    I_C276 (I3_q0_2 VSS) capacitor c=7.520E-16
+    I_C277 (I3_n0_4 VSS) capacitor c=1.109E-15
+    I_C278 (I3_n0_5 VSS) capacitor c=9.000E-16
+    I_C279 (I3_o0_2 VSS) capacitor c=9.519E-16
+    I_C280 (I3_n3_5 VSS) capacitor c=6.993E-16
+    I_C281 (I3_n3_4 VSS) capacitor c=8.289E-16
+    I_C282 (I3_o3_2 VSS) capacitor c=1.124E-15
+    I_C283 (I3_q3_2 VSS) capacitor c=8.691E-16
+    I_C284 (I1_I8_gn4 VSS) capacitor c=2.939E-15
+    I_C285 (I1_I8_P6_3n VSS) capacitor c=9.636E-16
+    I_C286 (I3_q4_2 VSS) capacitor c=9.009E-16
+    I_C287 (I3_n5_4 VSS) capacitor c=9.849E-16
+    I_C288 (I3_n5_5 VSS) capacitor c=1.099E-15
+    I_C289 (I3_o5_2 VSS) capacitor c=1.032E-15
+    I_C290 (I3_q5_2 VSS) capacitor c=9.530E-16
+    I_C291 (I1_I8_gn5 VSS) capacitor c=1.511E-15
+    I_C292 (I3_n0_3 VSS) capacitor c=9.198E-16
+    I_C293 (I3_n0_1 VSS) capacitor c=6.497E-16
+    I_C294 (I3_n0_2 VSS) capacitor c=8.099E-16
+    I_C295 (I3_n0_0 VSS) capacitor c=1.103E-15
+    I_C296 (I1_I8_gn0 VSS) capacitor c=8.982E-16
+    I_C297 (I3_n3_2 VSS) capacitor c=9.612E-16
+    I_C298 (I3_n3_3 VSS) capacitor c=6.398E-16
+    I_C299 (I1_I8_gn3 VSS) capacitor c=3.306E-15
+    I_C300 (I3_n4_3 VSS) capacitor c=1.008E-15
+    I_C301 (I3_n4_2 VSS) capacitor c=9.936E-16
+    I_C302 (I3_n5_2 VSS) capacitor c=8.769E-16
+    I_C303 (I3_n5_3 VSS) capacitor c=7.752E-16
+    I_C304 (I3_n3_0 VSS) capacitor c=1.001E-15
+    I_C305 (I3_n3_1 VSS) capacitor c=1.142E-15
+    I_C306 (I3_n4_1 VSS) capacitor c=7.795E-16
+    I_C307 (I3_n4_0 VSS) capacitor c=7.757E-16
+    I_C308 (I3_n5_1 VSS) capacitor c=8.661E-16
+    I_C309 (I3_n5_0 VSS) capacitor c=8.667E-16
+    I_C310 (I1_I8_G5_2n VSS) capacitor c=1.379E-15
+    I_C311 (I1_I8_G5_0 VSS) capacitor c=1.825E-15
+    I_C312 (I1_I8_G7_4n VSS) capacitor c=1.340E-15
+    I_C313 (I1_I8_G7_6 VSS) capacitor c=1.197E-15
+    I_C314 (I1_I8_G2_1 VSS) capacitor c=2.539E-15
+    I_C315 (I1_I8_G3_2 VSS) capacitor c=2.210E-15
+    I_C316 (I1_I8_G4_1n VSS) capacitor c=1.302E-15
+    I_C317 (I1_I8_G4_0 VSS) capacitor c=3.576E-15
+    I_C318 (I1_I8_G6_3n VSS) capacitor c=1.148E-15
+    I_C319 (I1_I8_G6_5 VSS) capacitor c=2.251E-15
+    I_C320 (I1_I8_G5_4 VSS) capacitor c=2.618E-15
+    I_C321 (I1_I8_G4_3 VSS) capacitor c=2.500E-15
+    I_C322 (I1_I8_pn0 VSS) capacitor c=3.214E-15
+    I_C323 (S_7 VSS) capacitor c=1.386E-15
+    I_C324 (S_6 VSS) capacitor c=1.270E-15
+    I_C325 (S_1 VSS) capacitor c=1.942E-15
+    I_C326 (S_2 VSS) capacitor c=1.314E-15
+    I_C327 (S_0 VSS) capacitor c=1.206E-15
+    I_C328 (S_5 VSS) capacitor c=9.084E-16
+    I_C329 (XI1_I8_I8_p1 VSS) capacitor c=5.402E-16
+    I_C330 (XI1_I8_I8_n2 VSS) capacitor c=6.222E-18
+    I_C331 (XI1_I8_I8_Bn VSS) capacitor c=1.064E-15
+    I_C332 (XI1_I8_I8_An VSS) capacitor c=9.555E-16
+    I_C333 (XI1_I8_I11_p1 VSS) capacitor c=5.564E-16
+    I_C334 (XI1_I8_I11_n2 VSS) capacitor c=6.836E-18
+    I_C335 (XI1_I8_I11_Bn VSS) capacitor c=1.093E-15
+    I_C336 (XI1_I8_I11_An VSS) capacitor c=9.317E-16
+    I_C337 (XI1_I8_I37_p1 VSS) capacitor c=5.349E-16
+    I_C338 (XI1_I8_I37_n1 VSS) capacitor c=1.228E-19
+    I_C339 (XI1_I8_I37_n2 VSS) capacitor c=5.899E-18
+    I_C340 (XI1_I8_I37_Bn VSS) capacitor c=1.053E-15
+    I_C341 (XI1_I8_I37_An VSS) capacitor c=9.010E-16
+    I_C342 (XI1_I8_I13_p1 VSS) capacitor c=5.449E-16
+    I_C343 (XI1_I8_I13_n1 VSS) capacitor c=5.154E-19
+    I_C344 (XI1_I8_I13_n2 VSS) capacitor c=6.454E-18
+    I_C345 (XI1_I8_I13_Bn VSS) capacitor c=1.110E-15
+    I_C346 (XI1_I8_I13_An VSS) capacitor c=9.613E-16
+    I_C347 (XI1_I8_I42_p1 VSS) capacitor c=5.929E-16
+    I_C348 (XI1_I8_I42_n1 VSS) capacitor c=3.349E-18
+    I_C349 (XI1_I8_I42_n2 VSS) capacitor c=8.631E-18
+    I_C350 (XI1_I8_I42_Bn VSS) capacitor c=1.071E-15
+    I_C351 (XI1_I8_I42_An VSS) capacitor c=1.000E-15
+    I_C352 (XI1_I8_I12_p1 VSS) capacitor c=5.283E-16
+    I_C353 (XI1_I8_I12_n1 VSS) capacitor c=1.295E-18
+    I_C354 (XI1_I8_I12_n2 VSS) capacitor c=8.273E-18
+    I_C355 (XI1_I8_I12_Bn VSS) capacitor c=1.078E-15
+    I_C356 (XI1_I8_I12_An VSS) capacitor c=9.254E-16
+    I_C357 (XI1_I8_I14_p1 VSS) capacitor c=5.341E-16
+    I_C358 (XI1_I8_I14_n2 VSS) capacitor c=7.218E-18
+    I_C359 (XI1_I8_I14_Bn VSS) capacitor c=1.055E-15
+    I_C360 (XI1_I8_I14_An VSS) capacitor c=9.471E-16
+    I_C361 (XI1_I8_I38_p1 VSS) capacitor c=5.688E-16
+    I_C362 (XI1_I8_I38_n2 VSS) capacitor c=1.044E-17
+    I_C363 (XI1_I8_I38_Bn VSS) capacitor c=1.087E-15
+    I_C364 (XI1_I8_I38_An VSS) capacitor c=9.145E-16
+    I_C365 (XI1_I8_I39_p1 VSS) capacitor c=5.458E-16
+    I_C366 (XI1_I8_I39_n2 VSS) capacitor c=8.697E-18
+    I_C367 (XI1_I8_I39_Bn VSS) capacitor c=1.064E-15
+    I_C368 (XI1_I8_I39_An VSS) capacitor c=9.683E-16
+    I_C369 (XI1_I8_I9_p1 VSS) capacitor c=5.372E-16
+    I_C370 (XI1_I8_I9_n1 VSS) capacitor c=3.388E-18
+    I_C371 (XI1_I8_I9_n2 VSS) capacitor c=8.430E-18
+    I_C372 (XI1_I8_I9_Bn VSS) capacitor c=1.071E-15
+    I_C373 (XI1_I8_I9_An VSS) capacitor c=9.228E-16
+    I_C374 (XI1_I8_I43_p1 VSS) capacitor c=5.549E-16
+    I_C375 (XI1_I8_I43_n1 VSS) capacitor c=1.939E-19
+    I_C376 (XI1_I8_I43_n2 VSS) capacitor c=7.924E-18
+    I_C377 (XI1_I8_I43_Bn VSS) capacitor c=1.098E-15
+    I_C378 (XI1_I8_I43_An VSS) capacitor c=9.422E-16
+    I_C379 (XI1_I8_I10_p1 VSS) capacitor c=5.264E-16
+    I_C380 (XI1_I8_I10_n2 VSS) capacitor c=5.132E-18
+    I_C381 (XI1_I8_I10_Bn VSS) capacitor c=1.078E-15
+    I_C382 (XI1_I8_I10_An VSS) capacitor c=9.569E-16
+    I_C383 (XI1_I8_I44_p1 VSS) capacitor c=5.502E-16
+    I_C384 (XI1_I8_I44_n2 VSS) capacitor c=7.592E-18
+    I_C385 (XI1_I8_I44_Bn VSS) capacitor c=1.075E-15
+    I_C386 (XI1_I8_I44_An VSS) capacitor c=9.263E-16
+    I_C387 (XI1_I8_I15_p1 VSS) capacitor c=5.550E-16
+    I_C388 (XI1_I8_I15_n1 VSS) capacitor c=6.041E-18
+    I_C389 (XI1_I8_I15_n2 VSS) capacitor c=9.551E-18
+    I_C390 (XI1_I8_I15_Bn VSS) capacitor c=1.108E-15
+    I_C391 (XI1_I8_I15_An VSS) capacitor c=9.459E-16
+    I_C392 (XI3_I70_p1 VSS) capacitor c=2.621E-16
+    I_C393 (XI3_I70_n1 VSS) capacitor c=1.998E-18
+    I_C394 (XI1_I8_I30_XG_p1 VSS) capacitor c=2.703E-16
+    I_C395 (XI1_I8_I30_XG_n1 VSS) capacitor c=3.484E-18
+    I_C396 (XI1_I8_I28_XG_p1 VSS) capacitor c=2.718E-16
+    I_C397 (XI1_I8_I28_XG_n1 VSS) capacitor c=3.901E-18
+    I_C398 (XI3_I46_p1 VSS) capacitor c=2.527E-16
+    I_C399 (XI3_I46_n1 VSS) capacitor c=5.348E-19
+    I_C400 (XI3_I10_p1 VSS) capacitor c=2.725E-16
+    I_C401 (XI3_I10_n1 VSS) capacitor c=2.389E-18
+    I_C402 (XI3_I58_p1 VSS) capacitor c=2.645E-16
+    I_C403 (XI3_I58_n1 VSS) capacitor c=3.774E-18
+    I_C404 (XI1_I8_I26_XG_p1 VSS) capacitor c=2.473E-16
+    I_C405 (XI1_I8_I26_XG_n1 VSS) capacitor c=1.378E-18
+    I_C406 (XI1_I8_I31_XG_p1 VSS) capacitor c=2.709E-16
+    I_C407 (XI1_I8_I31_XG_n1 VSS) capacitor c=5.493E-18
+    I_C408 (XI1_I8_I29_XG_p1 VSS) capacitor c=2.669E-16
+    I_C409 (XI1_I8_I29_XG_n1 VSS) capacitor c=2.842E-18
+    I_C410 (XI1_I8_I27_XG_p1 VSS) capacitor c=2.672E-16
+    I_C411 (XI1_I8_I27_XG_n1 VSS) capacitor c=2.878E-19
+    I_C412 (XI3_I34_p1 VSS) capacitor c=2.671E-16
+    I_C413 (XI3_I34_n1 VSS) capacitor c=1.751E-18
+    I_C414 (XI3_I22_p1 VSS) capacitor c=2.647E-16
+    I_C415 (XI3_I22_n1 VSS) capacitor c=3.292E-18
+    I_C416 (XI3_I82_p1 VSS) capacitor c=2.566E-16
+    I_C417 (XI3_I82_n1 VSS) capacitor c=2.885E-19
+    I_C418 (XI3_I94_p1 VSS) capacitor c=2.751E-16
+    I_C419 (XI3_I94_n1 VSS) capacitor c=3.367E-18
+    I_C420 (XI1_I8_I17_XG_p1 VSS) capacitor c=1.012E-17
+    I_C421 (XI1_I8_I17_XG_n1 VSS) capacitor c=3.073E-16
+    I_C422 (XI1_I8_I22_XG_p1 VSS) capacitor c=2.866E-18
+    I_C423 (XI1_I8_I22_XG_n1 VSS) capacitor c=3.115E-16
+    I_C424 (XI1_I8_I23_XG_p1 VSS) capacitor c=1.195E-17
+    I_C425 (XI1_I8_I23_XG_n1 VSS) capacitor c=2.854E-16
+    I_C426 (XI1_I8_I24_XG_p1 VSS) capacitor c=8.028E-18
+    I_C427 (XI1_I8_I24_XG_n1 VSS) capacitor c=2.671E-16
+    I_C428 (XI1_I8_I35_XG_p1 VSS) capacitor c=4.150E-18
+    I_C429 (XI1_I8_I35_XG_n1 VSS) capacitor c=3.018E-16
+    I_C430 (XI1_I8_I32_XG_p1 VSS) capacitor c=4.344E-18
+    I_C431 (XI1_I8_I32_XG_n1 VSS) capacitor c=3.047E-16
+    I_C432 (XI1_I8_I19_XG_p1 VSS) capacitor c=6.087E-18
+    I_C433 (XI1_I8_I19_XG_n1 VSS) capacitor c=3.211E-16
+    I_C434 (XI1_I8_I21_XG_p1 VSS) capacitor c=1.480E-17
+    I_C435 (XI1_I8_I21_XG_n1 VSS) capacitor c=3.033E-16
+    I_C436 (XI1_I8_I20_XG_p1 VSS) capacitor c=2.266E-18
+    I_C437 (XI1_I8_I20_XG_n1 VSS) capacitor c=3.124E-16
+    I_C438 (XI1_I8_I25_XG_n1 VSS) capacitor c=3.010E-16
+    I_C439 (XI1_I8_I36_XG_p1 VSS) capacitor c=4.053E-18
+    I_C440 (XI1_I8_I36_XG_n1 VSS) capacitor c=3.090E-16
+    I_C441 (XI1_I8_I34_XG_p1 VSS) capacitor c=6.518E-18
+    I_C442 (XI1_I8_I34_XG_n1 VSS) capacitor c=3.030E-16
+    I_C443 (XI3_I60_n1 VSS) capacitor c=1.742E-18
+    I_C444 (XI3_I66_n1 VSS) capacitor c=7.215E-18
+    I_C445 (XI3_I61_n1 VSS) capacitor c=1.285E-17
+    I_C446 (XI3_I48_n1 VSS) capacitor c=3.175E-18
+    I_C447 (XI3_I54_n1 VSS) capacitor c=2.311E-18
+    I_C448 (XI2_I24_n1 VSS) capacitor c=9.359E-19
+    I_C449 (XI3_I49_n1 VSS) capacitor c=3.170E-18
+    I_C450 (XI2_I18_n1 VSS) capacitor c=1.103E-18
+    I_C451 (XI3_I38_n1 VSS) capacitor c=5.208E-19
+    I_C452 (XI3_I37_n1 VSS) capacitor c=7.113E-19
+    I_C453 (XI3_I36_n1 VSS) capacitor c=7.123E-19
+    I_C454 (XI3_I42_n1 VSS) capacitor c=1.331E-18
+    I_C455 (XI2_I0_n1 VSS) capacitor c=3.820E-19
+    I_C456 (XI3_I62_n1 VSS) capacitor c=1.013E-18
+    I_C457 (XI3_I63_n1 VSS) capacitor c=7.302E-18
+    I_C458 (XI3_I55_n1 VSS) capacitor c=8.649E-19
+    I_C459 (XI3_I51_n1 VSS) capacitor c=2.467E-18
+    I_C460 (XI3_I39_n1 VSS) capacitor c=1.804E-18
+    I_C461 (XI3_I43_n1 VSS) capacitor c=8.952E-18
+    I_C462 (XI1_I8_I0_n1 VSS) capacitor c=9.813E-18
+    I_C463 (XI3_I0_n1 VSS) capacitor c=9.678E-20
+    I_C464 (XI3_I7_n1 VSS) capacitor c=1.167E-18
+    I_C465 (XI3_I6_n1 VSS) capacitor c=1.127E-18
+    I_C466 (XI3_I2_n1 VSS) capacitor c=4.469E-19
+    I_C467 (XI3_I1_n1 VSS) capacitor c=5.423E-19
+    I_C468 (XI3_I3_n1 VSS) capacitor c=4.313E-18
+    I_C469 (XI3_I71_n1 VSS) capacitor c=4.976E-19
+    I_C470 (XI3_I65_n1 VSS) capacitor c=4.158E-18
+    I_C471 (XI3_I64_n1 VSS) capacitor c=1.888E-19
+    I_C472 (XI3_I68_n1 VSS) capacitor c=2.848E-19
+    I_C473 (XI3_I59_n1 VSS) capacitor c=1.648E-19
+    I_C474 (XI1_I8_I30_XP_n1 VSS) capacitor c=6.178E-19
+    I_C475 (XI1_I8_I4_n1 VSS) capacitor c=4.710E-19
+    I_C476 (XI3_I40_n1 VSS) capacitor c=4.104E-18
+    I_C477 (XI3_I47_n1 VSS) capacitor c=4.711E-18
+    I_C478 (XI3_I44_n1 VSS) capacitor c=3.492E-18
+    I_C479 (XI3_I4_n1 VSS) capacitor c=5.872E-18
+    I_C480 (XI3_I41_n1 VSS) capacitor c=4.005E-18
+    I_C481 (XI3_I5_n1 VSS) capacitor c=3.104E-18
+    I_C482 (XI3_I8_n1 VSS) capacitor c=4.559E-18
+    I_C483 (XI0_I9_n1 VSS) capacitor c=3.739E-19
+    I_C484 (XI0_I7_n1 VSS) capacitor c=5.990E-18
+    I_C485 (XI0_I8_n1 VSS) capacitor c=1.693E-19
+    I_C486 (XI3_I53_n1 VSS) capacitor c=2.832E-18
+    I_C487 (XI3_I56_n1 VSS) capacitor c=3.401E-19
+    I_C488 (XI3_I52_n1 VSS) capacitor c=4.831E-18
+    I_C489 (XI3_I32_n1 VSS) capacitor c=2.737E-19
+    I_C490 (XI0_I10_n1 VSS) capacitor c=4.609E-18
+    I_C491 (XI3_I28_n1 VSS) capacitor c=5.418E-19
+    I_C492 (XI3_I29_n1 VSS) capacitor c=5.663E-18
+    I_C493 (XI0_I4_n1 VSS) capacitor c=5.193E-18
+    I_C494 (XI0_I6_n1 VSS) capacitor c=1.468E-18
+    I_C495 (XI2_I36_n1 VSS) capacitor c=5.131E-18
+    I_C496 (XI3_I74_n1 VSS) capacitor c=7.817E-19
+    I_C497 (XI1_I8_I6_n1 VSS) capacitor c=3.534E-18
+    I_C498 (XI1_I8_I29_XP_n1 VSS) capacitor c=5.628E-19
+    I_C499 (XI3_I35_n1 VSS) capacitor c=1.944E-19
+    I_C500 (XI1_I8_I1_n1 VSS) capacitor c=9.058E-19
+    I_C501 (XI4_I8_n1 VSS) capacitor c=3.500E-18
+    I_C502 (XI3_I23_n1 VSS) capacitor c=2.008E-18
+    I_C503 (XI3_I19_n1 VSS) capacitor c=2.809E-19
+    I_C504 (XI3_I15_n1 VSS) capacitor c=3.820E-19
+    I_C505 (XI3_I16_n1 VSS) capacitor c=2.073E-18
+    I_C506 (XI3_I17_n1 VSS) capacitor c=2.235E-18
+    I_C507 (XI3_I73_n1 VSS) capacitor c=8.672E-19
+    I_C508 (XI3_I78_n1 VSS) capacitor c=5.500E-19
+    I_C509 (XI3_I72_n1 VSS) capacitor c=3.017E-18
+    I_C510 (XI3_I79_n1 VSS) capacitor c=3.488E-18
+    I_C511 (XI3_I75_n1 VSS) capacitor c=1.935E-18
+    I_C512 (XI4_I9_n1 VSS) capacitor c=2.185E-18
+    I_C513 (XI1_I8_I31_XP_n1 VSS) capacitor c=5.146E-18
+    I_C514 (XI1_I8_I2_n1 VSS) capacitor c=3.138E-19
+    I_C515 (XI3_I27_n1 VSS) capacitor c=7.214E-20
+    I_C516 (XI3_I31_n1 VSS) capacitor c=1.006E-17
+    I_C517 (XI3_I25_n1 VSS) capacitor c=2.519E-18
+    I_C518 (XI3_I12_n1 VSS) capacitor c=1.233E-19
+    I_C519 (XI3_I18_n1 VSS) capacitor c=2.709E-18
+    I_C520 (XI2_I6_n1 VSS) capacitor c=2.588E-18
+    I_C521 (XI3_I13_n1 VSS) capacitor c=6.704E-19
+    I_C522 (XI3_I14_n1 VSS) capacitor c=4.726E-19
+    I_C523 (XI3_I86_n1 VSS) capacitor c=3.636E-18
+    I_C524 (XI3_I87_n1 VSS) capacitor c=3.923E-19
+    I_C525 (XI3_I91_n1 VSS) capacitor c=3.912E-18
+    I_C526 (XI3_I84_n1 VSS) capacitor c=4.983E-18
+    I_C527 (XI1_I8_I7_n1 VSS) capacitor c=5.951E-19
+    I_C528 (XI3_I85_n1 VSS) capacitor c=5.951E-19
+    I_C529 (XI3_I90_n1 VSS) capacitor c=6.401E-18
+    I_C530 (XI3_I83_n1 VSS) capacitor c=1.230E-19
+    I_C531 (XI3_I95_n1 VSS) capacitor c=6.246E-18
+    I_C532 (XI3_I76_n1 VSS) capacitor c=1.908E-18
+    I_C533 (XI3_I77_n1 VSS) capacitor c=3.820E-19
+    I_C534 (XI3_I80_n1 VSS) capacitor c=3.684E-19
+    I_C535 (XI4_I16_n1 VSS) capacitor c=2.754E-18
+    I_C536 (XI3_I118_n1 VSS) capacitor c=3.099E-20
+    I_C537 (XI4_I14_n1 VSS) capacitor c=3.142E-18
+    I_C538 (XI3_I30_n1 VSS) capacitor c=7.024E-19
+    I_C539 (XI4_I22_n1 VSS) capacitor c=5.570E-18
+    I_C540 (XI3_I103_n1 VSS) capacitor c=5.286E-19
+    I_C541 (XI3_I100_n1 VSS) capacitor c=2.880E-19
+    I_C542 (XI2_I42_n1 VSS) capacitor c=4.296E-18
+    I_C543 (XI3_I92_n1 VSS) capacitor c=3.820E-19
+    I_C544 (XI4_I21_n1 VSS) capacitor c=4.242E-18
+    I_C545 (XI3_I89_n1 VSS) capacitor c=2.503E-18
+    I_C546 (XI4_I20_n1 VSS) capacitor c=2.869E-18
+    I_C547 (XI4_I19_n1 VSS) capacitor c=5.456E-18
+    I_C548 (XI3_I88_n1 VSS) capacitor c=8.365E-20
+    I_C549 (XI3_I109_n1 VSS) capacitor c=2.760E-18
+    I_C550 (XI3_I113_n1 VSS) capacitor c=7.907E-18
+    I_C551 (XI3_I115_n1 VSS) capacitor c=6.378E-19
+    I_C552 (XI3_I111_n1 VSS) capacitor c=2.298E-18
+    I_C553 (XI3_I108_n1 VSS) capacitor c=4.413E-18
+    I_C554 (XI3_I116_n1 VSS) capacitor c=4.038E-18
+    I_C555 (XI3_I110_n1 VSS) capacitor c=1.472E-18
+    I_C556 (XI4_I11_n1 VSS) capacitor c=2.680E-18
+    I_C557 (XI3_I114_n1 VSS) capacitor c=1.782E-18
+    I_C558 (XI3_I105_n1 VSS) capacitor c=1.281E-18
+    I_C559 (XI4_I10_n1 VSS) capacitor c=2.410E-18
+    I_C560 (XI3_I98_n1 VSS) capacitor c=4.111E-18
+    I_C561 (XI3_I102_n1 VSS) capacitor c=5.951E-19
+    I_C562 (XI3_I97_n1 VSS) capacitor c=1.228E-19
+    I_C563 (XI3_I96_n1 VSS) capacitor c=5.420E-19
+    I_C564 (XI2_I32_p1 VSS) capacitor c=2.934E-18
+    I_C565 (XI2_I26_p1 VSS) capacitor c=3.895E-18
+    I_C566 (XI2_I20_p1 VSS) capacitor c=1.080E-17
+    I_C567 (XI2_I2_p1 VSS) capacitor c=2.357E-18
+    I_C568 (XI3_I69_p1 VSS) capacitor c=1.223E-18
+    I_C569 (XI3_I57_p1 VSS) capacitor c=1.493E-17
+    I_C570 (XI3_I45_p1 VSS) capacitor c=1.874E-18
+    I_C571 (XI3_I9_p1 VSS) capacitor c=5.237E-20
+    I_C572 (XI4_I2_p1 VSS) capacitor c=5.715E-18
+    I_C573 (XI1_I8_I22_XP_p1 VSS) capacitor c=1.061E-17
+    I_C574 (XI0_I14_p1 VSS) capacitor c=5.456E-18
+    I_C575 (XI0_I15_p1 VSS) capacitor c=5.834E-18
+    I_C576 (XI1_I8_I24_XP_p1 VSS) capacitor c=5.897E-18
+    I_C577 (XI1_I8_I23_XP_p1 VSS) capacitor c=5.006E-18
+    I_C578 (XI1_I8_I20_XP_p1 VSS) capacitor c=2.918E-18
+    I_C579 (XI0_I12_p1 VSS) capacitor c=6.198E-18
+    I_C580 (XI0_I11_p1 VSS) capacitor c=1.903E-18
+    I_C581 (XI0_I13_p1 VSS) capacitor c=7.022E-18
+    I_C582 (XI0_I17_p1 VSS) capacitor c=3.144E-18
+    I_C583 (XI0_I16_p1 VSS) capacitor c=7.239E-18
+    I_C584 (XI2_I38_p1 VSS) capacitor c=1.115E-18
+    I_C585 (XI1_I8_I21_XP_p1 VSS) capacitor c=1.085E-19
+    I_C586 (XI4_I1_p1 VSS) capacitor c=5.076E-18
+    I_C587 (XI3_I21_p1 VSS) capacitor c=6.691E-18
+    I_C588 (XI4_I0_p1 VSS) capacitor c=3.080E-18
+    I_C589 (XI3_I81_p1 VSS) capacitor c=9.674E-18
+    I_C590 (XI1_I8_I25_XP_p1 VSS) capacitor c=5.120E-18
+    I_C591 (XI3_I33_p1 VSS) capacitor c=1.854E-18
+    I_C592 (XI4_I12_p1 VSS) capacitor c=8.375E-18
+    I_C593 (XI2_I8_p1 VSS) capacitor c=7.641E-19
+    I_C594 (XI3_I93_p1 VSS) capacitor c=2.925E-18
+    I_C595 (XI4_I3_p1 VSS) capacitor c=7.339E-18
+    I_C596 (XI2_I14_p1 VSS) capacitor c=7.532E-18
+    I_C597 (XI4_I7_p1 VSS) capacitor c=6.045E-18
+    I_C598 (XI2_I44_p1 VSS) capacitor c=1.011E-17
+    I_C599 (XI4_I6_p1 VSS) capacitor c=8.166E-18
+    I_C600 (XI4_I13_p1 VSS) capacitor c=1.230E-17
+    I_C601 (XI4_I5_p1 VSS) capacitor c=1.356E-17
+    I_C602 (XI4_I4_p1 VSS) capacitor c=5.470E-18
+    I_C603 (XI2_I28_p1 VSS) capacitor c=5.686E-16
+    I_C604 (XI2_I28_n2 VSS) capacitor c=1.162E-17
+    I_C605 (XI2_I28_An VSS) capacitor c=9.912E-16
+    I_C606 (XI2_I28_Bn VSS) capacitor c=8.299E-16
+    I_C607 (XI2_I22_p1 VSS) capacitor c=5.604E-16
+    I_C608 (XI2_I22_n1 VSS) capacitor c=3.296E-18
+    I_C609 (XI2_I22_n2 VSS) capacitor c=6.429E-18
+    I_C610 (XI2_I22_An VSS) capacitor c=9.717E-16
+    I_C611 (XI2_I22_Bn VSS) capacitor c=8.307E-16
+    I_C612 (XI1_I0_p1 VSS) capacitor c=5.075E-16
+    I_C613 (XI1_I0_n2 VSS) capacitor c=6.866E-18
+    I_C614 (XI1_I0_An VSS) capacitor c=9.569E-16
+    I_C615 (XI1_I0_Bn VSS) capacitor c=7.962E-16
+    I_C616 (XI2_I4_p1 VSS) capacitor c=5.225E-16
+    I_C617 (XI2_I4_n2 VSS) capacitor c=7.838E-18
+    I_C618 (XI2_I4_An VSS) capacitor c=9.610E-16
+    I_C619 (XI2_I4_Bn VSS) capacitor c=8.112E-16
+    I_C620 (XI2_I34_p1 VSS) capacitor c=5.131E-16
+    I_C621 (XI2_I34_n1 VSS) capacitor c=2.124E-19
+    I_C622 (XI2_I34_n2 VSS) capacitor c=9.842E-18
+    I_C623 (XI2_I34_An VSS) capacitor c=1.033E-15
+    I_C624 (XI2_I34_Bn VSS) capacitor c=8.124E-16
+    I_C625 (XI1_I3_p1 VSS) capacitor c=5.947E-16
+    I_C626 (XI1_I3_n1 VSS) capacitor c=5.320E-19
+    I_C627 (XI1_I3_n2 VSS) capacitor c=1.009E-17
+    I_C628 (XI1_I3_An VSS) capacitor c=1.008E-15
+    I_C629 (XI1_I3_Bn VSS) capacitor c=8.350E-16
+    I_C630 (XI1_I4_p1 VSS) capacitor c=5.928E-16
+    I_C631 (XI1_I4_n1 VSS) capacitor c=6.320E-19
+    I_C632 (XI1_I4_n2 VSS) capacitor c=8.523E-18
+    I_C633 (XI1_I4_An VSS) capacitor c=1.020E-15
+    I_C634 (XI1_I4_Bn VSS) capacitor c=8.221E-16
+    I_C635 (XI1_I5_p1 VSS) capacitor c=5.276E-16
+    I_C636 (XI1_I5_n2 VSS) capacitor c=1.388E-17
+    I_C637 (XI1_I5_An VSS) capacitor c=9.870E-16
+    I_C638 (XI1_I5_Bn VSS) capacitor c=7.543E-16
+    I_C639 (XI1_I8_I40_p1 VSS) capacitor c=5.495E-16
+    I_C640 (XI1_I8_I40_n2 VSS) capacitor c=1.026E-17
+    I_C641 (XI1_I8_I40_An VSS) capacitor c=1.049E-15
+    I_C642 (XI1_I8_I40_Bn VSS) capacitor c=8.075E-16
+    I_C643 (XI1_I6_p1 VSS) capacitor c=5.400E-16
+    I_C644 (XI1_I6_n1 VSS) capacitor c=5.822E-18
+    I_C645 (XI1_I6_n2 VSS) capacitor c=5.450E-18
+    I_C646 (XI1_I6_An VSS) capacitor c=9.409E-16
+    I_C647 (XI1_I6_Bn VSS) capacitor c=8.505E-16
+    I_C648 (XI2_I40_p1 VSS) capacitor c=5.254E-16
+    I_C649 (XI2_I40_n2 VSS) capacitor c=1.215E-17
+    I_C650 (XI2_I40_An VSS) capacitor c=9.646E-16
+    I_C651 (XI2_I40_Bn VSS) capacitor c=7.780E-16
+    I_C652 (XI1_I8_I41_p1 VSS) capacitor c=5.380E-16
+    I_C653 (XI1_I8_I41_n1 VSS) capacitor c=4.093E-20
+    I_C654 (XI1_I8_I41_n2 VSS) capacitor c=1.245E-17
+    I_C655 (XI1_I8_I41_An VSS) capacitor c=9.787E-16
+    I_C656 (XI1_I8_I41_Bn VSS) capacitor c=7.643E-16
+    I_C657 (XI1_I2_p1 VSS) capacitor c=6.010E-16
+    I_C658 (XI1_I2_n1 VSS) capacitor c=3.820E-19
+    I_C659 (XI1_I2_n2 VSS) capacitor c=7.207E-18
+    I_C660 (XI1_I2_An VSS) capacitor c=9.909E-16
+    I_C661 (XI1_I2_Bn VSS) capacitor c=7.953E-16
+    I_C662 (XI2_I16_p1 VSS) capacitor c=6.006E-16
+    I_C663 (XI2_I16_n1 VSS) capacitor c=1.335E-18
+    I_C664 (XI2_I16_n2 VSS) capacitor c=6.676E-18
+    I_C665 (XI2_I16_An VSS) capacitor c=9.903E-16
+    I_C666 (XI2_I16_Bn VSS) capacitor c=8.324E-16
+    I_C667 (XI1_I1_p1 VSS) capacitor c=5.447E-16
+    I_C668 (XI1_I1_n1 VSS) capacitor c=1.702E-18
+    I_C669 (XI1_I1_n2 VSS) capacitor c=1.018E-17
+    I_C670 (XI1_I1_An VSS) capacitor c=1.003E-15
+    I_C671 (XI1_I1_Bn VSS) capacitor c=8.241E-16
+    I_C672 (XI2_I10_p1 VSS) capacitor c=5.838E-16
+    I_C673 (XI2_I10_n2 VSS) capacitor c=5.612E-18
+    I_C674 (XI2_I10_An VSS) capacitor c=9.732E-16
+    I_C675 (XI2_I10_Bn VSS) capacitor c=8.156E-16
+    I_C676 (XI2_I46_p1 VSS) capacitor c=5.307E-16
+    I_C677 (XI2_I46_n2 VSS) capacitor c=9.265E-18
+    I_C678 (XI2_I46_An VSS) capacitor c=9.696E-16
+    I_C679 (XI2_I46_Bn VSS) capacitor c=7.769E-16
+    I_C680 (XI1_I7_p1 VSS) capacitor c=5.689E-16
+    I_C681 (XI1_I7_n2 VSS) capacitor c=6.357E-18
+    I_C682 (XI1_I7_An VSS) capacitor c=9.828E-16
+    I_C683 (XI1_I7_Bn VSS) capacitor c=8.227E-16
+    I_C684 (XI4_I18_p1 VSS) capacitor c=5.909E-16
+    I_C685 (XI4_I18_n1 VSS) capacitor c=5.397E-18
+    I_C686 (XI4_I18_n2 VSS) capacitor c=1.043E-17
+    I_C687 (XI4_I18_An VSS) capacitor c=9.958E-16
+    I_C688 (XI4_I18_Bn VSS) capacitor c=8.028E-16
+ends ALU_CORE

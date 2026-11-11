@@ -1,0 +1,6 @@
+// ALU_CORE sau layout (RCX), corner FF
+simulator lang=spectre
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=FF
+include "../../cells/A/cells_A.scs"
+include "ALU_CORE_rcx.scs"
+include "../../blocks/ALU_CORE/tb/tb_ALU_CORE.scs"

@@ -1,4 +1,4 @@
-# Tien trinh du an ALU (cap nhat 2026-11-11)
+# Tien trinh du an ALU (cap nhat 2026-11-12)
 
 Nhanh: `feat/A-cells-alu-core`. Tat ca so lieu duoi day da chay that trong VM (Spectre/Virtuoso/Assura) hoac mo phong muc cong (Python).
 
@@ -19,9 +19,12 @@ Nhanh: `feat/A-cells-alu-core`. Tat ca so lieu duoi day da chay that trong VM (S
 | DIV8K co dau (5020 T, moi hang = XOR + KSA8) | 65536 cap muc cong; Spectre 60 vector NN/SS/FF | Dung het; tre xau nhat 3.98 / 5.75 / 3.04 ns (nhanh hon DIV8 2.1 lan, `docs/huong_toi_uu.md`) |
 | ALU_TOPK (8528 T, = ALU_CORE + MUL8 + DIV8K) | 595 dong alu_full muc cong; Spectre 12 vector NN/SS/FF | Dung het; tre xau nhat 4.66 / 6.72 / 3.59 ns |
 | Layout khoi P&R Encounter: ALU_CORE, MUL8, DIV8, DIV8K, DIV8F, ALU_TOP, ALU_TOPK | Assura DRC + LVS tren GDS | DRC 0, LVS Match ca 7 khoi (`docs/layout_blocks.md`) |
+| RCX + mo phong sau layout (ALU_CORE, MUL8, DIV8K p0, ALU_TOPK) | Assura RCX (C) + Spectre | Dung het; ALU_TOPK tre xau nhat NN / SS / FF 3.58 / 5.14 / 2.75 ns (truoc layout 4.66 / 6.72 / 3.59), chi tiet `docs/layout_blocks.md` |
+| Schematic DIV8F, DIV8K, ALU_TOPK | schCheck | 0 loi |
 
 ## Chua lam
-- RCX / mo phong sau layout chua lam. Bao cao + slide chua lam.
+- RCX chua trich R; phep dich SLL/SRL/SRA (tuy chon trong ke hoach) chua lam.
+- Bao cao: `docs/BAO_CAO.md` + `docs/BAO_CAO.docx`, slide `docs/SLIDE.pptx` da co ban nhap; con thieu ten GVHD / thanh vien, hinh chup schematic / layout.
 
 ## Da xong them (dot nay)
 - Schematic Virtuoso: BOOTH_ENC, BOOTH_SEL, CMP42, FA_X1, HA_X1, CAS_X1, MUL8, MUL8_DADDA, DIV8, ALU_TOP: 0 loi.

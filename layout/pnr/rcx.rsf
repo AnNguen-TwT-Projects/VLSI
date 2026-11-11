@@ -1,0 +1,31 @@
+; Assura RCX tren ket qua LVS (cung thu muc chay / runName voi lvs.rsf). @EXT@ = cap | both.
+avParameters(
+  ?inputLayout ( "gds2" "@GDS@" )
+  ?cellName "@CELL@"
+  ?rulesFile "/home/buet/cadence/gpdk090_v4.6/assura/extract.rul"
+  ?runName "@CELL@"
+  ?workingDirectory "@RUN@"
+)
+rcxParameters(
+  ?runName "@CELL@"
+  ?rcxSetupDir "/home/buet/cadence/gpdk090_v4.6/assura/rcx"
+  ?extract "@EXT@"
+  ?type "full"
+  ?capExtractMode "decoupled"
+  ?capGround "VSS"
+  ?capCouplingFactor 1.0
+  ?groundNets ("VSS")
+  ?powerNets ("VDD")
+  ?netNameSpace "schematic"
+  ?outputNetNameSpace "schematic"
+  ?outputFormat "spice"
+  ?output "@CELL@_rcx.sp"
+  ?minR 0.001
+  ?minC 0.01e-15
+  ?maxFractureLength "infinite"
+  ?fractureLengthUnits "microns"
+  ?tempdir "/tmp"
+  ?subNodeChar "#"
+  ?hierarchyDelimiter "/"
+)
+avRCX()

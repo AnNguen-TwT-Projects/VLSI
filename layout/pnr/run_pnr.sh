@@ -9,7 +9,7 @@ cd "$(dirname "$0")/../.." || exit 1
 W=$PWD; export W
 PDK=/home/buet/cadence/gpdk090_v4.6
 STEPS=""; BLKS=""
-for a in "$@"; do case $a in pnr|drc|lvs) STEPS="$STEPS $a";; *) BLKS="$BLKS $a";; esac; done
+for a in "$@"; do case $a in pnr|drc|lvs|rcx) STEPS="$STEPS $a";; *) BLKS="$BLKS $a";; esac; done
 [ -z "$STEPS" ] && STEPS="pnr drc lvs"
 [ -z "$BLKS" ] && BLKS="ALU_CORE MUL8 DIV8 ALU_TOP"
 fail=0
@@ -36,6 +36,17 @@ for b in $BLKS; do
       echo "LVS $b: $(grep -i -E 'match|differ' "$r/assura.log" | tail -3 | tr '\n' ' ')"
     fi
     rm -rf "$r"/*.dir "$r"/*.ldb 2>/dev/null ;;   # giu bao cao, bo co so du lieu lon
+  rcx)   # LVS lai (RCX can co so du lieu LVS) roi trich ky sinh: EXT=cap (mac dinh) | both
+    [ -f "$g" ] || g=/mnt/hgfs/Share/VLSI_work/out/pnr/$b/$b.gds   # job khong chay pnr: dung GDS da co
+    r=$W/out/assura/$b/rcx; rm -rf "$r"; mkdir -p "$r"
+    for f in lvs rcx; do
+      sed -e "s|@GDS@|$g|g" -e "s|@CELL@|$b|g" -e "s|@RUN@|$r|g" -e "s|@EXT@|${EXT:-cap}|g" \
+          -e "s|@CDL@|$W/layout/assura/cdl/${b}_flat.cdl|g" "$W/layout/pnr/$f.rsf" > "$r/$f.rsf"
+      (cd "$r" && timeout 1500 assura $f.rsf > $f.log 2>&1); echo "rcx/$f $b rc=$?"
+    done
+    ls -la "$r"/${b}_rcx.sp* 2>/dev/null; grep -i -E 'error|fatal' "$r/rcx.log" | head -10
+    [ -s "$r/${b}_rcx.sp" ] || fail=1
+    rm -rf "$r"/*.dir "$r"/*.ldb 2>/dev/null ;;
   esac
   done
 done
