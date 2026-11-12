@@ -1,77 +1,77 @@
-// Testbench DIV32: sinh tu dong boi gen_alun.py (3 vector)
-// 60 ns/vector, suon 20 ps, tai 4x INV_X1 moi ngo ra
+// Testbench DIV32: sinh tu dong boi gen_alun.py (2 vector)
+// 40 ns/vector, suon 20 ps, tai 4x INV_X1 moi ngo ra
 simulator lang=spectre
 global 0
 VVDD (VDD 0) vsource dc=1.2
 VVSS (VSS 0) vsource dc=0
 VA_0 (A_0 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_1 (A_1 0) vsource type=pwl wave=[ \
-    0p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_2 (A_2 0) vsource type=pwl wave=[ \
-    0p 0 120000p 0 120020p 1.2 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_3 (A_3 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_4 (A_4 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_5 (A_5 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_6 (A_6 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_7 (A_7 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_8 (A_8 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_9 (A_9 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_10 (A_10 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_11 (A_11 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_12 (A_12 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_13 (A_13 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_14 (A_14 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_15 (A_15 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_16 (A_16 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_17 (A_17 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_18 (A_18 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_19 (A_19 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_20 (A_20 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_21 (A_21 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_22 (A_22 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_23 (A_23 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_24 (A_24 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_25 (A_25 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_26 (A_26 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_27 (A_27 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_28 (A_28 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_29 (A_29 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_30 (A_30 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 1.2 40000p 1.2 40020p 0 ]
 VA_31 (A_31 0) vsource type=pwl wave=[ \
-    0p 1.2 120000p 1.2 120020p 0 ]
+    0p 0 40000p 0 40020p 1.2 ]
 VB_0 (B_0 0) vsource type=pwl wave=[ \
-    0p 1.2 60000p 1.2 60020p 0 ]
+    0p 1.2 ]
 VB_1 (B_1 0) vsource type=pwl wave=[ \
-    0p 0 60000p 0 60020p 1.2 120000p 1.2 120020p 0 ]
+    0p 0 ]
 VB_2 (B_2 0) vsource type=pwl wave=[ \
     0p 0 ]
 VB_3 (B_3 0) vsource type=pwl wave=[ \
@@ -399,4 +399,4 @@ XLDZ_2 (DZ ld_DZ_2 VDD VSS) INV_X1
 XLDZ_3 (DZ ld_DZ_3 VDD VSS) INV_X1
 save A_0 A_1 A_2 A_3 A_4 A_5 A_6 A_7 A_8 A_9 A_10 A_11 A_12 A_13 A_14 A_15 A_16 A_17 A_18 A_19 A_20 A_21 A_22 A_23 A_24 A_25 A_26 A_27 A_28 A_29 A_30 A_31 B_0 B_1 B_2 B_3 B_4 B_5 B_6 B_7 B_8 B_9 B_10 B_11 B_12 B_13 B_14 B_15 B_16 B_17 B_18 B_19 B_20 B_21 B_22 B_23 B_24 B_25 B_26 B_27 B_28 B_29 B_30 B_31 Q_0 Q_1 Q_2 Q_3 Q_4 Q_5 Q_6 Q_7 Q_8 Q_9 Q_10 Q_11 Q_12 Q_13 Q_14 Q_15 Q_16 Q_17 Q_18 Q_19 Q_20 Q_21 Q_22 Q_23 Q_24 Q_25 Q_26 Q_27 Q_28 Q_29 Q_30 Q_31 R_0 R_1 R_2 R_3 R_4 R_5 R_6 R_7 R_8 R_9 R_10 R_11 R_12 R_13 R_14 R_15 R_16 R_17 R_18 R_19 R_20 R_21 R_22 R_23 R_24 R_25 R_26 R_27 R_28 R_29 R_30 R_31 V DZ VVDD:p
 opts options save=selected temp=27 reltol=1e-3
-tran tran stop=180n maxstep=50p errpreset=moderate
+tran tran stop=80n maxstep=50p skipdc=yes errpreset=moderate

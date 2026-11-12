@@ -1,0 +1,31 @@
+// Demo ALU_TOPK: A, B, OP thap phan (chay dong lenh; trong ADE dung demo_stim.scs + bien thiet ke)
+simulator lang=spectre
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=NN
+include "../../../cells/A/cells_A.scs"
+include "../../../cells/_stub_B/XOR2_X1/XOR2_X1.scs"
+include "../../../cells/_stub_B/XNOR2_X1/XNOR2_X1.scs"
+include "../../../cells/C/FA_X1/FA_X1.scs"
+include "../../../cells/C/INV_X4/INV_X4.scs"
+include "../../../cells/C/HA_X1/HA_X1.scs"
+include "../../../cells/B/BOOTH_ENC/BOOTH_ENC.scs"
+include "../../../cells/B/BOOTH_SEL/BOOTH_SEL.scs"
+include "../../../cells/B/CMP42/CMP42.scs"
+include "../../ALU_ADD/KSA8.scs"
+include "../../ALU_ADD/ADDSUB8.scs"
+include "../../ALU_CORE/LOGIC8.scs"
+include "../../ALU_CORE/DEC_OP.scs"
+include "../../ALU_CORE/OUTMUX.scs"
+include "../../ALU_CORE/FLAGS.scs"
+include "../../ALU_CORE/ALU_CORE.scs"
+include "../../../cells/D/CAS_X1/CAS_X1.scs"
+include "../../ALU_DIV/DIV8.scs"
+include "../../ALU_DIV/DIV8K.scs"
+include "../../ALU_MUL/MUL8.scs"
+include "../ALU_TOPK.scs"
+parameters A=-7 B=2 OP=11
+global 0
+include "demo_stim.scs"
+XDUT (A_0 A_1 A_2 A_3 A_4 A_5 A_6 A_7 B_0 B_1 B_2 B_3 B_4 B_5 B_6 B_7 OP_0 OP_1 OP_2 OP_3 Y_0 Y_1 Y_2 Y_3 Y_4 Y_5 Y_6 Y_7 Y_8 Y_9 Y_10 Y_11 Y_12 Y_13 Y_14 Y_15 Z C V DZ VDD VSS) ALU_TOPK
+save Y_0 Y_1 Y_2 Y_3 Y_4 Y_5 Y_6 Y_7 Y_8 Y_9 Y_10 Y_11 Y_12 Y_13 Y_14 Y_15 Z C V DZ A_0 A_7 B_1 OP_0 OP_3
+opts options save=selected temp=27 reltol=1e-3
+tran tran stop=8n maxstep=40p errpreset=moderate

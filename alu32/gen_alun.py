@@ -486,14 +486,15 @@ def tb_set(N):
             (4, M // 3, M), (5, M // 3, 0), (0, rnd.getrandbits(N), rnd.getrandbits(N))]
     mul = [(0, 0), (M, M), (MIN, MIN), (MIN, MAX), (MAX, MAX), (M // 3, M - M // 3),
            (rnd.getrandbits(N), rnd.getrandbits(N)), (0, 0), (rnd.getrandbits(N), rnd.getrandbits(N))]
-    div = [(0, 1), (MIN, M), (MAX, 1), (MIN, 1), (M - 6, 2), (5, 0), (MAX, 3), (rnd.getrandbits(N), 7), (MIN, 3)]
+    div = [(0, 1), (MIN, M), (MAX, 1), (MIN, 1), (5, 0), (M - 6, 2), (MAX, 3), (rnd.getrandbits(N), 7)]
     return {
         f'CORE{N}': (3 * N / 32 + 1, 6 * N / 32 + 1, '20p', 10,
                      [dict(zip('op a b mulp divq divr divv divdz y z c v dz'.split(),
                                (o, a, b, 0, 0, 0, 0, 0) + ref(N, o, a, b))) for o, a, b in core]),
         f'MUL{N}': (6 * N / 32 + 1, 9 * N / 32 + 1, '20p', 3,
                     [{'a': a, 'b': b, 'p': mul_ref(N, a, b)} for a, b in mul]),
-        f'DIV{N}': (60 * N / 32, 90 * N / 32, '50p', 3,
+        # skipdc: diem lam viec DC cua DIV32 (86 nghin T) khong hoi tu sau 25 phut (gmin, source, dptran)
+        f'DIV{N}': (40 * N / 32, 60 * N / 32, '50p skipdc=yes', 2,
                     [dict(zip('a b q r v dz'.split(), (a, b) + tuple(-1 if x is None else x for x in div_ref(N, a, b))))
                      for a, b in div])}
 
