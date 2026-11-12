@@ -71,7 +71,8 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     for blk in sys.argv[1:]:
         # tb_<BLK>.scs, hoac tb_<BLK>_p0.scs ... khi tb chia phan (DIV8K)
-        tbs = sorted(REPO.glob(f"blocks/*/tb/tb_{blk}.scs")) + sorted(REPO.glob(f"blocks/*/tb/tb_{blk}_p[0-9].scs"))
+        tbs = [t for d in ("blocks/*/tb", "alu32/tb") for g in (f"tb_{blk}.scs", f"tb_{blk}_p[0-9].scs")
+               for t in sorted(REPO.glob(f"{d}/{g}"))]
         ports = re.search(r"^XDUT \((.*)\) " + blk + "$", tbs[0].read_text(), re.M).group(1).split()
         sp = (SHARE / "VLSI_work" / "out" / "assura" / blk / "rcx" / f"{blk}_rcx.sp").read_text()
         scs, m, c = convert(blk, sp, ports)

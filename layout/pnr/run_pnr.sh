@@ -16,6 +16,7 @@ fail=0
 for b in $BLKS; do
   d=$W/out/pnr/$b; g=$d/$b.gds
   for s in $STEPS; do
+  [ $s != pnr ] && [ ! -f "$g" ] && g=/mnt/hgfs/Share/VLSI_work/out/pnr/$b/$b.gds   # job khong chay pnr: dung GDS da co
   case $s in
   pnr)
     rm -rf "$d"; mkdir -p "$d"
@@ -37,7 +38,6 @@ for b in $BLKS; do
     fi
     rm -rf "$r"/*.dir "$r"/*.ldb 2>/dev/null ;;   # giu bao cao, bo co so du lieu lon
   rcx)   # LVS lai (RCX can co so du lieu LVS) roi trich ky sinh: EXT=cap (mac dinh) | both
-    [ -f "$g" ] || g=/mnt/hgfs/Share/VLSI_work/out/pnr/$b/$b.gds   # job khong chay pnr: dung GDS da co
     r=$W/out/assura/$b/rcx; rm -rf "$r"; mkdir -p "$r"
     for f in lvs rcx; do
       sed -e "s|@GDS@|$g|g" -e "s|@CELL@|$b|g" -e "s|@RUN@|$r|g" -e "s|@EXT@|${EXT:-cap}|g" \

@@ -23,7 +23,7 @@ from scs2cdl import subckt  # noqa: E402
 
 WORK = Path(r"D:\Hoc\VLSI_Design\Share\VLSI_work")
 PNR = REPO / "layout" / "pnr"
-BLOCKS = ("ALU_CORE", "MUL8", "DIV8", "ALU_TOP") + tuple(a for a in sys.argv[1:] if a.startswith(("DIV8", "ALU_TOPK")))  # + phuong an: DIV8F DIV8K
+BLOCKS = ("ALU_CORE", "MUL8", "DIV8", "ALU_TOP") + tuple(a for a in sys.argv[1:] if a != "cells")  # + phuong an: DIV8F DIV8K ALU_TOPK, ban 32 bit: CORE32 MUL32 DIV32 ALU32
 SUP = ("VDD", "VSS")
 FILLS = (1, 2, 4, 8)
 LIBS = gc.LIBS + (("ALU_CELLS_P", None),)
@@ -36,7 +36,7 @@ def load():
     # BLK_P/BLK_N/GRY_P/GRY_N la cell phan cap (AOI21/OAI21 + NAND2/NOR2): phang tiep xuong cell
     # nguyen thuy (layout phang, chan vao duoc; M2 noi PI cua BLK_P che chan GK).
     leaf = set(cells) - {"BLK_P", "BLK_N", "GRY_P", "GRY_N"}
-    for f in sorted((REPO / "blocks").glob("*/*.scs")):
+    for f in sorted((REPO / "blocks").glob("*/*.scs")) + sorted((REPO / "alu32" / "netlist").glob("*.scs")):
         for k, v in parse(f).items():
             cells.setdefault(k, v)
     return cells, leaf

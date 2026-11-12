@@ -14,6 +14,8 @@ Khoi = cell la (A/B/C/D) dat thanh hang + di day tu dong bang Encounter; kiem tr
 | ALU_TOPK (= CORE + MUL8 + DIV8K) | 1131 | 9381 um2 | 121.99 x 119.35 | 14559 um2 | 0 | Match |
 | ALU_TOP (ban goc, DIV8) | 643 | 9017 um2 | 124.89 x 122.11 | 15250 um2 | 0 | Match |
 
+Ban 32 bit (CORE32, MUL32, DIV32, ALU32) cung luong nay: xem alu32/README.md.
+
 UTIL (mat do loi) 0.7 (ALU_TOPK 0.72, ALU_TOP 0.66), le 3 um cho vong nguon, route Metal2..Metal6. GDS: `out/pnr/<KHOI>/<KHOI>.gds`,
 DEF `out/pnr/<KHOI>/<KHOI>.def`, bao cao Assura `out/assura/<KHOI>/{drc,lvs}/`.
 
@@ -22,7 +24,7 @@ DEF `out/pnr/<KHOI>/<KHOI>.def`, bao cao Assura `out/assura/<KHOI>/{drc,lvs}/`.
 ```
 python layout/pnr/prep.py [DIV8F DIV8K ALU_TOPK]   # Windows: Verilog phang, CDL phang, LEF (tech + cell), kiem diem vao chan
 python tools/vmjob.py --label pnr -c "bash layout/pnr/run_pnr.sh pnr drc lvs DIV8"   # 1 khoi / job (runner cat job > 30 phut)
-#   bien: UTIL=0.7  TOPL=6 (lop route cao nhat)  PAD="BOOTH_SEL" (chua 2 site)
+#   bien: UTIL=0.7  TOPL=6 (lop route cao nhat)  PAD="BOOTH_SEL" (chua 2 site)  PINL=4 (lop chan IO cao nhat)  RETRY=3 (them luot detailRoute)
 ```
 
 1. `layout/pnr/dump_layout.il` (Virtuoso): ghi hinh M1..M3/Via1..2/pin/bien cua 24 cell -> `out/pnr/cells.txt`.
@@ -51,6 +53,9 @@ python tools/vmjob.py --label pnr -c "bash layout/pnr/run_pnr.sh pnr drc lvs DIV
 | Nhieu job VM chet giua chung | vm_runner gioi han 1800 s / job | 1 khoi / job |
 | LVS ALU_TOP ngan mach Y_11/Y_12 (UTIL 0.72) | placeDesign dat 2 chan IO chong nhau | doi UTIL (0.66 sach). Da thu editPin (vao trai / ra phai, M3): het chong nhung them 7..11 loi METAL2.SP o BOOTH -> khong dung |
 | Job bi bo "vm_runner chua chay" du runner song | giua 2 job runner chua tao log moi, chua ghi heartbeat | vmjob.py thu lai 60 s truoc khi bao loi |
+| 22 loi METAL6/7.SP + LVS ngan mach o CORE32 | khoi 270 chan: placeIoPins dat chan len toi Metal9 | PINL=4 (setPinAssignMode -maxLayer 4) |
+| MUL32 con 971 loi M2 tren BOOTH_SEL | NanoRoute tu dung sau 2 vong toi uu | -drouteAutoStop false + RETRY=3 (them 3 luot detailRoute) |
+| PAD BOOTH_SEL o MUL32 them 459 loi NW.SP.1 | khe giua cac cell sau khi chua site | khong dung PAD |
 
 ## RCX va mo phong sau layout
 

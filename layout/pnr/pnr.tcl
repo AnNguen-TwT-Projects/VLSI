@@ -25,6 +25,12 @@ globalNetConnect VSS -type pgpin -pin VSS -inst * -override
 if {[info exists env(PAD)]} { foreach c $env(PAD) { specifyCellPad $c 2 } }
 # Chan IO de placeDesign tu dat. Da thu editPin (vao trai / ra phai, M3): route M2 o BOOTH xau hon (7..11 loi SP).
 # placeIoPins co the chong 2 chan (ALU_TOP UTIL 0.72: Y_11/Y_12 -> LVS sai) -> doi UTIL (ALU_TOP sach o 0.66).
+# PINL=4: lop cao nhat cho chan IO. Khoi nhieu chan (CORE32: 270) placeIoPins dat chan len toi Metal9 ->
+# via xuong sat bien vi pham METAL6/7.SP (22 loi), LVS ngan mach.
+if {[info exists env(PINL)]} {
+  puts "PNR_PINL [catch {setPinAssignMode -maxLayer $env(PINL)} e] $e"
+  puts "PNR_MAXL [catch {setMaxRouteLayer $env(PINL)} e] $e"
+}
 setPlaceMode -timingDriven false -placeIoPins true
 placeDesign -noPrePlaceOpt
 checkPlace rpt_place.txt
@@ -48,8 +54,11 @@ foreach n {VDD VSS} {
 }
 
 setNanoRouteMode -routeTopRoutingLayer $TOPL -routeBottomRoutingLayer 2 -routeWithTimingDriven false \
-    -drouteFixAntenna false
+    -drouteFixAntenna false -drouteAutoStop false
+# drouteAutoStop false: MUL32 (528 BOOTH_SEL) con 971 loi sau 2 vong toi uu thi NanoRoute tu dung; khoi 8 bit chay du 20 vong.
 globalDetailRoute
+# RETRY=n: chay them n luot detailRoute (MUL32 con ~25 loi M2 o chan BOOTH_SEL sau luot dau)
+if {[info exists env(RETRY)]} { for {set i 0} {$i < $env(RETRY)} {incr i} { detailRoute } }
 # NanoRoute de lai khe giua hai via cung net (M2/M3 < 0.14, Assura METAL2.SP.1.1): lap khe cung net
 puts "PNR_FILLNOTCH [catch {fillNotch} e] $e"
 

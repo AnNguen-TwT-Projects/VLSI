@@ -1,0 +1,6 @@
+// CORE32 sau layout (RCX), corner SS
+simulator lang=spectre
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=SS
+include "../../cells/A/cells_A.scs"
+include "CORE32_rcx.scs"
+include "../../alu32/tb/tb_CORE32_p0_slow.scs"
