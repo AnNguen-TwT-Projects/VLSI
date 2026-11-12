@@ -1,0 +1,15 @@
+// DIV32 corner SS
+simulator lang=spectre
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=SS
+include "../../cells/A/cells_A.scs"
+include "../../cells/_stub_B/XOR2_X1/XOR2_X1.scs"
+include "../../cells/_stub_B/XNOR2_X1/XNOR2_X1.scs"
+include "../../cells/C/FA_X1/FA_X1.scs"
+include "../../cells/C/INV_X4/INV_X4.scs"
+include "../../cells/C/HA_X1/HA_X1.scs"
+include "../../cells/B/BOOTH_ENC/BOOTH_ENC.scs"
+include "../../cells/B/BOOTH_SEL/BOOTH_SEL.scs"
+include "../../cells/B/CMP42/CMP42.scs"
+include "../../alu32/netlist/KSA32.scs"
+include "../../alu32/netlist/DIV32.scs"
+include "tb_DIV32_p0_slow.scs"

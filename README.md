@@ -5,3 +5,4 @@ ALU 8-bit (cộng/trừ, logic, nhân và chia có dấu) trên gpdk090.
 - [Tiến trình](docs/PROGRESS_A.md)
 - [Báo cáo](docs/BAO_CAO.md)
 - [Số đo](docs/so_do.md)
+- [ALU 32 bit để so sánh](alu32/README.md)
