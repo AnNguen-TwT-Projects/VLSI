@@ -1,0 +1,26 @@
+// Kich thich demo ALU_TOPK cho ADE L (Setup > Simulation Files > Stimulus File).
+// Bien thiet ke ADE: A, B (thap phan co dau -128..127), OP (0 ADD 1 SUB 2 AND 3 OR 4 XOR 5 NOT 9 MUL 11 DIV).
+// Moi bit = 0 den 1 ns, sau do len gia tri that -> thay duoc tre lan truyen. Chay tran 8n.
+simulator lang=spectre
+VVDD (VDD 0) vsource dc=1.2
+VVSS (VSS 0) vsource dc=0
+VA_0 (A_0 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((A+256)/1),2) delay=1n rise=20p fall=20p width=1
+VA_1 (A_1 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((A+256)/2),2) delay=1n rise=20p fall=20p width=1
+VA_2 (A_2 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((A+256)/4),2) delay=1n rise=20p fall=20p width=1
+VA_3 (A_3 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((A+256)/8),2) delay=1n rise=20p fall=20p width=1
+VA_4 (A_4 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((A+256)/16),2) delay=1n rise=20p fall=20p width=1
+VA_5 (A_5 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((A+256)/32),2) delay=1n rise=20p fall=20p width=1
+VA_6 (A_6 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((A+256)/64),2) delay=1n rise=20p fall=20p width=1
+VA_7 (A_7 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((A+256)/128),2) delay=1n rise=20p fall=20p width=1
+VB_0 (B_0 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((B+256)/1),2) delay=1n rise=20p fall=20p width=1
+VB_1 (B_1 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((B+256)/2),2) delay=1n rise=20p fall=20p width=1
+VB_2 (B_2 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((B+256)/4),2) delay=1n rise=20p fall=20p width=1
+VB_3 (B_3 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((B+256)/8),2) delay=1n rise=20p fall=20p width=1
+VB_4 (B_4 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((B+256)/16),2) delay=1n rise=20p fall=20p width=1
+VB_5 (B_5 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((B+256)/32),2) delay=1n rise=20p fall=20p width=1
+VB_6 (B_6 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((B+256)/64),2) delay=1n rise=20p fall=20p width=1
+VB_7 (B_7 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((B+256)/128),2) delay=1n rise=20p fall=20p width=1
+VOP_0 (OP_0 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((OP)/1),2) delay=1n rise=20p fall=20p width=1
+VOP_1 (OP_1 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((OP)/2),2) delay=1n rise=20p fall=20p width=1
+VOP_2 (OP_2 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((OP)/4),2) delay=1n rise=20p fall=20p width=1
+VOP_3 (OP_3 0) vsource type=pulse val0=0 val1=1.2*fmod(floor((OP)/8),2) delay=1n rise=20p fall=20p width=1

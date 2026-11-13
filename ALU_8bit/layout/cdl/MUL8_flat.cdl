@@ -1,0 +1,368 @@
+* MUL8 phang xuong cell la
+
+.SUBCKT AOI21_X1 A1 A2 B Y VDD VSS
+MN0 Y A1 n1 VSS nmos1v w=0.24u l=0.1u
+MN1 n1 A2 VSS VSS nmos1v w=0.24u l=0.1u
+MN2 Y B VSS VSS nmos1v w=0.12u l=0.1u
+MP0 p1 A1 VDD VDD pmos1v w=0.48u l=0.1u
+MP1 p1 A2 VDD VDD pmos1v w=0.48u l=0.1u
+MP2 Y B p1 VDD pmos1v w=0.48u l=0.1u
+.ENDS AOI21_X1
+
+.SUBCKT BOOTH_ENC X2 X1 X0 ONE TWO VDD VSS
+MN1 aan X1 VSS VSS nmos1v w=0.12u l=0.1u
+MP2 aan X1 VDD VDD pmos1v w=0.24u l=0.1u
+MN3 abn X0 VSS VSS nmos1v w=0.12u l=0.1u
+MP4 abn X0 VDD VDD pmos1v w=0.24u l=0.1u
+MN5 ONE X1 an1 VSS nmos1v w=0.24u l=0.1u
+MN6 an1 X0 VSS VSS nmos1v w=0.24u l=0.1u
+MN7 ONE aan an2 VSS nmos1v w=0.24u l=0.1u
+MN8 an2 abn VSS VSS nmos1v w=0.24u l=0.1u
+MP9 ap1 X1 VDD VDD pmos1v w=0.48u l=0.1u
+MP10 ap1 X0 VDD VDD pmos1v w=0.48u l=0.1u
+MP11 ONE aan ap1 VDD pmos1v w=0.48u l=0.1u
+MP12 ONE abn ap1 VDD pmos1v w=0.48u l=0.1u
+MN13 ban X2 VSS VSS nmos1v w=0.12u l=0.1u
+MP14 ban X2 VDD VDD pmos1v w=0.24u l=0.1u
+MN15 bbn X1 VSS VSS nmos1v w=0.12u l=0.1u
+MP16 bbn X1 VDD VDD pmos1v w=0.24u l=0.1u
+MN17 e X2 bn1 VSS nmos1v w=0.24u l=0.1u
+MN18 bn1 bbn VSS VSS nmos1v w=0.24u l=0.1u
+MN19 e ban bn2 VSS nmos1v w=0.24u l=0.1u
+MN20 bn2 X1 VSS VSS nmos1v w=0.24u l=0.1u
+MP21 bp1 X2 VDD VDD pmos1v w=0.48u l=0.1u
+MP22 bp1 bbn VDD VDD pmos1v w=0.48u l=0.1u
+MP23 e ban bp1 VDD pmos1v w=0.48u l=0.1u
+MP24 e X1 bp1 VDD pmos1v w=0.48u l=0.1u
+MN25 TWO e VSS VSS nmos1v w=0.12u l=0.1u
+MN26 TWO ONE VSS VSS nmos1v w=0.12u l=0.1u
+MP27 cp e VDD VDD pmos1v w=0.48u l=0.1u
+MP28 TWO ONE cp VDD pmos1v w=0.48u l=0.1u
+.ENDS BOOTH_ENC
+
+.SUBCKT BOOTH_SEL AJ AJM ONE TWO NEG PP VDD VSS
+MN1 xn ONE n1 VSS nmos1v w=0.24u l=0.1u
+MN2 n1 AJ VSS VSS nmos1v w=0.24u l=0.1u
+MN3 xn TWO n2 VSS nmos1v w=0.24u l=0.1u
+MN4 n2 AJM VSS VSS nmos1v w=0.24u l=0.1u
+MP5 p1 ONE VDD VDD pmos1v w=0.48u l=0.1u
+MP6 p1 AJ VDD VDD pmos1v w=0.48u l=0.1u
+MP7 xn TWO p1 VDD pmos1v w=0.48u l=0.1u
+MP8 xn AJM p1 VDD pmos1v w=0.48u l=0.1u
+MN9 xan xn VSS VSS nmos1v w=0.12u l=0.1u
+MP10 xan xn VDD VDD pmos1v w=0.24u l=0.1u
+MN11 xbn NEG VSS VSS nmos1v w=0.12u l=0.1u
+MP12 xbn NEG VDD VDD pmos1v w=0.24u l=0.1u
+MN13 PP xn xn1 VSS nmos1v w=0.24u l=0.1u
+MN14 xn1 xbn VSS VSS nmos1v w=0.24u l=0.1u
+MN15 PP xan xn2 VSS nmos1v w=0.24u l=0.1u
+MN16 xn2 NEG VSS VSS nmos1v w=0.24u l=0.1u
+MP17 xp1 xn VDD VDD pmos1v w=0.48u l=0.1u
+MP18 xp1 xbn VDD VDD pmos1v w=0.48u l=0.1u
+MP19 PP xan xp1 VDD pmos1v w=0.48u l=0.1u
+MP20 PP NEG xp1 VDD pmos1v w=0.48u l=0.1u
+.ENDS BOOTH_SEL
+
+.SUBCKT CMP42 X1 X2 X3 X4 CI S C CO VDD VSS
+MN1 an1 X1 VSS VSS nmos1v w=0.24u l=0.1u
+MN2 acon X2 an1 VSS nmos1v w=0.24u l=0.1u
+MN3 an2 X1 VSS VSS nmos1v w=0.24u l=0.1u
+MN4 an2 X2 VSS VSS nmos1v w=0.24u l=0.1u
+MN5 acon X3 an2 VSS nmos1v w=0.24u l=0.1u
+MN6 an3 X1 VSS VSS nmos1v w=0.24u l=0.1u
+MN7 an3 X2 VSS VSS nmos1v w=0.24u l=0.1u
+MN8 an3 X3 VSS VSS nmos1v w=0.24u l=0.1u
+MN9 asn acon an3 VSS nmos1v w=0.24u l=0.1u
+MN10 an4 X1 VSS VSS nmos1v w=0.36u l=0.1u
+MN11 an5 X2 an4 VSS nmos1v w=0.36u l=0.1u
+MN12 asn X3 an5 VSS nmos1v w=0.36u l=0.1u
+MP13 ap1 X1 VDD VDD pmos1v w=0.48u l=0.1u
+MP14 acon X2 ap1 VDD pmos1v w=0.48u l=0.1u
+MP15 ap2 X1 VDD VDD pmos1v w=0.48u l=0.1u
+MP16 ap2 X2 VDD VDD pmos1v w=0.48u l=0.1u
+MP17 acon X3 ap2 VDD pmos1v w=0.48u l=0.1u
+MP18 ap3 X1 VDD VDD pmos1v w=0.48u l=0.1u
+MP19 ap3 X2 VDD VDD pmos1v w=0.48u l=0.1u
+MP20 ap3 X3 VDD VDD pmos1v w=0.48u l=0.1u
+MP21 asn acon ap3 VDD pmos1v w=0.48u l=0.1u
+MP22 ap4 X1 VDD VDD pmos1v w=0.72u l=0.1u
+MP23 ap5 X2 ap4 VDD pmos1v w=0.72u l=0.1u
+MP24 asn X3 ap5 VDD pmos1v w=0.72u l=0.1u
+MN25 s1 asn VSS VSS nmos1v w=0.12u l=0.1u
+MP26 s1 asn VDD VDD pmos1v w=0.24u l=0.1u
+MN27 CO acon VSS VSS nmos1v w=0.12u l=0.1u
+MP28 CO acon VDD VDD pmos1v w=0.24u l=0.1u
+MN29 bn1 s1 VSS VSS nmos1v w=0.24u l=0.1u
+MN30 bcon X4 bn1 VSS nmos1v w=0.24u l=0.1u
+MN31 bn2 s1 VSS VSS nmos1v w=0.24u l=0.1u
+MN32 bn2 X4 VSS VSS nmos1v w=0.24u l=0.1u
+MN33 bcon CI bn2 VSS nmos1v w=0.24u l=0.1u
+MN34 bn3 s1 VSS VSS nmos1v w=0.24u l=0.1u
+MN35 bn3 X4 VSS VSS nmos1v w=0.24u l=0.1u
+MN36 bn3 CI VSS VSS nmos1v w=0.24u l=0.1u
+MN37 bsn bcon bn3 VSS nmos1v w=0.24u l=0.1u
+MN38 bn4 s1 VSS VSS nmos1v w=0.36u l=0.1u
+MN39 bn5 X4 bn4 VSS nmos1v w=0.36u l=0.1u
+MN40 bsn CI bn5 VSS nmos1v w=0.36u l=0.1u
+MP41 bp1 s1 VDD VDD pmos1v w=0.48u l=0.1u
+MP42 bcon X4 bp1 VDD pmos1v w=0.48u l=0.1u
+MP43 bp2 s1 VDD VDD pmos1v w=0.48u l=0.1u
+MP44 bp2 X4 VDD VDD pmos1v w=0.48u l=0.1u
+MP45 bcon CI bp2 VDD pmos1v w=0.48u l=0.1u
+MP46 bp3 s1 VDD VDD pmos1v w=0.48u l=0.1u
+MP47 bp3 X4 VDD VDD pmos1v w=0.48u l=0.1u
+MP48 bp3 CI VDD VDD pmos1v w=0.48u l=0.1u
+MP49 bsn bcon bp3 VDD pmos1v w=0.48u l=0.1u
+MP50 bp4 s1 VDD VDD pmos1v w=0.72u l=0.1u
+MP51 bp5 X4 bp4 VDD pmos1v w=0.72u l=0.1u
+MP52 bsn CI bp5 VDD pmos1v w=0.72u l=0.1u
+MN53 S bsn VSS VSS nmos1v w=0.12u l=0.1u
+MP54 S bsn VDD VDD pmos1v w=0.24u l=0.1u
+MN55 C bcon VSS VSS nmos1v w=0.12u l=0.1u
+MP56 C bcon VDD VDD pmos1v w=0.24u l=0.1u
+.ENDS CMP42
+
+.SUBCKT FA_X1 A B CI S CO VDD VSS
+MN1 n1 A VSS VSS nmos1v w=0.24u l=0.1u
+MN2 con B n1 VSS nmos1v w=0.24u l=0.1u
+MN3 n2 A VSS VSS nmos1v w=0.24u l=0.1u
+MN4 n2 B VSS VSS nmos1v w=0.24u l=0.1u
+MN5 con CI n2 VSS nmos1v w=0.24u l=0.1u
+MN6 n3 A VSS VSS nmos1v w=0.24u l=0.1u
+MN7 n3 B VSS VSS nmos1v w=0.24u l=0.1u
+MN8 n3 CI VSS VSS nmos1v w=0.24u l=0.1u
+MN9 sn con n3 VSS nmos1v w=0.24u l=0.1u
+MN10 n4 A VSS VSS nmos1v w=0.36u l=0.1u
+MN11 n5 B n4 VSS nmos1v w=0.36u l=0.1u
+MN12 sn CI n5 VSS nmos1v w=0.36u l=0.1u
+MP13 p1 A VDD VDD pmos1v w=0.48u l=0.1u
+MP14 con B p1 VDD pmos1v w=0.48u l=0.1u
+MP15 p2 A VDD VDD pmos1v w=0.48u l=0.1u
+MP16 p2 B VDD VDD pmos1v w=0.48u l=0.1u
+MP17 con CI p2 VDD pmos1v w=0.48u l=0.1u
+MP18 p3 A VDD VDD pmos1v w=0.48u l=0.1u
+MP19 p3 B VDD VDD pmos1v w=0.48u l=0.1u
+MP20 p3 CI VDD VDD pmos1v w=0.48u l=0.1u
+MP21 sn con p3 VDD pmos1v w=0.48u l=0.1u
+MP22 p4 A VDD VDD pmos1v w=0.72u l=0.1u
+MP23 p5 B p4 VDD pmos1v w=0.72u l=0.1u
+MP24 sn CI p5 VDD pmos1v w=0.72u l=0.1u
+MN25 S sn VSS VSS nmos1v w=0.12u l=0.1u
+MP26 S sn VDD VDD pmos1v w=0.24u l=0.1u
+MN27 CO con VSS VSS nmos1v w=0.12u l=0.1u
+MP28 CO con VDD VDD pmos1v w=0.24u l=0.1u
+.ENDS FA_X1
+
+.SUBCKT HA_X1 A B S CO VDD VSS
+MN1 xan A VSS VSS nmos1v w=0.12u l=0.1u
+MP2 xan A VDD VDD pmos1v w=0.24u l=0.1u
+MN3 xbn B VSS VSS nmos1v w=0.12u l=0.1u
+MP4 xbn B VDD VDD pmos1v w=0.24u l=0.1u
+MN5 S A xn1 VSS nmos1v w=0.24u l=0.1u
+MN6 xn1 B VSS VSS nmos1v w=0.24u l=0.1u
+MN7 S xan xn2 VSS nmos1v w=0.24u l=0.1u
+MN8 xn2 xbn VSS VSS nmos1v w=0.24u l=0.1u
+MP9 xp1 A VDD VDD pmos1v w=0.48u l=0.1u
+MP10 xp1 B VDD VDD pmos1v w=0.48u l=0.1u
+MP11 S xan xp1 VDD pmos1v w=0.48u l=0.1u
+MP12 S xbn xp1 VDD pmos1v w=0.48u l=0.1u
+MN13 con A an VSS nmos1v w=0.24u l=0.1u
+MN14 an B VSS VSS nmos1v w=0.24u l=0.1u
+MP15 con A VDD VDD pmos1v w=0.24u l=0.1u
+MP16 con B VDD VDD pmos1v w=0.24u l=0.1u
+MN17 CO con VSS VSS nmos1v w=0.12u l=0.1u
+MP18 CO con VDD VDD pmos1v w=0.24u l=0.1u
+.ENDS HA_X1
+
+.SUBCKT INV_X1 A Y VDD VSS
+MN0 Y A VSS VSS nmos1v w=0.12u l=0.1u
+MP0 Y A VDD VDD pmos1v w=0.24u l=0.1u
+.ENDS INV_X1
+
+.SUBCKT NAND2_X1 A B Y VDD VSS
+MN0 Y A n1 VSS nmos1v w=0.24u l=0.1u
+MN1 n1 B VSS VSS nmos1v w=0.24u l=0.1u
+MP0 Y A VDD VDD pmos1v w=0.24u l=0.1u
+MP1 Y B VDD VDD pmos1v w=0.24u l=0.1u
+.ENDS NAND2_X1
+
+.SUBCKT NOR2_X1 A B Y VDD VSS
+MN0 Y A VSS VSS nmos1v w=0.12u l=0.1u
+MN1 Y B VSS VSS nmos1v w=0.12u l=0.1u
+MP0 p1 A VDD VDD pmos1v w=0.48u l=0.1u
+MP1 Y B p1 VDD pmos1v w=0.48u l=0.1u
+.ENDS NOR2_X1
+
+.SUBCKT OAI21_X1 A1 A2 B Y VDD VSS
+MN0 Y A1 n1 VSS nmos1v w=0.24u l=0.1u
+MN1 Y A2 n1 VSS nmos1v w=0.24u l=0.1u
+MN2 n1 B VSS VSS nmos1v w=0.24u l=0.1u
+MP0 p1 A1 VDD VDD pmos1v w=0.48u l=0.1u
+MP1 Y A2 p1 VDD pmos1v w=0.48u l=0.1u
+MP2 Y B VDD VDD pmos1v w=0.24u l=0.1u
+.ENDS OAI21_X1
+
+.SUBCKT XNOR2_X1 A B Y VDD VSS
+MN0 An A VSS VSS nmos1v w=0.12u l=0.1u
+MP0 An A VDD VDD pmos1v w=0.24u l=0.1u
+MN1 Bn B VSS VSS nmos1v w=0.12u l=0.1u
+MP1 Bn B VDD VDD pmos1v w=0.24u l=0.1u
+MN2 Y A n1 VSS nmos1v w=0.24u l=0.1u
+MN3 n1 Bn VSS VSS nmos1v w=0.24u l=0.1u
+MN4 Y An n2 VSS nmos1v w=0.24u l=0.1u
+MN5 n2 B VSS VSS nmos1v w=0.24u l=0.1u
+MP2 p1 A VDD VDD pmos1v w=0.48u l=0.1u
+MP3 p1 Bn VDD VDD pmos1v w=0.48u l=0.1u
+MP4 Y An p1 VDD pmos1v w=0.48u l=0.1u
+MP5 Y B p1 VDD pmos1v w=0.48u l=0.1u
+.ENDS XNOR2_X1
+
+.SUBCKT XOR2_X1 A B Y VDD VSS
+MN0 An A VSS VSS nmos1v w=0.12u l=0.1u
+MP0 An A VDD VDD pmos1v w=0.24u l=0.1u
+MN1 Bn B VSS VSS nmos1v w=0.12u l=0.1u
+MP1 Bn B VDD VDD pmos1v w=0.24u l=0.1u
+MN2 Y A n1 VSS nmos1v w=0.24u l=0.1u
+MN3 n1 B VSS VSS nmos1v w=0.24u l=0.1u
+MN4 Y An n2 VSS nmos1v w=0.24u l=0.1u
+MN5 n2 Bn VSS VSS nmos1v w=0.24u l=0.1u
+MP2 p1 A VDD VDD pmos1v w=0.48u l=0.1u
+MP3 p1 B VDD VDD pmos1v w=0.48u l=0.1u
+MP4 Y An p1 VDD pmos1v w=0.48u l=0.1u
+MP5 Y Bn p1 VDD pmos1v w=0.48u l=0.1u
+.ENDS XOR2_X1
+
+.SUBCKT MUL8 A_0 A_1 A_2 A_3 A_4 A_5 A_6 A_7 B_0 B_1 B_2 B_3 B_4 B_5 B_6 B_7 P_0 P_1 P_2 P_3 P_4 P_5 P_6 P_7 P_8 P_9 P_10 P_11 P_12 P_13 P_14 P_15 VDD VSS
+XI0 B_1 B_0 VSS one0 two0 VDD VSS BOOTH_ENC
+XI1 A_0 VSS one0 two0 B_1 pp0_0 VDD VSS BOOTH_SEL
+XI2 A_1 A_0 one0 two0 B_1 pp0_1 VDD VSS BOOTH_SEL
+XI3 A_2 A_1 one0 two0 B_1 pp0_2 VDD VSS BOOTH_SEL
+XI4 A_3 A_2 one0 two0 B_1 pp0_3 VDD VSS BOOTH_SEL
+XI5 A_4 A_3 one0 two0 B_1 pp0_4 VDD VSS BOOTH_SEL
+XI6 A_5 A_4 one0 two0 B_1 pp0_5 VDD VSS BOOTH_SEL
+XI7 A_6 A_5 one0 two0 B_1 pp0_6 VDD VSS BOOTH_SEL
+XI8 A_7 A_6 one0 two0 B_1 pp0_7 VDD VSS BOOTH_SEL
+XI9 A_7 A_7 one0 two0 B_1 pp0_8 VDD VSS BOOTH_SEL
+XI10 pp0_8 sn0 VDD VSS INV_X1
+XI11 B_3 B_2 B_1 one1 two1 VDD VSS BOOTH_ENC
+XI12 A_0 VSS one1 two1 B_3 pp1_0 VDD VSS BOOTH_SEL
+XI13 A_1 A_0 one1 two1 B_3 pp1_1 VDD VSS BOOTH_SEL
+XI14 A_2 A_1 one1 two1 B_3 pp1_2 VDD VSS BOOTH_SEL
+XI15 A_3 A_2 one1 two1 B_3 pp1_3 VDD VSS BOOTH_SEL
+XI16 A_4 A_3 one1 two1 B_3 pp1_4 VDD VSS BOOTH_SEL
+XI17 A_5 A_4 one1 two1 B_3 pp1_5 VDD VSS BOOTH_SEL
+XI18 A_6 A_5 one1 two1 B_3 pp1_6 VDD VSS BOOTH_SEL
+XI19 A_7 A_6 one1 two1 B_3 pp1_7 VDD VSS BOOTH_SEL
+XI20 A_7 A_7 one1 two1 B_3 pp1_8 VDD VSS BOOTH_SEL
+XI21 pp1_8 sn1 VDD VSS INV_X1
+XI22 B_5 B_4 B_3 one2 two2 VDD VSS BOOTH_ENC
+XI23 A_0 VSS one2 two2 B_5 pp2_0 VDD VSS BOOTH_SEL
+XI24 A_1 A_0 one2 two2 B_5 pp2_1 VDD VSS BOOTH_SEL
+XI25 A_2 A_1 one2 two2 B_5 pp2_2 VDD VSS BOOTH_SEL
+XI26 A_3 A_2 one2 two2 B_5 pp2_3 VDD VSS BOOTH_SEL
+XI27 A_4 A_3 one2 two2 B_5 pp2_4 VDD VSS BOOTH_SEL
+XI28 A_5 A_4 one2 two2 B_5 pp2_5 VDD VSS BOOTH_SEL
+XI29 A_6 A_5 one2 two2 B_5 pp2_6 VDD VSS BOOTH_SEL
+XI30 A_7 A_6 one2 two2 B_5 pp2_7 VDD VSS BOOTH_SEL
+XI31 A_7 A_7 one2 two2 B_5 pp2_8 VDD VSS BOOTH_SEL
+XI32 pp2_8 sn2 VDD VSS INV_X1
+XI33 B_7 B_6 B_5 one3 two3 VDD VSS BOOTH_ENC
+XI34 A_0 VSS one3 two3 B_7 pp3_0 VDD VSS BOOTH_SEL
+XI35 A_1 A_0 one3 two3 B_7 pp3_1 VDD VSS BOOTH_SEL
+XI36 A_2 A_1 one3 two3 B_7 pp3_2 VDD VSS BOOTH_SEL
+XI37 A_3 A_2 one3 two3 B_7 pp3_3 VDD VSS BOOTH_SEL
+XI38 A_4 A_3 one3 two3 B_7 pp3_4 VDD VSS BOOTH_SEL
+XI39 A_5 A_4 one3 two3 B_7 pp3_5 VDD VSS BOOTH_SEL
+XI40 A_6 A_5 one3 two3 B_7 pp3_6 VDD VSS BOOTH_SEL
+XI41 A_7 A_6 one3 two3 B_7 pp3_7 VDD VSS BOOTH_SEL
+XI42 A_7 A_7 one3 two3 B_7 pp3_8 VDD VSS BOOTH_SEL
+XI43 pp3_8 sn3 VDD VSS INV_X1
+XI44 pp0_2 pp1_0 B_3 fa1_0 fa1_1 VDD VSS FA_X1
+XI45 pp0_3 pp1_1 ha2_0 ha2_1 VDD VSS HA_X1
+XI46 pp0_4 pp1_2 pp2_0 fa3_0 fa3_1 VDD VSS FA_X1
+XI47 pp0_5 pp1_3 pp2_1 fa4_0 fa4_1 VDD VSS FA_X1
+XI48 pp0_6 pp1_4 pp2_2 pp3_0 B_7 cm5_0 cm5_1 cm5_2 VDD VSS CMP42
+XI49 pp0_7 pp1_5 pp2_3 pp3_1 cm5_2 cm6_0 cm6_1 cm6_2 VDD VSS CMP42
+XI50 pp0_8 pp1_6 pp2_4 pp3_2 cm6_2 cm7_0 cm7_1 cm7_2 VDD VSS CMP42
+XI51 pp0_8 pp1_7 pp2_5 pp3_3 cm7_2 cm8_0 cm8_1 cm8_2 VDD VSS CMP42
+XI52 pp0_8 pp1_8 pp2_6 pp3_4 cm8_2 cm9_0 cm9_1 cm9_2 VDD VSS CMP42
+XI53 sn0 sn1 pp2_7 pp3_5 cm9_2 cm10_0 cm10_1 cm10_2 VDD VSS CMP42
+XI54 VDD pp2_8 pp3_6 VSS cm10_2 cm11_0 cm11_1 cm11_2 VDD VSS CMP42
+XI55 sn2 pp3_7 cm11_2 fa12_0 fa12_1 VDD VSS FA_X1
+XI56 VDD pp3_8 ha13_0 ha13_1 VDD VSS HA_X1
+XI57 ha2_1 fa3_0 B_5 fa14_0 fa14_1 VDD VSS FA_X1
+XI58 fa3_1 fa4_0 ha15_0 ha15_1 VDD VSS HA_X1
+XI59 fa4_1 cm5_0 ha16_0 ha16_1 VDD VSS HA_X1
+XI60 cm5_1 cm6_0 ha17_0 ha17_1 VDD VSS HA_X1
+XI61 cm6_1 cm7_0 ha18_0 ha18_1 VDD VSS HA_X1
+XI62 cm7_1 cm8_0 ha19_0 ha19_1 VDD VSS HA_X1
+XI63 cm8_1 cm9_0 ha20_0 ha20_1 VDD VSS HA_X1
+XI64 cm9_1 cm10_0 ha21_0 ha21_1 VDD VSS HA_X1
+XI65 cm10_1 cm11_0 ha22_0 ha22_1 VDD VSS HA_X1
+XI66 cm11_1 fa12_0 ha23_0 ha23_1 VDD VSS HA_X1
+XI67 fa12_1 ha13_0 ha24_0 ha24_1 VDD VSS HA_X1
+XI68 ha13_1 sn3 ha25_0 ha25_1 VDD VSS HA_X1
+XI69 pp0_0 B_1 P_0 rc1 VDD VSS HA_X1
+XI70 pp0_1 rc1 P_1 rc2 VDD VSS HA_X1
+XI71 fa1_0 rc2 P_2 rc3 VDD VSS HA_X1
+XI72 fa1_1 ha2_0 rc3 P_3 rc4 VDD VSS FA_X1
+XI73 fa14_0 rc4 P_4 rc5 VDD VSS HA_X1
+XI74 fa14_1 ha15_0 rc5 P_5 rc6 VDD VSS FA_X1
+XI75 ha15_1 ha16_0 rc6 P_6 rc7 VDD VSS FA_X1
+XI76 ha16_1 ha17_0 rc7 P_7 rc8 VDD VSS FA_X1
+XI77_I0 ha17_1 ha18_0 I77_gn0 VDD VSS NAND2_X1
+XI77_I1 ha18_1 ha19_0 I77_gn1 VDD VSS NAND2_X1
+XI77_I2 ha19_1 ha20_0 I77_gn2 VDD VSS NAND2_X1
+XI77_I3 ha20_1 ha21_0 I77_gn3 VDD VSS NAND2_X1
+XI77_I4 ha21_1 ha22_0 I77_gn4 VDD VSS NAND2_X1
+XI77_I5 ha22_1 ha23_0 I77_gn5 VDD VSS NAND2_X1
+XI77_I6 ha23_1 ha24_0 I77_gn6 VDD VSS NAND2_X1
+XI77_I7 ha24_1 ha25_0 I77_gn7 VDD VSS NAND2_X1
+XI77_I8 ha17_1 ha18_0 I77_pn0 VDD VSS XNOR2_X1
+XI77_I9 ha18_1 ha19_0 I77_pn1 VDD VSS XNOR2_X1
+XI77_I10 ha19_1 ha20_0 I77_pn2 VDD VSS XNOR2_X1
+XI77_I11 ha20_1 ha21_0 I77_pn3 VDD VSS XNOR2_X1
+XI77_I12 ha21_1 ha22_0 I77_pn4 VDD VSS XNOR2_X1
+XI77_I13 ha22_1 ha23_0 I77_pn5 VDD VSS XNOR2_X1
+XI77_I14 ha23_1 ha24_0 I77_pn6 VDD VSS XNOR2_X1
+XI77_I15 ha24_1 ha25_0 I77_pn7 VDD VSS XNOR2_X1
+XI77_I16 rc8 I77_cinn VDD VSS INV_X1
+XI77_I17_XG I77_pn0 I77_cinn I77_gn0 I77_G0_0 VDD VSS OAI21_X1
+XI77_I18 I77_G0_0 I77_G0_0n VDD VSS INV_X1
+XI77_I19_XG I77_pn1 I77_G0_0n I77_gn1 I77_G1_0 VDD VSS OAI21_X1
+XI77_I20_XG I77_pn2 I77_gn1 I77_gn2 I77_G2_1 VDD VSS OAI21_X1
+XI77_I20_XP I77_pn2 I77_pn1 I77_P2_1 VDD VSS NOR2_X1
+XI77_I21_XG I77_pn3 I77_gn2 I77_gn3 I77_G3_2 VDD VSS OAI21_X1
+XI77_I21_XP I77_pn3 I77_pn2 I77_P3_2 VDD VSS NOR2_X1
+XI77_I22_XG I77_pn4 I77_gn3 I77_gn4 I77_G4_3 VDD VSS OAI21_X1
+XI77_I22_XP I77_pn4 I77_pn3 I77_P4_3 VDD VSS NOR2_X1
+XI77_I23_XG I77_pn5 I77_gn4 I77_gn5 I77_G5_4 VDD VSS OAI21_X1
+XI77_I23_XP I77_pn5 I77_pn4 I77_P5_4 VDD VSS NOR2_X1
+XI77_I24_XG I77_pn6 I77_gn5 I77_gn6 I77_G6_5 VDD VSS OAI21_X1
+XI77_I24_XP I77_pn6 I77_pn5 I77_P6_5 VDD VSS NOR2_X1
+XI77_I25_XG I77_pn7 I77_gn6 I77_gn7 I77_G7_6 VDD VSS OAI21_X1
+XI77_I25_XP I77_pn7 I77_pn6 I77_P7_6 VDD VSS NOR2_X1
+XI77_I26_XG I77_P2_1 I77_G0_0 I77_G2_1 I77_G2_0n VDD VSS AOI21_X1
+XI77_I27_XG I77_P3_2 I77_G1_0 I77_G3_2 I77_G3_0n VDD VSS AOI21_X1
+XI77_I28_XG I77_P4_3 I77_G2_1 I77_G4_3 I77_G4_1n VDD VSS AOI21_X1
+XI77_I28_XP I77_P4_3 I77_P2_1 I77_P4_1n VDD VSS NAND2_X1
+XI77_I29_XG I77_P5_4 I77_G3_2 I77_G5_4 I77_G5_2n VDD VSS AOI21_X1
+XI77_I29_XP I77_P5_4 I77_P3_2 I77_P5_2n VDD VSS NAND2_X1
+XI77_I30_XG I77_P6_5 I77_G4_3 I77_G6_5 I77_G6_3n VDD VSS AOI21_X1
+XI77_I30_XP I77_P6_5 I77_P4_3 I77_P6_3n VDD VSS NAND2_X1
+XI77_I31_XG I77_P7_6 I77_G5_4 I77_G7_6 I77_G7_4n VDD VSS AOI21_X1
+XI77_I31_XP I77_P7_6 I77_P5_4 I77_P7_4n VDD VSS NAND2_X1
+XI77_I32_XG I77_P4_1n I77_G0_0n I77_G4_1n I77_G4_0 VDD VSS OAI21_X1
+XI77_I33 I77_G1_0 I77_G1_0n VDD VSS INV_X1
+XI77_I34_XG I77_P5_2n I77_G1_0n I77_G5_2n I77_G5_0 VDD VSS OAI21_X1
+XI77_I35_XG I77_P6_3n I77_G2_0n I77_G6_3n kc7 VDD VSS OAI21_X1
+XI77_I36_XG I77_P7_4n I77_G3_0n I77_G7_4n kc8 VDD VSS OAI21_X1
+XI77_I37 I77_pn0 rc8 P_8 VDD VSS XNOR2_X1
+XI77_I38 I77_pn1 I77_G0_0 P_9 VDD VSS XNOR2_X1
+XI77_I39 I77_pn2 I77_G1_0 P_10 VDD VSS XNOR2_X1
+XI77_I40 I77_pn3 I77_G2_0n P_11 VDD VSS XOR2_X1
+XI77_I41 I77_pn4 I77_G3_0n P_12 VDD VSS XOR2_X1
+XI77_I42 I77_pn5 I77_G4_0 P_13 VDD VSS XNOR2_X1
+XI77_I43 I77_pn6 I77_G5_0 P_14 VDD VSS XNOR2_X1
+XI77_I44 I77_pn7 kc7 P_15 VDD VSS XNOR2_X1
+.ENDS MUL8

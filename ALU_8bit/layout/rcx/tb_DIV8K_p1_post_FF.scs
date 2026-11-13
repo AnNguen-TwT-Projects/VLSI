@@ -1,0 +1,6 @@
+// DIV8K_p1 sau layout (Assura RCX), corner FF
+simulator lang=spectre
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=FF
+include "../../../tang1_cell/cells.scs"
+include "DIV8K_rcx.scs"
+include "../../tb/tb_DIV8K_p1.scs"

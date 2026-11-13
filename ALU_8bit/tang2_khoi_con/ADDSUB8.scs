@@ -1,0 +1,15 @@
+// ADDSUB8: cong / tru 8 bit = KSA8 + XOR dao B
+simulator lang=spectre
+subckt ADDSUB8 A_0 A_1 A_2 A_3 A_4 A_5 A_6 A_7 B_0 B_1 B_2 B_3 B_4 B_5 B_6 B_7 SUB S_0 S_1 \
+    S_2 S_3 S_4 S_5 S_6 S_7 C7 C8 VDD VSS
+I0 (B_0 SUB bx0 VDD VSS) XOR2_X1
+I1 (B_1 SUB bx1 VDD VSS) XOR2_X1
+I2 (B_2 SUB bx2 VDD VSS) XOR2_X1
+I3 (B_3 SUB bx3 VDD VSS) XOR2_X1
+I4 (B_4 SUB bx4 VDD VSS) XOR2_X1
+I5 (B_5 SUB bx5 VDD VSS) XOR2_X1
+I6 (B_6 SUB bx6 VDD VSS) XOR2_X1
+I7 (B_7 SUB bx7 VDD VSS) XOR2_X1
+I8 (A_0 A_1 A_2 A_3 A_4 A_5 A_6 A_7 bx0 bx1 bx2 bx3 bx4 bx5 bx6 bx7 SUB S_0 S_1 S_2 S_3 \
+    S_4 S_5 S_6 S_7 C7 C8 VDD VSS) KSA8
+ends ADDSUB8

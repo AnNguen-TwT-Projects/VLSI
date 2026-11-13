@@ -1,0 +1,12 @@
+// ALU_8bit: moi khoi tang 2, 3, 4 cua ALU_TOPK. Include sau file model va tang1_cell/cells.scs.
+simulator lang=spectre
+include "tang2_khoi_con/KSA8.scs"
+include "tang2_khoi_con/ADDSUB8.scs"
+include "tang2_khoi_con/LOGIC8.scs"
+include "tang2_khoi_con/DEC_OP.scs"
+include "tang2_khoi_con/OUTMUX.scs"
+include "tang2_khoi_con/FLAGS.scs"
+include "tang3_khoi/ALU_CORE.scs"
+include "tang3_khoi/MUL8.scs"
+include "tang3_khoi/DIV8K.scs"
+include "tang4_top/ALU_TOPK.scs"

@@ -1,0 +1,402 @@
+// Testbench DIV32 (2 vector)
+// 60 ns/vector, suon 20 ps, tai 4x INV_X1 moi ngo ra
+simulator lang=spectre
+global 0
+VVDD (VDD 0) vsource dc=1.2
+VVSS (VSS 0) vsource dc=0
+VA_0 (A_0 0) vsource type=pwl wave=[ \
+    0p 1.2 60000p 1.2 60020p 0 ]
+VA_1 (A_1 0) vsource type=pwl wave=[ \
+    0p 1.2 ]
+VA_2 (A_2 0) vsource type=pwl wave=[ \
+    0p 1.2 60000p 1.2 60020p 0 ]
+VA_3 (A_3 0) vsource type=pwl wave=[ \
+    0p 1.2 60000p 1.2 60020p 0 ]
+VA_4 (A_4 0) vsource type=pwl wave=[ \
+    0p 1.2 ]
+VA_5 (A_5 0) vsource type=pwl wave=[ \
+    0p 1.2 ]
+VA_6 (A_6 0) vsource type=pwl wave=[ \
+    0p 1.2 ]
+VA_7 (A_7 0) vsource type=pwl wave=[ \
+    0p 1.2 60000p 1.2 60020p 0 ]
+VA_8 (A_8 0) vsource type=pwl wave=[ \
+    0p 1.2 ]
+VA_9 (A_9 0) vsource type=pwl wave=[ \
+    0p 1.2 ]
+VA_10 (A_10 0) vsource type=pwl wave=[ \
+    0p 1.2 ]
+VA_11 (A_11 0) vsource type=pwl wave=[ \
+    0p 1.2 60000p 1.2 60020p 0 ]
+VA_12 (A_12 0) vsource type=pwl wave=[ \
+    0p 1.2 60000p 1.2 60020p 0 ]
+VA_13 (A_13 0) vsource type=pwl wave=[ \
+    0p 1.2 ]
+VA_14 (A_14 0) vsource type=pwl wave=[ \
+    0p 1.2 ]
+VA_15 (A_15 0) vsource type=pwl wave=[ \
+    0p 1.2 60000p 1.2 60020p 0 ]
+VA_16 (A_16 0) vsource type=pwl wave=[ \
+    0p 1.2 60000p 1.2 60020p 0 ]
+VA_17 (A_17 0) vsource type=pwl wave=[ \
+    0p 1.2 60000p 1.2 60020p 0 ]
+VA_18 (A_18 0) vsource type=pwl wave=[ \
+    0p 1.2 ]
+VA_19 (A_19 0) vsource type=pwl wave=[ \
+    0p 1.2 60000p 1.2 60020p 0 ]
+VA_20 (A_20 0) vsource type=pwl wave=[ \
+    0p 1.2 ]
+VA_21 (A_21 0) vsource type=pwl wave=[ \
+    0p 1.2 ]
+VA_22 (A_22 0) vsource type=pwl wave=[ \
+    0p 1.2 ]
+VA_23 (A_23 0) vsource type=pwl wave=[ \
+    0p 1.2 60000p 1.2 60020p 0 ]
+VA_24 (A_24 0) vsource type=pwl wave=[ \
+    0p 1.2 60000p 1.2 60020p 0 ]
+VA_25 (A_25 0) vsource type=pwl wave=[ \
+    0p 1.2 ]
+VA_26 (A_26 0) vsource type=pwl wave=[ \
+    0p 1.2 ]
+VA_27 (A_27 0) vsource type=pwl wave=[ \
+    0p 1.2 60000p 1.2 60020p 0 ]
+VA_28 (A_28 0) vsource type=pwl wave=[ \
+    0p 1.2 60000p 1.2 60020p 0 ]
+VA_29 (A_29 0) vsource type=pwl wave=[ \
+    0p 1.2 ]
+VA_30 (A_30 0) vsource type=pwl wave=[ \
+    0p 1.2 ]
+VA_31 (A_31 0) vsource type=pwl wave=[ \
+    0p 0 60000p 0 60020p 1.2 ]
+VB_0 (B_0 0) vsource type=pwl wave=[ \
+    0p 1.2 ]
+VB_1 (B_1 0) vsource type=pwl wave=[ \
+    0p 1.2 ]
+VB_2 (B_2 0) vsource type=pwl wave=[ \
+    0p 0 60000p 0 60020p 1.2 ]
+VB_3 (B_3 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_4 (B_4 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_5 (B_5 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_6 (B_6 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_7 (B_7 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_8 (B_8 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_9 (B_9 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_10 (B_10 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_11 (B_11 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_12 (B_12 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_13 (B_13 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_14 (B_14 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_15 (B_15 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_16 (B_16 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_17 (B_17 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_18 (B_18 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_19 (B_19 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_20 (B_20 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_21 (B_21 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_22 (B_22 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_23 (B_23 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_24 (B_24 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_25 (B_25 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_26 (B_26 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_27 (B_27 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_28 (B_28 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_29 (B_29 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_30 (B_30 0) vsource type=pwl wave=[ \
+    0p 0 ]
+VB_31 (B_31 0) vsource type=pwl wave=[ \
+    0p 0 ]
+XDUT (A_0 A_1 A_2 A_3 A_4 A_5 A_6 A_7 A_8 A_9 A_10 A_11 A_12 A_13 A_14 A_15 A_16 A_17 A_18 A_19 A_20 A_21 A_22 A_23 A_24 A_25 A_26 A_27 A_28 A_29 A_30 A_31 B_0 B_1 B_2 B_3 B_4 B_5 B_6 B_7 B_8 B_9 B_10 B_11 B_12 B_13 B_14 B_15 B_16 B_17 B_18 B_19 B_20 B_21 B_22 B_23 B_24 B_25 B_26 B_27 B_28 B_29 B_30 B_31 Q_0 Q_1 Q_2 Q_3 Q_4 Q_5 Q_6 Q_7 Q_8 Q_9 Q_10 Q_11 Q_12 Q_13 Q_14 Q_15 Q_16 Q_17 Q_18 Q_19 Q_20 Q_21 Q_22 Q_23 Q_24 Q_25 Q_26 Q_27 Q_28 Q_29 Q_30 Q_31 R_0 R_1 R_2 R_3 R_4 R_5 R_6 R_7 R_8 R_9 R_10 R_11 R_12 R_13 R_14 R_15 R_16 R_17 R_18 R_19 R_20 R_21 R_22 R_23 R_24 R_25 R_26 R_27 R_28 R_29 R_30 R_31 V DZ VDD VSS) DIV32
+XLQ_0_0 (Q_0 ld_Q_0_0 VDD VSS) INV_X1
+XLQ_0_1 (Q_0 ld_Q_0_1 VDD VSS) INV_X1
+XLQ_0_2 (Q_0 ld_Q_0_2 VDD VSS) INV_X1
+XLQ_0_3 (Q_0 ld_Q_0_3 VDD VSS) INV_X1
+XLQ_1_0 (Q_1 ld_Q_1_0 VDD VSS) INV_X1
+XLQ_1_1 (Q_1 ld_Q_1_1 VDD VSS) INV_X1
+XLQ_1_2 (Q_1 ld_Q_1_2 VDD VSS) INV_X1
+XLQ_1_3 (Q_1 ld_Q_1_3 VDD VSS) INV_X1
+XLQ_2_0 (Q_2 ld_Q_2_0 VDD VSS) INV_X1
+XLQ_2_1 (Q_2 ld_Q_2_1 VDD VSS) INV_X1
+XLQ_2_2 (Q_2 ld_Q_2_2 VDD VSS) INV_X1
+XLQ_2_3 (Q_2 ld_Q_2_3 VDD VSS) INV_X1
+XLQ_3_0 (Q_3 ld_Q_3_0 VDD VSS) INV_X1
+XLQ_3_1 (Q_3 ld_Q_3_1 VDD VSS) INV_X1
+XLQ_3_2 (Q_3 ld_Q_3_2 VDD VSS) INV_X1
+XLQ_3_3 (Q_3 ld_Q_3_3 VDD VSS) INV_X1
+XLQ_4_0 (Q_4 ld_Q_4_0 VDD VSS) INV_X1
+XLQ_4_1 (Q_4 ld_Q_4_1 VDD VSS) INV_X1
+XLQ_4_2 (Q_4 ld_Q_4_2 VDD VSS) INV_X1
+XLQ_4_3 (Q_4 ld_Q_4_3 VDD VSS) INV_X1
+XLQ_5_0 (Q_5 ld_Q_5_0 VDD VSS) INV_X1
+XLQ_5_1 (Q_5 ld_Q_5_1 VDD VSS) INV_X1
+XLQ_5_2 (Q_5 ld_Q_5_2 VDD VSS) INV_X1
+XLQ_5_3 (Q_5 ld_Q_5_3 VDD VSS) INV_X1
+XLQ_6_0 (Q_6 ld_Q_6_0 VDD VSS) INV_X1
+XLQ_6_1 (Q_6 ld_Q_6_1 VDD VSS) INV_X1
+XLQ_6_2 (Q_6 ld_Q_6_2 VDD VSS) INV_X1
+XLQ_6_3 (Q_6 ld_Q_6_3 VDD VSS) INV_X1
+XLQ_7_0 (Q_7 ld_Q_7_0 VDD VSS) INV_X1
+XLQ_7_1 (Q_7 ld_Q_7_1 VDD VSS) INV_X1
+XLQ_7_2 (Q_7 ld_Q_7_2 VDD VSS) INV_X1
+XLQ_7_3 (Q_7 ld_Q_7_3 VDD VSS) INV_X1
+XLQ_8_0 (Q_8 ld_Q_8_0 VDD VSS) INV_X1
+XLQ_8_1 (Q_8 ld_Q_8_1 VDD VSS) INV_X1
+XLQ_8_2 (Q_8 ld_Q_8_2 VDD VSS) INV_X1
+XLQ_8_3 (Q_8 ld_Q_8_3 VDD VSS) INV_X1
+XLQ_9_0 (Q_9 ld_Q_9_0 VDD VSS) INV_X1
+XLQ_9_1 (Q_9 ld_Q_9_1 VDD VSS) INV_X1
+XLQ_9_2 (Q_9 ld_Q_9_2 VDD VSS) INV_X1
+XLQ_9_3 (Q_9 ld_Q_9_3 VDD VSS) INV_X1
+XLQ_10_0 (Q_10 ld_Q_10_0 VDD VSS) INV_X1
+XLQ_10_1 (Q_10 ld_Q_10_1 VDD VSS) INV_X1
+XLQ_10_2 (Q_10 ld_Q_10_2 VDD VSS) INV_X1
+XLQ_10_3 (Q_10 ld_Q_10_3 VDD VSS) INV_X1
+XLQ_11_0 (Q_11 ld_Q_11_0 VDD VSS) INV_X1
+XLQ_11_1 (Q_11 ld_Q_11_1 VDD VSS) INV_X1
+XLQ_11_2 (Q_11 ld_Q_11_2 VDD VSS) INV_X1
+XLQ_11_3 (Q_11 ld_Q_11_3 VDD VSS) INV_X1
+XLQ_12_0 (Q_12 ld_Q_12_0 VDD VSS) INV_X1
+XLQ_12_1 (Q_12 ld_Q_12_1 VDD VSS) INV_X1
+XLQ_12_2 (Q_12 ld_Q_12_2 VDD VSS) INV_X1
+XLQ_12_3 (Q_12 ld_Q_12_3 VDD VSS) INV_X1
+XLQ_13_0 (Q_13 ld_Q_13_0 VDD VSS) INV_X1
+XLQ_13_1 (Q_13 ld_Q_13_1 VDD VSS) INV_X1
+XLQ_13_2 (Q_13 ld_Q_13_2 VDD VSS) INV_X1
+XLQ_13_3 (Q_13 ld_Q_13_3 VDD VSS) INV_X1
+XLQ_14_0 (Q_14 ld_Q_14_0 VDD VSS) INV_X1
+XLQ_14_1 (Q_14 ld_Q_14_1 VDD VSS) INV_X1
+XLQ_14_2 (Q_14 ld_Q_14_2 VDD VSS) INV_X1
+XLQ_14_3 (Q_14 ld_Q_14_3 VDD VSS) INV_X1
+XLQ_15_0 (Q_15 ld_Q_15_0 VDD VSS) INV_X1
+XLQ_15_1 (Q_15 ld_Q_15_1 VDD VSS) INV_X1
+XLQ_15_2 (Q_15 ld_Q_15_2 VDD VSS) INV_X1
+XLQ_15_3 (Q_15 ld_Q_15_3 VDD VSS) INV_X1
+XLQ_16_0 (Q_16 ld_Q_16_0 VDD VSS) INV_X1
+XLQ_16_1 (Q_16 ld_Q_16_1 VDD VSS) INV_X1
+XLQ_16_2 (Q_16 ld_Q_16_2 VDD VSS) INV_X1
+XLQ_16_3 (Q_16 ld_Q_16_3 VDD VSS) INV_X1
+XLQ_17_0 (Q_17 ld_Q_17_0 VDD VSS) INV_X1
+XLQ_17_1 (Q_17 ld_Q_17_1 VDD VSS) INV_X1
+XLQ_17_2 (Q_17 ld_Q_17_2 VDD VSS) INV_X1
+XLQ_17_3 (Q_17 ld_Q_17_3 VDD VSS) INV_X1
+XLQ_18_0 (Q_18 ld_Q_18_0 VDD VSS) INV_X1
+XLQ_18_1 (Q_18 ld_Q_18_1 VDD VSS) INV_X1
+XLQ_18_2 (Q_18 ld_Q_18_2 VDD VSS) INV_X1
+XLQ_18_3 (Q_18 ld_Q_18_3 VDD VSS) INV_X1
+XLQ_19_0 (Q_19 ld_Q_19_0 VDD VSS) INV_X1
+XLQ_19_1 (Q_19 ld_Q_19_1 VDD VSS) INV_X1
+XLQ_19_2 (Q_19 ld_Q_19_2 VDD VSS) INV_X1
+XLQ_19_3 (Q_19 ld_Q_19_3 VDD VSS) INV_X1
+XLQ_20_0 (Q_20 ld_Q_20_0 VDD VSS) INV_X1
+XLQ_20_1 (Q_20 ld_Q_20_1 VDD VSS) INV_X1
+XLQ_20_2 (Q_20 ld_Q_20_2 VDD VSS) INV_X1
+XLQ_20_3 (Q_20 ld_Q_20_3 VDD VSS) INV_X1
+XLQ_21_0 (Q_21 ld_Q_21_0 VDD VSS) INV_X1
+XLQ_21_1 (Q_21 ld_Q_21_1 VDD VSS) INV_X1
+XLQ_21_2 (Q_21 ld_Q_21_2 VDD VSS) INV_X1
+XLQ_21_3 (Q_21 ld_Q_21_3 VDD VSS) INV_X1
+XLQ_22_0 (Q_22 ld_Q_22_0 VDD VSS) INV_X1
+XLQ_22_1 (Q_22 ld_Q_22_1 VDD VSS) INV_X1
+XLQ_22_2 (Q_22 ld_Q_22_2 VDD VSS) INV_X1
+XLQ_22_3 (Q_22 ld_Q_22_3 VDD VSS) INV_X1
+XLQ_23_0 (Q_23 ld_Q_23_0 VDD VSS) INV_X1
+XLQ_23_1 (Q_23 ld_Q_23_1 VDD VSS) INV_X1
+XLQ_23_2 (Q_23 ld_Q_23_2 VDD VSS) INV_X1
+XLQ_23_3 (Q_23 ld_Q_23_3 VDD VSS) INV_X1
+XLQ_24_0 (Q_24 ld_Q_24_0 VDD VSS) INV_X1
+XLQ_24_1 (Q_24 ld_Q_24_1 VDD VSS) INV_X1
+XLQ_24_2 (Q_24 ld_Q_24_2 VDD VSS) INV_X1
+XLQ_24_3 (Q_24 ld_Q_24_3 VDD VSS) INV_X1
+XLQ_25_0 (Q_25 ld_Q_25_0 VDD VSS) INV_X1
+XLQ_25_1 (Q_25 ld_Q_25_1 VDD VSS) INV_X1
+XLQ_25_2 (Q_25 ld_Q_25_2 VDD VSS) INV_X1
+XLQ_25_3 (Q_25 ld_Q_25_3 VDD VSS) INV_X1
+XLQ_26_0 (Q_26 ld_Q_26_0 VDD VSS) INV_X1
+XLQ_26_1 (Q_26 ld_Q_26_1 VDD VSS) INV_X1
+XLQ_26_2 (Q_26 ld_Q_26_2 VDD VSS) INV_X1
+XLQ_26_3 (Q_26 ld_Q_26_3 VDD VSS) INV_X1
+XLQ_27_0 (Q_27 ld_Q_27_0 VDD VSS) INV_X1
+XLQ_27_1 (Q_27 ld_Q_27_1 VDD VSS) INV_X1
+XLQ_27_2 (Q_27 ld_Q_27_2 VDD VSS) INV_X1
+XLQ_27_3 (Q_27 ld_Q_27_3 VDD VSS) INV_X1
+XLQ_28_0 (Q_28 ld_Q_28_0 VDD VSS) INV_X1
+XLQ_28_1 (Q_28 ld_Q_28_1 VDD VSS) INV_X1
+XLQ_28_2 (Q_28 ld_Q_28_2 VDD VSS) INV_X1
+XLQ_28_3 (Q_28 ld_Q_28_3 VDD VSS) INV_X1
+XLQ_29_0 (Q_29 ld_Q_29_0 VDD VSS) INV_X1
+XLQ_29_1 (Q_29 ld_Q_29_1 VDD VSS) INV_X1
+XLQ_29_2 (Q_29 ld_Q_29_2 VDD VSS) INV_X1
+XLQ_29_3 (Q_29 ld_Q_29_3 VDD VSS) INV_X1
+XLQ_30_0 (Q_30 ld_Q_30_0 VDD VSS) INV_X1
+XLQ_30_1 (Q_30 ld_Q_30_1 VDD VSS) INV_X1
+XLQ_30_2 (Q_30 ld_Q_30_2 VDD VSS) INV_X1
+XLQ_30_3 (Q_30 ld_Q_30_3 VDD VSS) INV_X1
+XLQ_31_0 (Q_31 ld_Q_31_0 VDD VSS) INV_X1
+XLQ_31_1 (Q_31 ld_Q_31_1 VDD VSS) INV_X1
+XLQ_31_2 (Q_31 ld_Q_31_2 VDD VSS) INV_X1
+XLQ_31_3 (Q_31 ld_Q_31_3 VDD VSS) INV_X1
+XLR_0_0 (R_0 ld_R_0_0 VDD VSS) INV_X1
+XLR_0_1 (R_0 ld_R_0_1 VDD VSS) INV_X1
+XLR_0_2 (R_0 ld_R_0_2 VDD VSS) INV_X1
+XLR_0_3 (R_0 ld_R_0_3 VDD VSS) INV_X1
+XLR_1_0 (R_1 ld_R_1_0 VDD VSS) INV_X1
+XLR_1_1 (R_1 ld_R_1_1 VDD VSS) INV_X1
+XLR_1_2 (R_1 ld_R_1_2 VDD VSS) INV_X1
+XLR_1_3 (R_1 ld_R_1_3 VDD VSS) INV_X1
+XLR_2_0 (R_2 ld_R_2_0 VDD VSS) INV_X1
+XLR_2_1 (R_2 ld_R_2_1 VDD VSS) INV_X1
+XLR_2_2 (R_2 ld_R_2_2 VDD VSS) INV_X1
+XLR_2_3 (R_2 ld_R_2_3 VDD VSS) INV_X1
+XLR_3_0 (R_3 ld_R_3_0 VDD VSS) INV_X1
+XLR_3_1 (R_3 ld_R_3_1 VDD VSS) INV_X1
+XLR_3_2 (R_3 ld_R_3_2 VDD VSS) INV_X1
+XLR_3_3 (R_3 ld_R_3_3 VDD VSS) INV_X1
+XLR_4_0 (R_4 ld_R_4_0 VDD VSS) INV_X1
+XLR_4_1 (R_4 ld_R_4_1 VDD VSS) INV_X1
+XLR_4_2 (R_4 ld_R_4_2 VDD VSS) INV_X1
+XLR_4_3 (R_4 ld_R_4_3 VDD VSS) INV_X1
+XLR_5_0 (R_5 ld_R_5_0 VDD VSS) INV_X1
+XLR_5_1 (R_5 ld_R_5_1 VDD VSS) INV_X1
+XLR_5_2 (R_5 ld_R_5_2 VDD VSS) INV_X1
+XLR_5_3 (R_5 ld_R_5_3 VDD VSS) INV_X1
+XLR_6_0 (R_6 ld_R_6_0 VDD VSS) INV_X1
+XLR_6_1 (R_6 ld_R_6_1 VDD VSS) INV_X1
+XLR_6_2 (R_6 ld_R_6_2 VDD VSS) INV_X1
+XLR_6_3 (R_6 ld_R_6_3 VDD VSS) INV_X1
+XLR_7_0 (R_7 ld_R_7_0 VDD VSS) INV_X1
+XLR_7_1 (R_7 ld_R_7_1 VDD VSS) INV_X1
+XLR_7_2 (R_7 ld_R_7_2 VDD VSS) INV_X1
+XLR_7_3 (R_7 ld_R_7_3 VDD VSS) INV_X1
+XLR_8_0 (R_8 ld_R_8_0 VDD VSS) INV_X1
+XLR_8_1 (R_8 ld_R_8_1 VDD VSS) INV_X1
+XLR_8_2 (R_8 ld_R_8_2 VDD VSS) INV_X1
+XLR_8_3 (R_8 ld_R_8_3 VDD VSS) INV_X1
+XLR_9_0 (R_9 ld_R_9_0 VDD VSS) INV_X1
+XLR_9_1 (R_9 ld_R_9_1 VDD VSS) INV_X1
+XLR_9_2 (R_9 ld_R_9_2 VDD VSS) INV_X1
+XLR_9_3 (R_9 ld_R_9_3 VDD VSS) INV_X1
+XLR_10_0 (R_10 ld_R_10_0 VDD VSS) INV_X1
+XLR_10_1 (R_10 ld_R_10_1 VDD VSS) INV_X1
+XLR_10_2 (R_10 ld_R_10_2 VDD VSS) INV_X1
+XLR_10_3 (R_10 ld_R_10_3 VDD VSS) INV_X1
+XLR_11_0 (R_11 ld_R_11_0 VDD VSS) INV_X1
+XLR_11_1 (R_11 ld_R_11_1 VDD VSS) INV_X1
+XLR_11_2 (R_11 ld_R_11_2 VDD VSS) INV_X1
+XLR_11_3 (R_11 ld_R_11_3 VDD VSS) INV_X1
+XLR_12_0 (R_12 ld_R_12_0 VDD VSS) INV_X1
+XLR_12_1 (R_12 ld_R_12_1 VDD VSS) INV_X1
+XLR_12_2 (R_12 ld_R_12_2 VDD VSS) INV_X1
+XLR_12_3 (R_12 ld_R_12_3 VDD VSS) INV_X1
+XLR_13_0 (R_13 ld_R_13_0 VDD VSS) INV_X1
+XLR_13_1 (R_13 ld_R_13_1 VDD VSS) INV_X1
+XLR_13_2 (R_13 ld_R_13_2 VDD VSS) INV_X1
+XLR_13_3 (R_13 ld_R_13_3 VDD VSS) INV_X1
+XLR_14_0 (R_14 ld_R_14_0 VDD VSS) INV_X1
+XLR_14_1 (R_14 ld_R_14_1 VDD VSS) INV_X1
+XLR_14_2 (R_14 ld_R_14_2 VDD VSS) INV_X1
+XLR_14_3 (R_14 ld_R_14_3 VDD VSS) INV_X1
+XLR_15_0 (R_15 ld_R_15_0 VDD VSS) INV_X1
+XLR_15_1 (R_15 ld_R_15_1 VDD VSS) INV_X1
+XLR_15_2 (R_15 ld_R_15_2 VDD VSS) INV_X1
+XLR_15_3 (R_15 ld_R_15_3 VDD VSS) INV_X1
+XLR_16_0 (R_16 ld_R_16_0 VDD VSS) INV_X1
+XLR_16_1 (R_16 ld_R_16_1 VDD VSS) INV_X1
+XLR_16_2 (R_16 ld_R_16_2 VDD VSS) INV_X1
+XLR_16_3 (R_16 ld_R_16_3 VDD VSS) INV_X1
+XLR_17_0 (R_17 ld_R_17_0 VDD VSS) INV_X1
+XLR_17_1 (R_17 ld_R_17_1 VDD VSS) INV_X1
+XLR_17_2 (R_17 ld_R_17_2 VDD VSS) INV_X1
+XLR_17_3 (R_17 ld_R_17_3 VDD VSS) INV_X1
+XLR_18_0 (R_18 ld_R_18_0 VDD VSS) INV_X1
+XLR_18_1 (R_18 ld_R_18_1 VDD VSS) INV_X1
+XLR_18_2 (R_18 ld_R_18_2 VDD VSS) INV_X1
+XLR_18_3 (R_18 ld_R_18_3 VDD VSS) INV_X1
+XLR_19_0 (R_19 ld_R_19_0 VDD VSS) INV_X1
+XLR_19_1 (R_19 ld_R_19_1 VDD VSS) INV_X1
+XLR_19_2 (R_19 ld_R_19_2 VDD VSS) INV_X1
+XLR_19_3 (R_19 ld_R_19_3 VDD VSS) INV_X1
+XLR_20_0 (R_20 ld_R_20_0 VDD VSS) INV_X1
+XLR_20_1 (R_20 ld_R_20_1 VDD VSS) INV_X1
+XLR_20_2 (R_20 ld_R_20_2 VDD VSS) INV_X1
+XLR_20_3 (R_20 ld_R_20_3 VDD VSS) INV_X1
+XLR_21_0 (R_21 ld_R_21_0 VDD VSS) INV_X1
+XLR_21_1 (R_21 ld_R_21_1 VDD VSS) INV_X1
+XLR_21_2 (R_21 ld_R_21_2 VDD VSS) INV_X1
+XLR_21_3 (R_21 ld_R_21_3 VDD VSS) INV_X1
+XLR_22_0 (R_22 ld_R_22_0 VDD VSS) INV_X1
+XLR_22_1 (R_22 ld_R_22_1 VDD VSS) INV_X1
+XLR_22_2 (R_22 ld_R_22_2 VDD VSS) INV_X1
+XLR_22_3 (R_22 ld_R_22_3 VDD VSS) INV_X1
+XLR_23_0 (R_23 ld_R_23_0 VDD VSS) INV_X1
+XLR_23_1 (R_23 ld_R_23_1 VDD VSS) INV_X1
+XLR_23_2 (R_23 ld_R_23_2 VDD VSS) INV_X1
+XLR_23_3 (R_23 ld_R_23_3 VDD VSS) INV_X1
+XLR_24_0 (R_24 ld_R_24_0 VDD VSS) INV_X1
+XLR_24_1 (R_24 ld_R_24_1 VDD VSS) INV_X1
+XLR_24_2 (R_24 ld_R_24_2 VDD VSS) INV_X1
+XLR_24_3 (R_24 ld_R_24_3 VDD VSS) INV_X1
+XLR_25_0 (R_25 ld_R_25_0 VDD VSS) INV_X1
+XLR_25_1 (R_25 ld_R_25_1 VDD VSS) INV_X1
+XLR_25_2 (R_25 ld_R_25_2 VDD VSS) INV_X1
+XLR_25_3 (R_25 ld_R_25_3 VDD VSS) INV_X1
+XLR_26_0 (R_26 ld_R_26_0 VDD VSS) INV_X1
+XLR_26_1 (R_26 ld_R_26_1 VDD VSS) INV_X1
+XLR_26_2 (R_26 ld_R_26_2 VDD VSS) INV_X1
+XLR_26_3 (R_26 ld_R_26_3 VDD VSS) INV_X1
+XLR_27_0 (R_27 ld_R_27_0 VDD VSS) INV_X1
+XLR_27_1 (R_27 ld_R_27_1 VDD VSS) INV_X1
+XLR_27_2 (R_27 ld_R_27_2 VDD VSS) INV_X1
+XLR_27_3 (R_27 ld_R_27_3 VDD VSS) INV_X1
+XLR_28_0 (R_28 ld_R_28_0 VDD VSS) INV_X1
+XLR_28_1 (R_28 ld_R_28_1 VDD VSS) INV_X1
+XLR_28_2 (R_28 ld_R_28_2 VDD VSS) INV_X1
+XLR_28_3 (R_28 ld_R_28_3 VDD VSS) INV_X1
+XLR_29_0 (R_29 ld_R_29_0 VDD VSS) INV_X1
+XLR_29_1 (R_29 ld_R_29_1 VDD VSS) INV_X1
+XLR_29_2 (R_29 ld_R_29_2 VDD VSS) INV_X1
+XLR_29_3 (R_29 ld_R_29_3 VDD VSS) INV_X1
+XLR_30_0 (R_30 ld_R_30_0 VDD VSS) INV_X1
+XLR_30_1 (R_30 ld_R_30_1 VDD VSS) INV_X1
+XLR_30_2 (R_30 ld_R_30_2 VDD VSS) INV_X1
+XLR_30_3 (R_30 ld_R_30_3 VDD VSS) INV_X1
+XLR_31_0 (R_31 ld_R_31_0 VDD VSS) INV_X1
+XLR_31_1 (R_31 ld_R_31_1 VDD VSS) INV_X1
+XLR_31_2 (R_31 ld_R_31_2 VDD VSS) INV_X1
+XLR_31_3 (R_31 ld_R_31_3 VDD VSS) INV_X1
+XLV_0 (V ld_V_0 VDD VSS) INV_X1
+XLV_1 (V ld_V_1 VDD VSS) INV_X1
+XLV_2 (V ld_V_2 VDD VSS) INV_X1
+XLV_3 (V ld_V_3 VDD VSS) INV_X1
+XLDZ_0 (DZ ld_DZ_0 VDD VSS) INV_X1
+XLDZ_1 (DZ ld_DZ_1 VDD VSS) INV_X1
+XLDZ_2 (DZ ld_DZ_2 VDD VSS) INV_X1
+XLDZ_3 (DZ ld_DZ_3 VDD VSS) INV_X1
+save A_0 A_1 A_2 A_3 A_4 A_5 A_6 A_7 A_8 A_9 A_10 A_11 A_12 A_13 A_14 A_15 A_16 A_17 A_18 A_19 A_20 A_21 A_22 A_23 A_24 A_25 A_26 A_27 A_28 A_29 A_30 A_31 B_0 B_1 B_2 B_3 B_4 B_5 B_6 B_7 B_8 B_9 B_10 B_11 B_12 B_13 B_14 B_15 B_16 B_17 B_18 B_19 B_20 B_21 B_22 B_23 B_24 B_25 B_26 B_27 B_28 B_29 B_30 B_31 Q_0 Q_1 Q_2 Q_3 Q_4 Q_5 Q_6 Q_7 Q_8 Q_9 Q_10 Q_11 Q_12 Q_13 Q_14 Q_15 Q_16 Q_17 Q_18 Q_19 Q_20 Q_21 Q_22 Q_23 Q_24 Q_25 Q_26 Q_27 Q_28 Q_29 Q_30 Q_31 R_0 R_1 R_2 R_3 R_4 R_5 R_6 R_7 R_8 R_9 R_10 R_11 R_12 R_13 R_14 R_15 R_16 R_17 R_18 R_19 R_20 R_21 R_22 R_23 R_24 R_25 R_26 R_27 R_28 R_29 R_30 R_31 V DZ VVDD:p
+opts options save=selected temp=27 reltol=1e-3
+tran tran stop=120n maxstep=50p skipdc=yes errpreset=moderate

@@ -1,0 +1,18 @@
+// INV_X1: 3 vectors x 500 ps, edges 20 ps, FO4 (4x INV_X1) per output
+// vector sequence (A): 0 1 0
+simulator lang=spectre
+global 0
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=NN
+include "../cells.scs"
+parameters vdd=1.2
+Vvdd (VDD 0) vsource dc=vdd
+Vvss (VSS 0) vsource dc=0
+VA (A 0) vsource type=pwl wave=[ 0 0.0 500p 0.0 520p 1.2 1000p 1.2 1020p 0.0 ]
+XDUT (A Y VDD VSS) INV_X1
+XL_Y_0 (Y L_Y_0 VDD VSS) INV_X1
+XL_Y_1 (Y L_Y_1 VDD VSS) INV_X1
+XL_Y_2 (Y L_Y_2 VDD VSS) INV_X1
+XL_Y_3 (Y L_Y_3 VDD VSS) INV_X1
+saveOpts options save=selected
+save A Y
+tr tran stop=1500p maxstep=1p errpreset=conservative

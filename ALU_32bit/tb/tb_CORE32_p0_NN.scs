@@ -1,0 +1,6 @@
+// CORE32_p0, corner NN
+simulator lang=spectre
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=NN
+include "../../tang1_cell/cells.scs"
+include "../ALU_32bit.scs"
+include "tb_CORE32_p0.scs"

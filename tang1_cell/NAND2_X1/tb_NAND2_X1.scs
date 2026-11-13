@@ -1,0 +1,19 @@
+// NAND2_X1: 9 vectors x 500 ps, edges 20 ps, FO4 (4x INV_X1) per output
+// vector sequence (A B): 00 10 00 01 11 10 11 01 00
+simulator lang=spectre
+global 0
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=NN
+include "../cells.scs"
+parameters vdd=1.2
+Vvdd (VDD 0) vsource dc=vdd
+Vvss (VSS 0) vsource dc=0
+VA (A 0) vsource type=pwl wave=[ 0 0.0 500p 0.0 520p 1.2 1000p 1.2 1020p 0.0 2000p 0.0 2020p 1.2 3500p 1.2 3520p 0.0 ]
+VB (B 0) vsource type=pwl wave=[ 0 0.0 1500p 0.0 1520p 1.2 2500p 1.2 2520p 0.0 3000p 0.0 3020p 1.2 4000p 1.2 4020p 0.0 ]
+XDUT (A B Y VDD VSS) NAND2_X1
+XL_Y_0 (Y L_Y_0 VDD VSS) INV_X1
+XL_Y_1 (Y L_Y_1 VDD VSS) INV_X1
+XL_Y_2 (Y L_Y_2 VDD VSS) INV_X1
+XL_Y_3 (Y L_Y_3 VDD VSS) INV_X1
+saveOpts options save=selected
+save A B Y
+tr tran stop=4500p maxstep=1p errpreset=conservative

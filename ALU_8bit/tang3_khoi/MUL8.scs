@@ -1,0 +1,85 @@
+// MUL8: nhan co dau 8x8 -> 16 bit, Booth co so 4 + cay nen 4:2 + bo cong cuoi
+simulator lang=spectre
+subckt MUL8 A_0 A_1 A_2 A_3 A_4 A_5 A_6 A_7 B_0 B_1 B_2 B_3 B_4 B_5 B_6 B_7 P_0 P_1 P_2 \
+    P_3 P_4 P_5 P_6 P_7 P_8 P_9 P_10 P_11 P_12 P_13 P_14 P_15 VDD VSS
+I0 (B_1 B_0 VSS one0 two0 VDD VSS) BOOTH_ENC
+I1 (A_0 VSS one0 two0 B_1 pp0_0 VDD VSS) BOOTH_SEL
+I2 (A_1 A_0 one0 two0 B_1 pp0_1 VDD VSS) BOOTH_SEL
+I3 (A_2 A_1 one0 two0 B_1 pp0_2 VDD VSS) BOOTH_SEL
+I4 (A_3 A_2 one0 two0 B_1 pp0_3 VDD VSS) BOOTH_SEL
+I5 (A_4 A_3 one0 two0 B_1 pp0_4 VDD VSS) BOOTH_SEL
+I6 (A_5 A_4 one0 two0 B_1 pp0_5 VDD VSS) BOOTH_SEL
+I7 (A_6 A_5 one0 two0 B_1 pp0_6 VDD VSS) BOOTH_SEL
+I8 (A_7 A_6 one0 two0 B_1 pp0_7 VDD VSS) BOOTH_SEL
+I9 (A_7 A_7 one0 two0 B_1 pp0_8 VDD VSS) BOOTH_SEL
+I10 (pp0_8 sn0 VDD VSS) INV_X1
+I11 (B_3 B_2 B_1 one1 two1 VDD VSS) BOOTH_ENC
+I12 (A_0 VSS one1 two1 B_3 pp1_0 VDD VSS) BOOTH_SEL
+I13 (A_1 A_0 one1 two1 B_3 pp1_1 VDD VSS) BOOTH_SEL
+I14 (A_2 A_1 one1 two1 B_3 pp1_2 VDD VSS) BOOTH_SEL
+I15 (A_3 A_2 one1 two1 B_3 pp1_3 VDD VSS) BOOTH_SEL
+I16 (A_4 A_3 one1 two1 B_3 pp1_4 VDD VSS) BOOTH_SEL
+I17 (A_5 A_4 one1 two1 B_3 pp1_5 VDD VSS) BOOTH_SEL
+I18 (A_6 A_5 one1 two1 B_3 pp1_6 VDD VSS) BOOTH_SEL
+I19 (A_7 A_6 one1 two1 B_3 pp1_7 VDD VSS) BOOTH_SEL
+I20 (A_7 A_7 one1 two1 B_3 pp1_8 VDD VSS) BOOTH_SEL
+I21 (pp1_8 sn1 VDD VSS) INV_X1
+I22 (B_5 B_4 B_3 one2 two2 VDD VSS) BOOTH_ENC
+I23 (A_0 VSS one2 two2 B_5 pp2_0 VDD VSS) BOOTH_SEL
+I24 (A_1 A_0 one2 two2 B_5 pp2_1 VDD VSS) BOOTH_SEL
+I25 (A_2 A_1 one2 two2 B_5 pp2_2 VDD VSS) BOOTH_SEL
+I26 (A_3 A_2 one2 two2 B_5 pp2_3 VDD VSS) BOOTH_SEL
+I27 (A_4 A_3 one2 two2 B_5 pp2_4 VDD VSS) BOOTH_SEL
+I28 (A_5 A_4 one2 two2 B_5 pp2_5 VDD VSS) BOOTH_SEL
+I29 (A_6 A_5 one2 two2 B_5 pp2_6 VDD VSS) BOOTH_SEL
+I30 (A_7 A_6 one2 two2 B_5 pp2_7 VDD VSS) BOOTH_SEL
+I31 (A_7 A_7 one2 two2 B_5 pp2_8 VDD VSS) BOOTH_SEL
+I32 (pp2_8 sn2 VDD VSS) INV_X1
+I33 (B_7 B_6 B_5 one3 two3 VDD VSS) BOOTH_ENC
+I34 (A_0 VSS one3 two3 B_7 pp3_0 VDD VSS) BOOTH_SEL
+I35 (A_1 A_0 one3 two3 B_7 pp3_1 VDD VSS) BOOTH_SEL
+I36 (A_2 A_1 one3 two3 B_7 pp3_2 VDD VSS) BOOTH_SEL
+I37 (A_3 A_2 one3 two3 B_7 pp3_3 VDD VSS) BOOTH_SEL
+I38 (A_4 A_3 one3 two3 B_7 pp3_4 VDD VSS) BOOTH_SEL
+I39 (A_5 A_4 one3 two3 B_7 pp3_5 VDD VSS) BOOTH_SEL
+I40 (A_6 A_5 one3 two3 B_7 pp3_6 VDD VSS) BOOTH_SEL
+I41 (A_7 A_6 one3 two3 B_7 pp3_7 VDD VSS) BOOTH_SEL
+I42 (A_7 A_7 one3 two3 B_7 pp3_8 VDD VSS) BOOTH_SEL
+I43 (pp3_8 sn3 VDD VSS) INV_X1
+I44 (pp0_2 pp1_0 B_3 fa1_0 fa1_1 VDD VSS) FA_X1
+I45 (pp0_3 pp1_1 ha2_0 ha2_1 VDD VSS) HA_X1
+I46 (pp0_4 pp1_2 pp2_0 fa3_0 fa3_1 VDD VSS) FA_X1
+I47 (pp0_5 pp1_3 pp2_1 fa4_0 fa4_1 VDD VSS) FA_X1
+I48 (pp0_6 pp1_4 pp2_2 pp3_0 B_7 cm5_0 cm5_1 cm5_2 VDD VSS) CMP42
+I49 (pp0_7 pp1_5 pp2_3 pp3_1 cm5_2 cm6_0 cm6_1 cm6_2 VDD VSS) CMP42
+I50 (pp0_8 pp1_6 pp2_4 pp3_2 cm6_2 cm7_0 cm7_1 cm7_2 VDD VSS) CMP42
+I51 (pp0_8 pp1_7 pp2_5 pp3_3 cm7_2 cm8_0 cm8_1 cm8_2 VDD VSS) CMP42
+I52 (pp0_8 pp1_8 pp2_6 pp3_4 cm8_2 cm9_0 cm9_1 cm9_2 VDD VSS) CMP42
+I53 (sn0 sn1 pp2_7 pp3_5 cm9_2 cm10_0 cm10_1 cm10_2 VDD VSS) CMP42
+I54 (VDD pp2_8 pp3_6 VSS cm10_2 cm11_0 cm11_1 cm11_2 VDD VSS) CMP42
+I55 (sn2 pp3_7 cm11_2 fa12_0 fa12_1 VDD VSS) FA_X1
+I56 (VDD pp3_8 ha13_0 ha13_1 VDD VSS) HA_X1
+I57 (ha2_1 fa3_0 B_5 fa14_0 fa14_1 VDD VSS) FA_X1
+I58 (fa3_1 fa4_0 ha15_0 ha15_1 VDD VSS) HA_X1
+I59 (fa4_1 cm5_0 ha16_0 ha16_1 VDD VSS) HA_X1
+I60 (cm5_1 cm6_0 ha17_0 ha17_1 VDD VSS) HA_X1
+I61 (cm6_1 cm7_0 ha18_0 ha18_1 VDD VSS) HA_X1
+I62 (cm7_1 cm8_0 ha19_0 ha19_1 VDD VSS) HA_X1
+I63 (cm8_1 cm9_0 ha20_0 ha20_1 VDD VSS) HA_X1
+I64 (cm9_1 cm10_0 ha21_0 ha21_1 VDD VSS) HA_X1
+I65 (cm10_1 cm11_0 ha22_0 ha22_1 VDD VSS) HA_X1
+I66 (cm11_1 fa12_0 ha23_0 ha23_1 VDD VSS) HA_X1
+I67 (fa12_1 ha13_0 ha24_0 ha24_1 VDD VSS) HA_X1
+I68 (ha13_1 sn3 ha25_0 ha25_1 VDD VSS) HA_X1
+I69 (pp0_0 B_1 P_0 rc1 VDD VSS) HA_X1
+I70 (pp0_1 rc1 P_1 rc2 VDD VSS) HA_X1
+I71 (fa1_0 rc2 P_2 rc3 VDD VSS) HA_X1
+I72 (fa1_1 ha2_0 rc3 P_3 rc4 VDD VSS) FA_X1
+I73 (fa14_0 rc4 P_4 rc5 VDD VSS) HA_X1
+I74 (fa14_1 ha15_0 rc5 P_5 rc6 VDD VSS) FA_X1
+I75 (ha15_1 ha16_0 rc6 P_6 rc7 VDD VSS) FA_X1
+I76 (ha16_1 ha17_0 rc7 P_7 rc8 VDD VSS) FA_X1
+I77 (ha17_1 ha18_1 ha19_1 ha20_1 ha21_1 ha22_1 ha23_1 ha24_1 ha18_0 ha19_0 ha20_0 ha21_0 \
+    ha22_0 ha23_0 ha24_0 ha25_0 rc8 P_8 P_9 P_10 P_11 P_12 P_13 P_14 P_15 kc7 kc8 VDD VSS) \
+    KSA8
+ends MUL8
