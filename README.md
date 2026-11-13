@@ -192,8 +192,8 @@ Kết quả đạt: `DRC <KHOI>: 0 luat vi pham` và `LVS <KHOI>: Schematic and 
 | ALU_TOPK | 12/12 | 4 653,7 ps | 3 582,8 ps | 20,1 pJ | 121,99 × 119,35 |
 | CORE32 | 10/10 | 1 070,7 ps | 1 270,3 ps | 4,20 pJ | 104,78 × 102,79 |
 | MUL32 (3 phần) | 9/9 | 1 907,5 ps | 2 249,1 ps | 18,0 – 30,7 pJ | 231,80 × 229,75 |
-| DIV32 (4 phần) | 8/8 | 20 803,7 ps | chưa trích | 1 655 – 2 462 pJ | 375,66 × 373,27 |
-| ALU32 | chưa mô phỏng | | | | 449,09 × 447,79 |
+| DIV32 (4 phần) | 8/8 | 20 803,7 ps | 20 662,3 ps (phần xấu nhất trong 4) | 1 655 – 2 462 pJ | 375,66 × 373,27 |
+| ALU32 (4 phần) | 8/8 | 21 131,4 ps (phần 0, ADD rồi DIV) | phần 0: 21 131,4 ps; phần 1 đến 3 đang chạy | 1 708 – 2 534 pJ | 449,09 × 447,79 |
 
 Mọi khối có layout đều đạt DRC 0 lỗi và LVS khớp. Trễ đo trên một số ít vector nên chưa chắc là trường hợp xấu nhất;
 năng lượng của DIV32 gồm cả phần khởi động từ 0 V do bỏ bước DC.
@@ -202,4 +202,5 @@ năng lượng của DIV32 gồm cả phần khởi động từ 0 V do bỏ bư
 
 - Mạch thuần tổ hợp, chưa có phép dịch.
 - Place & route không dùng thư viện thời gian; RCX chỉ trích tụ, chưa trích điện trở dây.
-- DIV32 và ALU32 chưa mô phỏng sau layout; ALU32 chưa mô phỏng Spectre toàn khối.
+- ALU32 sau layout mới có kết quả phần 0 (netlist ký sinh đã trích sẵn, chạy tiếp phần 1 đến 3 bằng `scripts/run_sim.sh`, mỗi phần khoảng 40 phút, dùng `TMO=10800` và chạy nền vì runner giới hạn 30 phút).
+- Corner SS, FF của khối 8 bit đã PASS toàn bộ; corner SS, FF của khối 32 bit chưa chạy.
