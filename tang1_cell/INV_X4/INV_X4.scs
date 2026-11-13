@@ -1,0 +1,7 @@
+// Buffer: inverter 4x INV_X1 (n 0.48u / p 0.96u), drives the high-fanout q net of each DIV8 row.
+// Pins: A Y VDD VSS. 2 transistors.
+simulator lang=spectre
+subckt INV_X4 A Y VDD VSS
+    MN1 (Y A VSS VSS) gpdk090_nmos1v w=0.48u l=0.1u
+    MP2 (Y A VDD VDD) gpdk090_pmos1v w=0.96u l=0.1u
+ends INV_X4

@@ -1,0 +1,13 @@
+// ALU_32bit: moi khoi tang 2, 3, 4 cua ALU32. Include sau file model va tang1_cell/cells.scs.
+simulator lang=spectre
+include "tang2_khoi_con/KSA32.scs"
+include "tang2_khoi_con/KSA64.scs"
+include "tang2_khoi_con/ADDSUB32.scs"
+include "tang2_khoi_con/LOGIC32.scs"
+include "tang2_khoi_con/DEC_OP.scs"
+include "tang2_khoi_con/OUTMUX32.scs"
+include "tang2_khoi_con/FLAGS32.scs"
+include "tang3_khoi/CORE32.scs"
+include "tang3_khoi/MUL32.scs"
+include "tang3_khoi/DIV32.scs"
+include "tang4_top/ALU32.scs"

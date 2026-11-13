@@ -1,0 +1,7 @@
+// INV_X1 (ALU_CELLS_A).  Y = !A
+// Pins: A Y VDD VSS
+simulator lang=spectre
+subckt INV_X1 A Y VDD VSS
+    MN0 (Y A VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u
+    MP0 (Y A VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u
+ends INV_X1

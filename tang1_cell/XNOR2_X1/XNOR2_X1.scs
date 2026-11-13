@@ -1,0 +1,17 @@
+// Y = !(A ^ B).  Pins: A B Y VDD VSS.  Static CMOS, 12 transistors:
+// 2 input inverters + complex gate Y = !(A&Bn | An&B).
+simulator lang=spectre
+subckt XNOR2_X1 A B Y VDD VSS
+    MN0 (An A VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u
+    MP0 (An A VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u
+    MN1 (Bn B VSS VSS) gpdk090_nmos1v w=0.12u l=0.1u
+    MP1 (Bn B VDD VDD) gpdk090_pmos1v w=0.24u l=0.1u
+    MN2 (Y A n1 VSS) gpdk090_nmos1v w=0.24u l=0.1u
+    MN3 (n1 Bn VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u
+    MN4 (Y An n2 VSS) gpdk090_nmos1v w=0.24u l=0.1u
+    MN5 (n2 B VSS VSS) gpdk090_nmos1v w=0.24u l=0.1u
+    MP2 (p1 A VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u
+    MP3 (p1 Bn VDD VDD) gpdk090_pmos1v w=0.48u l=0.1u
+    MP4 (Y An p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u
+    MP5 (Y B p1 VDD) gpdk090_pmos1v w=0.48u l=0.1u
+ends XNOR2_X1

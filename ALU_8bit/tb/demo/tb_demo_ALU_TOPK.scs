@@ -1,0 +1,12 @@
+// Demo ALU_TOPK: A, B, OP thap phan (chay dong lenh; trong ADE dung demo_stim.scs + bien thiet ke)
+simulator lang=spectre
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=NN
+include "../../../tang1_cell/cells.scs"
+include "../../ALU_8bit.scs"
+parameters A=-7 B=2 OP=11
+global 0
+include "demo_stim.scs"
+XDUT (A_0 A_1 A_2 A_3 A_4 A_5 A_6 A_7 B_0 B_1 B_2 B_3 B_4 B_5 B_6 B_7 OP_0 OP_1 OP_2 OP_3 Y_0 Y_1 Y_2 Y_3 Y_4 Y_5 Y_6 Y_7 Y_8 Y_9 Y_10 Y_11 Y_12 Y_13 Y_14 Y_15 Z C V DZ VDD VSS) ALU_TOPK
+save Y_0 Y_1 Y_2 Y_3 Y_4 Y_5 Y_6 Y_7 Y_8 Y_9 Y_10 Y_11 Y_12 Y_13 Y_14 Y_15 Z C V DZ A_0 A_7 B_1 OP_0 OP_3
+opts options save=selected temp=27 reltol=1e-3
+tran tran stop=8n maxstep=40p errpreset=moderate

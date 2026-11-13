@@ -1,0 +1,12 @@
+; Assura DRC tren GDS cua khoi (pnr/run_pnr.sh dien @GDS@ @CELL@ @RUN@).
+avParameters(
+  ?inputLayout ( "gds2" "@GDS@" )
+  ?cellName "@CELL@"
+  ?rulesFile "/home/buet/cadence/gpdk090_v4.6/assura/drc.rul"
+  ?runName "@CELL@"
+  ?workingDirectory "@RUN@"
+  ?flagNon45 t
+  ?userUnits "micron"
+  ?overwrite t
+  ?avrpt t
+)

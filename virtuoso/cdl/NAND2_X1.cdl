@@ -1,0 +1,7 @@
+
+.SUBCKT NAND2_X1 A B Y VDD VSS
+MN0 Y A n1 VSS nmos1v w=0.24u l=0.1u
+MN1 n1 B VSS VSS nmos1v w=0.24u l=0.1u
+MP0 Y A VDD VDD pmos1v w=0.24u l=0.1u
+MP1 Y B VDD VDD pmos1v w=0.24u l=0.1u
+.ENDS NAND2_X1

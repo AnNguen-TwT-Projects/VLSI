@@ -1,0 +1,10 @@
+// CAS_X1
+simulator lang=spectre
+subckt CAS_X1 X D T CI S CO VDD VSS
+I0 (D T b VDD VSS) XOR2_X1
+I1 (X b p VDD VSS) XOR2_X1
+I2 (p CI S VDD VSS) XOR2_X1
+I3 (X b g_n VDD VSS) NAND2_X1
+I4 (p CI pc_n VDD VSS) NAND2_X1
+I5 (g_n pc_n CO VDD VSS) NAND2_X1
+ends CAS_X1

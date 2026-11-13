@@ -1,0 +1,20 @@
+// GRY_N: 25 vectors x 500 ps, edges 20 ps, FO4 (4x INV_X1) per output
+// vector sequence (GIN PIN GKN): 000 100 000 010 110 010 000 001 101 001 011 111 101 111 110 100 101 100 110 111 011 010 011 001 000
+simulator lang=spectre
+global 0
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=NN
+include "../cells.scs"
+parameters vdd=1.2
+Vvdd (VDD 0) vsource dc=vdd
+Vvss (VSS 0) vsource dc=0
+VGIN (GIN 0) vsource type=pwl wave=[ 0 0.0 500p 0.0 520p 1.2 1000p 1.2 1020p 0.0 2000p 0.0 2020p 1.2 2500p 1.2 2520p 0.0 4000p 0.0 4020p 1.2 4500p 1.2 4520p 0.0 5500p 0.0 5520p 1.2 10000p 1.2 10020p 0.0 ]
+VPIN (PIN 0) vsource type=pwl wave=[ 0 0.0 1500p 0.0 1520p 1.2 3000p 1.2 3020p 0.0 5000p 0.0 5020p 1.2 6000p 1.2 6020p 0.0 6500p 0.0 6520p 1.2 7500p 1.2 7520p 0.0 9000p 0.0 9020p 1.2 11500p 1.2 11520p 0.0 ]
+VGKN (GKN 0) vsource type=pwl wave=[ 0 0.0 3500p 0.0 3520p 1.2 7000p 1.2 7020p 0.0 8000p 0.0 8020p 1.2 8500p 1.2 8520p 0.0 9500p 0.0 9520p 1.2 10500p 1.2 10520p 0.0 11000p 0.0 11020p 1.2 12000p 1.2 12020p 0.0 ]
+XDUT (GIN PIN GKN GO VDD VSS) GRY_N
+XL_GO_0 (GO L_GO_0 VDD VSS) INV_X1
+XL_GO_1 (GO L_GO_1 VDD VSS) INV_X1
+XL_GO_2 (GO L_GO_2 VDD VSS) INV_X1
+XL_GO_3 (GO L_GO_3 VDD VSS) INV_X1
+saveOpts options save=selected
+save GIN PIN GKN GO
+tr tran stop=12500p maxstep=1p errpreset=conservative

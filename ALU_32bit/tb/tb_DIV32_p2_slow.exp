@@ -1,0 +1,7 @@
+# tb_DIV32_p2_slow: gia tri mong doi cua moi ngo ra o cuoi tung vector (x = khong xet)
+T 6e-08
+MARGIN 2e-11
+STRICT 0
+OUT Q_0 Q_1 Q_2 Q_3 Q_4 Q_5 Q_6 Q_7 Q_8 Q_9 Q_10 Q_11 Q_12 Q_13 Q_14 Q_15 Q_16 Q_17 Q_18 Q_19 Q_20 Q_21 Q_22 Q_23 Q_24 Q_25 Q_26 Q_27 Q_28 Q_29 Q_30 Q_31 R_0 R_1 R_2 R_3 R_4 R_5 R_6 R_7 R_8 R_9 R_10 R_11 R_12 R_13 R_14 R_15 R_16 R_17 R_18 R_19 R_20 R_21 R_22 R_23 R_24 R_25 R_26 R_27 R_28 R_29 R_30 R_31 V DZ
+V 0 0 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx01 ; a=5 b=0
+V 1 1 101111111111111111111111111111111111111111111111111111111111111100 ; a=4294967289 b=2

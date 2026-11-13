@@ -1,0 +1,6 @@
+// DIV8K_p1, corner SS
+simulator lang=spectre
+include "/home/buet/cadence/gpdk090_v4.6/models/spectre/gpdk090.scs" section=SS
+include "../../tang1_cell/cells.scs"
+include "../ALU_8bit.scs"
+include "tb_DIV8K_p1_slow.scs"

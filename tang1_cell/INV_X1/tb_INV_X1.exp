@@ -1,0 +1,8 @@
+# tb_INV_X1: gia tri mong doi cua moi ngo ra o cuoi tung vector (x = khong xet)
+T 5e-10
+MARGIN 1e-11
+STRICT 1
+OUT Y
+V 0 0 1 ; A=0
+V 1 1 0 ; A=1
+V 2 1 1 ; A=0

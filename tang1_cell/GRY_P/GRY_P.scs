@@ -1,0 +1,7 @@
+// GRY_P (ALU_CELLS_A). Gray cell, positive-in / negative-out.
+// GON = !(GI | PI & GK) (AOI21: A1=PI A2=GK B=GI)
+// Pins: GI PI GK GON VDD VSS
+simulator lang=spectre
+subckt GRY_P GI PI GK GON VDD VSS
+    XG (PI GK GI GON VDD VSS) AOI21_X1
+ends GRY_P
